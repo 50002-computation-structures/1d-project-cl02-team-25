@@ -11,25 +11,25 @@ module alu_manual_test #(
     output led[8]
 ) {
     enum States_MANUAL{
-        IDLE,
-        STORE16AFIRST,
-        STORE16ALAST,
-        STORE16BFIRST,
-        STORE16BLAST,
-        COMMAND,
-        DISPLAY
+        IDLE, // Waiting for user input
+        STORE16AFIRST, // Store first 16 bits of operand A from DIP switches
+        STORE16ALAST, // Store last 16 bits of operand A
+        STORE16BFIRST, // Store first 16 bits of operand B
+        STORE16BLAST, // Store last 16 bits of operand B
+        COMMAND, // Capture ALUFN command from DIP switches (to select operation)
+        DISPLAY // Compute and display the ALU result
                
     }
     
     enum States_AUTO{
-        IDLE,
-        NUMA,
-        COMMAND,
-        NUMB,
-        ANSWER,
-        ERROR,
-        CHECK,
-        COMPLETE
+        IDLE, // Auto mode idle state waiting for trigger
+        NUMA, // Load operand A from ROM
+        COMMAND, // Load ALUFN command from ROM
+        NUMB, // Load operand B from ROM
+        ANSWER, // Compute ALU output
+        ERROR, // Optionally inject an error condition (if DIP set)
+        CHECK, // Compare computed result with expected output from ROM
+        COMPLETE // All test cases completed
     }
     
     sig slowclock
@@ -37,44 +37,44 @@ module alu_manual_test #(
     const SLOW_CLOCK_DEFAULT_SPEED = $is_sim() ? 8 : 25
     const SEVEN_SEG_DIV = $is_sim() ? 3 : 16 // put 6 for sim, 16 on hardware
     
-    rom_A roma
-    rom_B romb
-    rom_ALUFN romalu
-    rom_Output romout
+    rom_A roma // ROM holding test values for operand A
+    rom_B romb // ROM holding test values for operand B
+    rom_ALUFN romalu // ROM holding test ALUFN (operation code) values
+    rom_Output romout // ROM holding expected ALU outputs for comparison
     
-    alu alu
+    alu alu // Instantiate the ALU module and connect its clock
     .clk(clk){
         edge_detector io_button_edge[5](#RISE(5x{{1}}),#FALL(5x{{1}}))
         button_conditioner io_button_cond[5](#CLK_FREQ(5x{{CLK_FREQ1}}))
         edge_detector slow_clock_edge(#RISE(1),#FALL(0))
         .rst(rst){
-            dff states[$width(States_MANUAL)](#INIT(States_MANUAL.IDLE))
-            dff states_auto[$width(States_AUTO)](#INIT(States_AUTO.IDLE))
-            dff afirsthalf[16]
+            dff states[$width(States_MANUAL)](#INIT(States_MANUAL.IDLE)) // Instantiate D flip-flops for the manual mode FSM state (initialized to IDLE)
+            dff states_auto[$width(States_AUTO)](#INIT(States_AUTO.IDLE)) // Instantiate D flip-flops for the automatic mode FSM state (initialized to IDLE)
+            dff afirsthalf[16] // D flip-flops for storing the two 16-bit halves of operand A
             dff asecondthalf[16]
-            dff bfirsthalf[16]
+            dff bfirsthalf[16] // D flip-flops for storing the two 16-bit halves of operand B
             dff bsecondhalf[16]
-            dff alufn[6]
-            dff result[32](#INIT(32b0))
-            dff counter[32]
-            dff speed_pointer[$clog2(32)](#INIT(SLOW_CLOCK_DEFAULT_SPEED))
-            dff slow_clock_enable(#INIT(0))
-            dff begin(#INIT(0))
-            dff caseCounter[6]
-            dff v(#INIT(0))
-            dff continue(#INIT(1))
+            dff alufn[6] // D flip-flop for storing the 6-bit ALUFN command signal
+            dff result[32](#INIT(32b0)) // D flip-flop for holding the 32-bit ALU result (initialized to 0)
+            dff counter[32] // D flip-flop for a 32-bit counter used for generating the slow clock and addressing ROMs
+            dff speed_pointer[$clog2(32)](#INIT(SLOW_CLOCK_DEFAULT_SPEED)) // D flip-flop for a speed pointer
+            dff slow_clock_enable(#INIT(0)) // D flip-flop to enable/disable the slow clock (default is disabled)
+            dff begin(#INIT(0)) // D flip-flop for a "begin" flag used to indicate the start of manual mode input
+            dff caseCounter[6] // D flip-flop for counting test cases in auto mode (6-bit counter)
+            dff v(#INIT(0)) // D flip-flop for storing a flag
+            dff continue(#INIT(1)) // D flip-flop for a continue flag used to control auto mode sequencing (default true)
 
             
-            multi_seven_seg seg(#DIV(SEVEN_SEG_DIV))
+            multi_seven_seg seg(#DIV(SEVEN_SEG_DIV)) // Instantiate a multi-digit seven-segment display driver
         }
     }
-    bin_to_dec decimal_renderer(#DIGITS(4), #LEADING_ZEROS(1))
+    bin_to_dec decimal_renderer(#DIGITS(4), #LEADING_ZEROS(1)) // Instantiate a binary-to-decimal converter for driving the seven-segment display (configured for 4 digits with leading zeros)
     always {
         // implement alu tester logic here
         alu.a = c{afirsthalf.q,asecondthalf.q}
         alu.b = c{bfirsthalf.q,bsecondhalf.q}
         alu.alufn = alufn.q
-
+        // Default behavior: latch current values (unless modified by FSM state transitions)
         afirsthalf.d = afirsthalf.q
         asecondthalf.d = asecondthalf.q
         bfirsthalf.d = bfirsthalf.q
@@ -82,31 +82,31 @@ module alu_manual_test #(
         alufn.d = alufn.q
         result.d = result.q
         begin.d = begin.q
-             
+        // Update counter and derive the slow clock signal:     
         speed_pointer.d = speed_pointer.q 
         counter.d = counter.q + 1
         slowclock = counter.q[speed_pointer.q]
-
+         // Propagate FSM states (manual and automatic) unless changed by transitions
         states.d = states.q
         states_auto.d = states_auto.q
-
+        // Feed the first five buttons into the button conditioner and then into the edge detector
         io_button_cond.in = io_button[4:0]
         io_button_edge.in = io_button_cond.out
         
-        
+        // Provide the slow clock signal to its edge detector
         slow_clock_edge.in = slowclock 
         slow_clock_enable.d = slow_clock_enable.q
-        
+        // Latch the auto mode case counter and V flag
         caseCounter.d = caseCounter.q
         v.d=v.q
-        
+        // Use the case counter to address each ROM for automatic test values
         roma.address=caseCounter.q
         romb.address=caseCounter.q
         romalu.address=caseCounter.q
         romout.address=caseCounter.q
-        
+        // Propagate the continue flag (controls whether auto mode proceeds)
         continue.d=continue.q
-        
+        // LED & DISPLAY OUTPUT
         io_led = {result.q[31:24],result.q[23:16],result.q[7:0]}
         decimal_renderer.value = c{result.q[31:24],result.q[23:16],result.q[7:0]}
         led = c{0,0,caseCounter.q[5:0]}
@@ -114,49 +114,53 @@ module alu_manual_test #(
         //io_select = 4hF
         
          case(states.q){
-            States_MANUAL.IDLE:
+            States_MANUAL.IDLE: 
+                // If button 0 is pressed, and manual input hasn't begun (begin.q is low) and auto mode is not enabled:
                 if (io_button_edge.out[0] && ~begin.q && ~slow_clock_enable.q){
                     begin.d = 1
                     states.d = States_MANUAL.STORE16AFIRST
                 }
-
+                // If button 1 is pressed and manual mode is active, capture last 16 bits of operand A.
                 else if (io_button_edge.out[1] && begin.q){
                     states.d = States_MANUAL.STORE16ALAST
                 }
+                // If button 2 is pressed and manual mode is active, capture first 16 bits of operand B.
                 else if (io_button_edge.out[2]&& begin.q){
                     states.d = States_MANUAL.STORE16BFIRST
                 }
+                // If button 4 is pressed and manual mode is active, capture last 16 bits of operand B.
                 else if (io_button_edge.out[4]&& begin.q){
                     states.d = States_MANUAL.STORE16BLAST
                 }
+                // If button 3 is pressed and manual mode is active, move to the COMMAND state to load ALUFN.
                 else if (io_button_edge.out[3]&& begin.q){
                     states.d = States_MANUAL.COMMAND
                 }
-            
+            // STORE16AFIRST: Capture the first 16 bits of operand A from DIP switches (banks 1 and 0).
             States_MANUAL.STORE16AFIRST:
             afirsthalf.d = c{io_dip[1],io_dip[0]}
             result.d = c{c{io_dip[1],io_dip[0]},16b0}
             states.d = States_MANUAL.IDLE
-            
+            // STORE16ALAST: Capture the last 16 bits of operand A.
             States_MANUAL.STORE16ALAST:
             asecondthalf.d = c{io_dip[1],io_dip[0]}
             result.d = c{afirsthalf.q,io_dip[1],io_dip[0]}
             states.d = States_MANUAL.IDLE
-            
+            // STORE16BFIRST: Capture the first 16 bits of operand B.
             States_MANUAL.STORE16BFIRST:
             bfirsthalf.d = c{io_dip[1],io_dip[0]}
             result.d = c{c{io_dip[1],io_dip[0]},16b0}
             states.d = States_MANUAL.IDLE
-            
+            // STORE16BLAST: Capture the last 16 bits of operand B.
             States_MANUAL.STORE16BLAST:
             bsecondhalf.d = c{io_dip[1],io_dip[0]}
             result.d = c{bfirsthalf.q,io_dip[1],io_dip[0]}
             states.d = States_MANUAL.IDLE
-            
+            // COMMAND: Capture the ALUFN command from DIP switch bank 2 (lower 6 bits).
             States_MANUAL.COMMAND:
             alufn.d = io_dip[2][5:0]
             states.d = States_MANUAL.DISPLAY
-            
+            // DISPLAY: Execute the ALU operation and display the result.
             States_MANUAL.DISPLAY:
             result.d = alu.out
             states.d = States_MANUAL.IDLE
@@ -166,10 +170,12 @@ module alu_manual_test #(
         
         case(states_auto.q){
             States_AUTO.IDLE:
+                // If button 1 is pressed with manual mode off and slow clock off, prepare to load A from rom
                 if (io_button_edge.out[1]&&~begin.q &&~slow_clock_enable.q){
                     slow_clock_enable.d=1
                     states_auto.d=States_AUTO.NUMA
                 }
+            // If auto mode is active and button 1 is pressed with continue flag low, prepare to load A from rom
             else if(io_button_edge.out[1]&&slow_clock_enable.q&&~continue.q){
                 if(caseCounter.q<31){
                 //result.d=b01010101010101010101010101011111
@@ -180,6 +186,7 @@ module alu_manual_test #(
                     states_auto.d=States_AUTO.COMPLETE
                         }
             }
+            // NUMA: Load operand A from ROM A on a slow clock edge
             States_AUTO.NUMA:
                 if(slow_clock_edge.out){
                     result.d=roma.element
@@ -187,6 +194,7 @@ module alu_manual_test #(
                     asecondthalf.d=roma.element[15:0]
                     states_auto.d=States_AUTO.NUMB
                     }
+            // NUMB: Load operand B from ROM B on a slow clock edge.
             States_AUTO.NUMB:
             if(slow_clock_edge.out){
                     
@@ -195,20 +203,20 @@ module alu_manual_test #(
             bsecondhalf.d=romb.element[15:0]
             states_auto.d=States_AUTO.COMMAND
                 }
-            
+            // COMMAND: Load ALUFN command from ROM ALUFN on a slow clock edge
             States_AUTO.COMMAND:
             if(slow_clock_edge.out){
             result.d=c{26b0,romalu.element}
             alufn.d=romalu.element
             states_auto.d=States_AUTO.ANSWER
                     }
-            
+            // ANSWER: Compute the ALU output based on the loaded operands and command.
             States_AUTO.ANSWER:
             if(slow_clock_edge.out){
             result.d=alu.out
             states_auto.d=States_AUTO.ERROR
                 }
-            
+            // ERROR: Optionally inject an error if DIP switch (io_dip[2][7]) is active.
             States_AUTO.ERROR:
             if(slow_clock_edge.out){
             if(io_dip[2][7]){
@@ -216,34 +224,36 @@ module alu_manual_test #(
                     }
             states_auto.d=States_AUTO.CHECK
                 }
-            
+            // CHECK: Compare the computed result with the expected output from ROM Output.
             States_AUTO.CHECK:
             if(slow_clock_edge.out){
                 if(result.q==romout.element){
+                    // If the result matches, display a success pattern (all ones)
                     result.d=b11111111111111111111111111111111
                     if(caseCounter.q<31){
                         caseCounter.d=caseCounter.q+1
-                    states_auto.d=States_AUTO.NUMA
+                    states_auto.d=States_AUTO.NUMA // Load next test case
                     }
                     else{
-                        states_auto.d=States_AUTO.COMPLETE
+                        states_auto.d=States_AUTO.COMPLETE // else it ends
                             }
                     }
-                else{
+                else{ // If the result does not match, display haphazard error pattern
                 result.d=b00001111000011110000111100001111
                         
                     continue.d=0
                     states_auto.d=States_AUTO.IDLE
                         }
             }
+            // COMPLETE: All test cases have been processed; display a completion pattern
             States_AUTO.COMPLETE:
             if(slow_clock_edge.out){
                 result.d=b01010101010101010101010101010101
                 }
                   
         }
-    seg.values = decimal_renderer.digits
-        
+    seg.values = decimal_renderer.digits // Get decimal digits from the renderer and feed them into the seven-segment driver
+    // Invert the outputs for active low signals
     io_segment = ~seg.seg
     io_select = ~seg.sel
     }
