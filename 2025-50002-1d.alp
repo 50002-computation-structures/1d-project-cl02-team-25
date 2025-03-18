@@ -1,7 +1,7 @@
 {
     "project": {
         "type": "V1.3",
-        "projectName": "2025-50002-1d",
+        "projectName": "alu",
         "board": "Alchitry Au",
         "sourceFiles": [
             {
@@ -20,25 +20,115 @@
             {
                 "file": {
                     "type": "DiskFile",
-                    "path": "source/decimal_counter.luc"
+                    "path": "source/rca.luc"
                 }
             },
             {
                 "file": {
                     "type": "DiskFile",
-                    "path": "source/multi_decimal_counter.luc"
+                    "path": "source/fa.luc"
                 }
             },
             {
                 "file": {
                     "type": "DiskFile",
-                    "path": "source/multi_seven_seg.luc"
+                    "path": "source/bit_reverse.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/boolean.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/compare.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/shifter.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/multiplier.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/alu.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/adder.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/mux_2.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/x_bit_left_shifter.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/x_bit_right_arithmetic_shifter.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/x_bit_right_shifter.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/mux_4.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/alu_manual_test.luc"
                 }
             },
             {
                 "file": {
                     "type": "Component",
-                    "path": "Miscellaneous/counter.luc"
+                    "path": "Pulses/edge_detector.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "Component",
+                    "path": "Miscellaneous/pipeline.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "Component",
+                    "path": "Conditioning/button_conditioner.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "Component",
+                    "path": "Miscellaneous/bin_to_dec.luc"
                 }
             },
             {
@@ -49,14 +139,56 @@
             },
             {
                 "file": {
+                    "type": "Component",
+                    "path": "Miscellaneous/counter.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/multi_seven_seg.luc"
+                }
+            },
+            {
+                "file": {
                     "type": "DiskFile",
                     "path": "source/seven_seg.luc"
                 }
             },
             {
                 "file": {
-                    "type": "Component",
-                    "path": "Pulses/edge_detector.luc"
+                    "type": "DiskFile",
+                    "path": "source/divider.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/modulo.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/rom_A.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/rom_B.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/rom_Output.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/rom_ALUFN.luc"
                 }
             }
         ],
