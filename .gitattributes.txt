@@ -1,0 +1,1 @@
+*.luc text eol=lf
