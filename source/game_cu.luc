@@ -1,7 +1,9 @@
 module game_cu (
     input clk,
     input rst,
-    input interval,
+    input interval1,
+    input interval2,
+    input interval3,
     input decrease_timer,
     input regfile_rd2[32], //i do actually need this
     
@@ -17,7 +19,7 @@ module game_cu (
     output alufn[6],
     output asel[2],
     output bsel[4],
-    output alu_out[32],
+    output alu_out_sel[3],
     output regfile_wa[5],
     output regfile_ra1[5],
     output regfile_ra2[5],
@@ -38,7 +40,7 @@ module game_cu (
         alufn=0
         asel=0
         bsel=0
-        alu_out=0
+        alu_out_sel=0
         regfile_wa=d8 //just in case we just send them somehwere
         regfile_ra1=0
         regfile_ra2=0

@@ -1,0 +1,23 @@
+Me screaming at myself
+
+1) Don't forget to actually customise the randomise function. I NEED IT TO BE MY OWN OTHERWISE THE GAME WILL SUCK BECAUSE OF COOLDOWNS AND AWAKE TIMERS!!!!
+2) For now, I will reinstate Cooldowns. Please REMEMBER TO CONNECT THE COOLDOWNS IN THE REGFILES
+3) WE HAVE A WIN CONDITION NOW AT >=100 LITERALLY DO NOT FORGET PLS
+
+Other perhaps iffy things:
+- Currently, I am outputting the buttontype as the score. This is done so I can directly increment the score from the regfile.
+  however, I may have to deal with some case logic nonsense in alchitrytop. Think of workaround? Or is this fine?
+	- 0: button not lit up
+	- 1: blue button
+	- 5: green button
+	- 20: red button
+- Currently, I am also outputting button activated as a number (this number is processed by an ALU function in my states SET_ACTIVE_BUTTON)
+  must also deal with the cases in alchitry_top
+	- 0: no buttons
+	- 1: button1
+	- 2: button2
+	- you get the picture
+- I will be relying on 3 separate custom implementations of variabletimer currently they are all hooked up to the same thing
+	- see interval1, interval2 and interval3 in datapath
+	- please change
+- Debug is literally nothing

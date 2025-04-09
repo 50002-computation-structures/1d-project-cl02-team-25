@@ -16,18 +16,19 @@ module game_datapath#(
     
     output timerout[32],
     output scoreout[32],
-    output buttonmapout[32],
-    output modeout[32],
+    //output buttonmapout[32],
+    //output modeout[32],
     output levelcounterout[32],
-    output awakeout[32],
+    //output awakeout[32],
     output activebuttonout[32],
     output activetypeout[32],
-    output cooldownout[32],
+    //output cooldownout[32],
     
+    output slow_clock_out,
     output debug_general[4]
 ) {
-    sig input_alu_a
-    sig input_alu_b
+    sig input_alu_a[32]
+    sig input_alu_b[32]
     
     alu game_alu
     .clk(clk){
@@ -38,8 +39,72 @@ module game_datapath#(
         edge_detector edge_detector_game_timer(#RISE(1), #FALL(0), .in(game_timer_clock.value))
         
         game_cu game_cu(
-        .button)
+        .button1(button1),
+        .button2(button2),
+        .button3(button3),
+        .button4(button4),
+        .button5(button5),
+        .button6(button6),
+        .buttonstart(buttonstart),
+        .buttonreset(buttonreset),
+        .rst(rst),
+        .interval1(edge_detector_variable_timer.out), //TODO!!!
+        .interval2(edge_detector_variable_timer.out),
+        .interval3(edge_detector_variable_timer.out),
+        .decrease_timer(edge_detector_game_timer.out)
+        )
+        
+        game_regfiles game_regfiles(
+        .we(game_cu.regfile_we),
+        .wa(game_cu.regfile_wa),
+        .ra1(game_cu.regfile_ra1),
+        .ra2(game_cu.regfile_ra2),
+        .rst(rst)
+        )
     }
     always {
+        //following the bootstrap
+        game_cu.regfile_rd2=game_regfiles.rd2
+        
+        case(game_cu.asel){
+            b00:input_alu_a=game_regfiles.rd1
+            b01:input_alu_a=d5
+            b10:input_alu_a=d20
+            b11:input_alu_a=d99
+            default:input_alu_a=d0
+        }
+        
+        case(game_cu.bsel){
+            b0000:input_alu_b=game_regfiles.rd2
+            b0001:input_alu_b=d1
+            b0010:input_alu_b=d2
+            b0011:input_alu_b=d3
+            b0100:input_alu_b=d4
+            b0101:input_alu_b=d5
+            b0110:input_alu_b=d6
+            b0111:input_alu_b=d20
+            b1000:input_alu_b=d60
+            b1001:input_alu_b=d99
+            default:input_alu_b=d0
+    }
+        game_alu.a=input_alu_a
+        game_alu.b=input_alu_b
+        game_alu.alufn=game_cu.alufn
+        
+        case(game_cu.alu_out_sel){
+            b01:game_regfiles.data=hFFFF
+            b10:game_regfiles.data=h1F1F
+            b11:game_regfiles.data=0
+            default:game_regfiles.data=game_alu.out
+        }
+    timerout=game_regfiles.timerout
+        scoreout=game_regfiles.scoreout
+        levelcounterout=game_regfiles.levelcounterout
+        activebuttonout=game_regfiles.activebuttonout
+        activetypeout=game_regfiles.activetypeout
+        slow_clock_out=game_timer_clock.value
+        
+        debug_general=game_cu.debug //literally nothing rn
+        
     }
 }
