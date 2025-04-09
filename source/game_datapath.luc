@@ -97,7 +97,7 @@ module game_datapath#(
             b11:game_regfiles.data=0
             default:game_regfiles.data=game_alu.out
         }
-    timerout=game_regfiles.timerout
+        timerout=game_regfiles.timerout
         scoreout=game_regfiles.scoreout
         levelcounterout=game_regfiles.levelcounterout
         activebuttonout=game_regfiles.activebuttonout

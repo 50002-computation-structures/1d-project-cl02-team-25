@@ -39,7 +39,7 @@ module alchitry_top (
         }
     }
     
-    bin_to_dec bin_to_dec_converter(#DIGITS(4))
+    bin_to_dec decimal_renderer(#DIGITS(4), #LEADING_ZEROS(1))
     always {
         reset_cond.in = ~rst_n // input raw inverted reset signal
         rst = reset_cond.out   // conditioned reset
@@ -73,15 +73,17 @@ module alchitry_top (
         game_datapath.buttonstart=edge_det_start.out
         game_datapath.buttonreset=reset_cond.out
         
-        seg.values = 4x{{4b0}} // default to all 0 first
-        bin_to_dec_converter.value = game_datapath.timerout
-        seg.values = bin_to_dec_converter.digits
+        decimal_renderer.value=game_datapath.timerout
+        seg.values = decimal_renderer.digits
+        io_segment=~seg.seg
+        io_select=~seg.sel
         // to test ALU 
         
         io_led[0]=game_datapath.activebuttonout
         io_led[1]=game_datapath.activetypeout
         io_led[2]=game_datapath.scoreout
-        led=game_datapath.levelcounterout
+        led[2]=game_datapath.slow_clock_out
+        led[1:0]=game_datapath.levelcounterout
         //TO ADD SCORE LINKAGE
     }
 }
