@@ -1,0 +1,88 @@
+module game_regfiles (
+    input clk,  // clock
+    input rst,  // reset
+    input wa[5], //write address
+    input we, //write enable
+    input data[32], //data in
+    
+    input ra1[5],
+    input ra2[5],
+    output rd1[32],
+    output rd2[32],
+    
+    output timerout[32],
+    output scoreout[32],
+    output buttonmapout[32],
+    output modeout[32],
+    output levelcounterout[32],
+    output awakeout[32],
+    output activebuttonout[32],
+    output activetypeout[32],
+    output cooldownout[32]
+) {
+    .clk(clk){
+        .rst(rst){
+            dff timer[32](#INIT(0))
+            dff score[32](#INIT(0))
+            dff buttonmap[32](#INIT(0))
+            dff mode[32](#INIT(0))
+            dff levelcounter[32](#INIT(0))
+            dff awake[32](#INIT(0))
+            dff activebutton[32](#INIT(0))
+            dff activetype[32](#INIT(0))
+            dff tempforcmp[32](#INIT(0))
+            dff cooldown[32](#INIT(0))
+        }
+    }
+    always {
+        if(we){
+            case(wa){
+                d0:timer.d=data
+                d1:score.d=data
+                d2:buttonmap.d=data
+                d3:mode.d=data
+                d4:levelcounter.d=data
+                d5:awake.d=data
+                d6:activebutton.d=data
+                d7:activetype.d=data
+                d8:tempforcmp.d=data
+                d9:cooldown.d=data
+            }
+        }
+        case(ra1){
+            d0:rd1=timer.q
+            d1:rd1=score.q
+            d2:rd1=buttonmap.q
+            d3:rd1=mode.q
+            d4:rd1=levelcounter.q
+            d5:rd1=awake.q
+            d6:rd1=activebutton.q
+            d7:rd1=activetype.q
+            d8:rd1=tempforcmp.q
+            d9:rd1=cooldown.q
+            default:rd1=0
+        }
+        case(ra2){
+            d0:rd2=timer.q
+            d1:rd2=score.q
+            d2:rd2=buttonmap.q
+            d3:rd2=mode.q
+            d4:rd2=levelcounter.q
+            d5:rd2=awake.q
+            d6:rd2=activebutton.q
+            d7:rd2=activetype.q
+            d8:rd2=tempforcmp.q
+            d9:rd2=cooldown.q
+            default:rd2=0
+        }
+        timerout=timer.q
+        scoreout=score.q
+        buttonmapout=buttonmap.q
+        modeout=mode.q
+        levelcounterout=levelcounter.q
+        awakeout=awake.q
+        activebuttonout=activebutton.q
+        activetypeout=activetype.q
+        cooldownout=cooldown.q
+    }
+}

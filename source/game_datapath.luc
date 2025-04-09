@@ -1,0 +1,45 @@
+module game_datapath#(
+    SLOW_CLOCK_DIV ~ 26 : SLOW_CLOCK_DIV > 0,
+    FAST_CLOCK_DIV ~ 21 : FAST_CLOCK_DIV > 0    
+) (
+    input button1,
+    input button2,
+    input button3,
+    input button4,
+    input button5,
+    input button6,
+    input buttonstart,
+    input buttonreset,
+    
+    input clk,  // clock
+    input rst,  // reset
+    
+    output timerout[32],
+    output scoreout[32],
+    output buttonmapout[32],
+    output modeout[32],
+    output levelcounterout[32],
+    output awakeout[32],
+    output activebuttonout[32],
+    output activetypeout[32],
+    output cooldownout[32],
+    
+    output debug_general[4]
+) {
+    sig input_alu_a
+    sig input_alu_b
+    
+    alu game_alu
+    .clk(clk){
+        variable_timer variable_timer_clock(#FAST_CLOCK_DIV(FAST_CLOCK_DIV), .rst(rst))
+        counter game_timer_clock(#SIZE(1),#DIV(SLOW_CLOCK_DIV),.rst(rst))
+        
+        edge_detector edge_detector_variable_timer (#RISE(1), #FALL(0), .in(variable_timer_clock.out))
+        edge_detector edge_detector_game_timer(#RISE(1), #FALL(0), .in(game_timer_clock.value))
+        
+        game_cu game_cu(
+        .button)
+    }
+    always {
+    }
+}

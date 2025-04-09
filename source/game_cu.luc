@@ -1,0 +1,105 @@
+module game_cu (
+    input clk,
+    input rst,
+    input interval,
+    input decrease_timer,
+    input regfile_rd2[32], //i do actually need this
+    
+    input button1,
+    input button2,
+    input button3,
+    input button4,
+    input button5,
+    input button6,
+    input buttonstart,
+    input buttonreset,
+    
+    output alufn[6],
+    output asel[2],
+    output bsel[4],
+    output alu_out[32],
+    output regfile_wa[5],
+    output regfile_ra1[5],
+    output regfile_ra2[5],
+    output regfile_we,
+    output debug[4]
+) {
+    enum GameStates{
+        START_SET_TIMER,
+        WAIT_TO_START,
+        IDLE,
+        CHECK_TIMER_EQ0,
+        BRANCH_TIMER_EQ0,
+        DECREASE_TIMER,
+        END
+    }
+    dff game_fsm[$width(GameStates)](#INIT(GameStates.START_SET_TIMER), .clk(clk), .rst(rst))
+    always {
+        alufn=0
+        asel=0
+        bsel=0
+        alu_out=0
+        regfile_wa=d8 //just in case we just send them somehwere
+        regfile_ra1=0
+        regfile_ra2=0
+        regfile_we=0
+        debug=0
+        
+        game_fsm.d=game_fsm.q
+        if (rst){
+            game_fsm.d=GameStates.START_SET_TIMER
+        }
+        else{
+            case(game_fsm.q){
+                GameStates.START_SET_TIMER:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d0 //timer
+                    asel=b00 //Ra
+                    bsel=b1000 //60
+                    regfile_we=1
+                    regfile_wa=d0 //timer
+                    game_fsm.d=GameStates.WAIT_TO_START
+                GameStates.WAIT_TO_START:
+                    if(buttonstart){
+                        game_fsm.d=GameStates.IDLE
+                        }
+                    else{
+                        game_fsm.d=GameStates.WAIT_TO_START
+                        }
+                GameStates.CHECK_TIMER_EQ0:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d0 //timer
+                    regfile_ra2=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b00 //Rb
+                    regfile_we=1
+                    regfile_wa=d8 //Temp for comparisons
+                    game_fsm.d=GameStates.BRANCH_TIMER_EQ0
+                GameStates.BRANCH_TIMER_EQ0:
+                    regfile_ra2=d8 //Temp for comparisons
+                    if (regfile_rd2[0]){
+                        game_fsm.d=GameStates.END
+                        }
+                    else{
+                        game_fsm.d=GameStates.DECREASE_TIMER
+                        }
+                GameStates.DECREASE_TIMER:
+                    alufn=b000001 //Subtract
+                    regfile_ra1=d0 //timer
+                    asel=b00 //Ra
+                    bsel=b0001 //1
+                    regfile_we=1
+                    regfile_wa=d0 //timer
+                    game_fsm.d=GameStates.IDLE
+                
+                GameStates.IDLE:
+                    if(decrease_timer){
+                        game_fsm.d=GameStates.CHECK_TIMER_EQ0
+                        }
+                    else{
+                        game_fsm.d=GameStates.IDLE
+                    }
+            }
+        }
+    }
+}
