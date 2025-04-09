@@ -21,3 +21,4 @@ Other perhaps iffy things:
 	- see interval1, interval2 and interval3 in datapath
 	- please change
 - Debug is literally nothing
+- Check on if I need a resetbutton thing in my datapath and control unit
