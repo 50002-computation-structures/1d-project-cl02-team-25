@@ -32,6 +32,13 @@ module game_cu (
         CHECK_TIMER_EQ0,
         BRANCH_TIMER_EQ0,
         DECREASE_TIMER,
+        INTERVAL_CHECK_LEVEL1,
+        INTERVAL_CHECK_LEVEL2,
+        INTERVAL_CHECK_LEVEL3,
+        BRANCH_INTERVAL_CHECK_LEVEL1,
+        BRANCH_INTERVAL_CHECK_LEVEL2,
+        BRANCH_INTERVAL_CHECK_LEVEL3,
+        MODE_CHECK_EQ1,
         END
     }
     dff game_fsm[$width(GameStates)](#INIT(GameStates.START_SET_TIMER), .clk(clk), .rst(rst))
@@ -52,6 +59,7 @@ module game_cu (
         }
         else{
             case(game_fsm.q){
+                //Timer Stuff
                 GameStates.START_SET_TIMER:
                     alufn=b000000 //ADD
                     regfile_ra1=d0 //timer
@@ -72,7 +80,7 @@ module game_cu (
                     regfile_ra1=d0 //timer
                     regfile_ra2=d31 //0 register
                     asel=b00 //Ra
-                    bsel=b00 //Rb
+                    bsel=b0000 //Rb
                     regfile_we=1
                     regfile_wa=d9 //Temp for comparisons
                     game_fsm.d=GameStates.BRANCH_TIMER_EQ0
@@ -92,14 +100,85 @@ module game_cu (
                     regfile_we=1
                     regfile_wa=d0 //timer
                     game_fsm.d=GameStates.IDLE
+                
+                
+               
+                //CHECKING LEVEL INTERVALS
+                GameStates.INTERVAL_CHECK_LEVEL1:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d4 //levelcounter
+                    regfile_ra2=d31 //0 (Level 1 is 0)
+                    asel=b00 //Ra
+                    bsel=b0000 //Rb
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for comparisons
+                    game_fsm.d=GameStates.BRANCH_INTERVAL_CHECK_LEVEL1
+                GameStates.BRANCH_INTERVAL_CHECK_LEVEL1:
+                    regfile_ra2=d9 //Temp for Cmp
+                    if(regfile_rd2[0]){
+                        //if it truly is level 1
+                        game_fsm.d=GameStates.MODE_CHECK_EQ1
+                        }else{
+                        //If it is not level one, we do not trigger on this interval. Go back and WAIT YOUR TURN!!!
+                        game_fsm.d=GameStates.IDLE
+                        }
+                GameStates.INTERVAL_CHECK_LEVEL2:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d4 //levelcounter
+                    asel=b00 //Ra
+                    bsel=b0001 //1 (Level 2 is 1)
+                    regfile_we=1
+                    regfile_wa=d9
+                    game_fsm.d=GameStates.BRANCH_INTERVAL_CHECK_LEVEL2
+                GameStates.BRANCH_INTERVAL_CHECK_LEVEL2:
+                    regfile_ra2=d9 //Temp for Cmp
+                    if(regfile_rd2[0]){
+                        //If it is truly level 2 move on
+                        game_fsm.d=GameStates.MODE_CHECK_EQ1
+                        }else{
+                        //If it is not level 2, go back and wait
+                        game_fsm.d=GameStates.IDLE
+                    }
+                GameStates.INTERVAL_CHECK_LEVEL3:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d4 //levelcounter
+                    asel=b00 //Ra
+                    bsel=b0010 //2 (Level 3 is 2)
+                    regfile_we=1
+                    regfile_wa=d9
+                    game_fsm.d=GameStates.BRANCH_INTERVAL_CHECK_LEVEL3
+                GameStates.BRANCH_INTERVAL_CHECK_LEVEL3:
+                    regfile_ra2=d9 //Temp for Cmp
+                    if(regfile_rd2[0]){
+                            //If truly level 3, move on
+                            game_fsm.d=GameStates.MODE_CHECK_EQ1
+                        }else{
+                            //if not, go back and wait
+                            game_fsm.d=GameStates.IDLE
+                        }
+                
+                
+                //ENDING
                 GameStates.END:
                     alu_out_sel=b01
                     game_fsm.d=GameStates.END
                 
+                
+                
+                //IDLE
                 GameStates.IDLE:
                     if(decrease_timer){
                         game_fsm.d=GameStates.CHECK_TIMER_EQ0
                         }
+                    else if(interval1){
+                        game_fsm.d=GameStates.INTERVAL_CHECK_LEVEL1
+                    }
+                    else if(interval2){
+                        game_fsm.d=GameStates.INTERVAL_CHECK_LEVEL2
+                    }
+                    else if(interval3){
+                        game_fsm.d=GameStates.INTERVAL_CHECK_LEVEL3
+                    }
                     else{
                         game_fsm.d=GameStates.IDLE
                     }
