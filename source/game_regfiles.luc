@@ -32,6 +32,7 @@ module game_regfiles (
             dff activetype[32](#INIT(0))
             dff tempforcmp[32](#INIT(0))
             dff cooldown[32](#INIT(0))
+            dff tempforadd[32](#INIT(0))
         }
     }
     always {
@@ -45,8 +46,9 @@ module game_regfiles (
                 d5:awake.d=data
                 d6:activebutton.d=data
                 d7:activetype.d=data
-                d8:tempforcmp.d=data
-                d9:cooldown.d=data
+                d8:cooldown.d=data
+                d9:tempforcmp.d=data
+                d10:tempforadd.d=data
             }
         }
         case(ra1){
@@ -58,8 +60,9 @@ module game_regfiles (
             d5:rd1=awake.q
             d6:rd1=activebutton.q
             d7:rd1=activetype.q
-            d8:rd1=tempforcmp.q
-            d9:rd1=cooldown.q
+            d8:rd1=cooldown.q
+            d9:rd1=tempforcmp.q
+            d10:rd1=tempforadd.q
             default:rd1=0
         }
         case(ra2){
@@ -71,10 +74,12 @@ module game_regfiles (
             d5:rd2=awake.q
             d6:rd2=activebutton.q
             d7:rd2=activetype.q
-            d8:rd2=tempforcmp.q
-            d9:rd2=cooldown.q
+            d8:rd2=cooldown.q
+            d9:rd2=tempforcmp.q
+            d10:rd2=tempforadd.q
             default:rd2=0
         }
+        //buttonreset
         timerout=timer.q
         scoreout=score.q
         buttonmapout=buttonmap.q

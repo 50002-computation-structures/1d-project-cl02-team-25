@@ -14,7 +14,6 @@ module game_cu (
     input button5,
     input button6,
     input buttonstart,
-    input buttonreset,
     
     output alufn[6],
     output asel[2],
@@ -41,7 +40,7 @@ module game_cu (
         asel=0
         bsel=0
         alu_out_sel=0
-        regfile_wa=d8 //just in case we just send them somehwere
+        regfile_wa=d9 //just in case we just send them somehwere
         regfile_ra1=0
         regfile_ra2=0
         regfile_we=0
@@ -75,10 +74,10 @@ module game_cu (
                     asel=b00 //Ra
                     bsel=b00 //Rb
                     regfile_we=1
-                    regfile_wa=d8 //Temp for comparisons
+                    regfile_wa=d9 //Temp for comparisons
                     game_fsm.d=GameStates.BRANCH_TIMER_EQ0
                 GameStates.BRANCH_TIMER_EQ0:
-                    regfile_ra2=d8 //Temp for comparisons
+                    regfile_ra2=d9 //Temp for comparisons
                     if (regfile_rd2[0]){
                         game_fsm.d=GameStates.END
                         }

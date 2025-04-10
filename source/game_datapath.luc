@@ -9,8 +9,7 @@ module game_datapath#(
     input button5,
     input button6,
     input buttonstart,
-    input buttonreset,
-    
+    //input buttonreset
     input clk,  // clock
     input rst,  // reset
     
@@ -46,7 +45,6 @@ module game_datapath#(
         .button5(button5),
         .button6(button6),
         .buttonstart(buttonstart),
-        .buttonreset(buttonreset),
         .rst(rst),
         .interval1(edge_detector_variable_timer.out), //TODO!!!
         .interval2(edge_detector_variable_timer.out),

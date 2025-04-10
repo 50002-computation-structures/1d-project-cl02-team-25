@@ -71,7 +71,6 @@ module alchitry_top (
         game_datapath.button5=io_dip[0][0] //this is nonsense ignore
         game_datapath.button6=io_dip[0][1]
         game_datapath.buttonstart=edge_det_start.out
-        game_datapath.buttonreset=reset_cond.out
         
         decimal_renderer.value=game_datapath.timerout
         seg.values = decimal_renderer.digits
@@ -83,7 +82,7 @@ module alchitry_top (
         io_led[1]=game_datapath.activetypeout
         io_led[2]=game_datapath.scoreout
         led[2]=game_datapath.slow_clock_out
-        led[1:0]=game_datapath.levelcounterout
+        led[1:0]=game_datapath.levelcounterout +1
         //TO ADD SCORE LINKAGE
     }
 }
