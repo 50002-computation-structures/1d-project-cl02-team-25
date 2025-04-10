@@ -30,8 +30,8 @@ module game_regfiles (
             dff awake[32](#INIT(0))
             dff activebutton[32](#INIT(0))
             dff activetype[32](#INIT(0))
-            dff tempforcmp[32](#INIT(0))
             dff cooldown[32](#INIT(0))
+            dff tempforcmp[32](#INIT(0))
             dff tempforadd[32](#INIT(0))
         }
     }

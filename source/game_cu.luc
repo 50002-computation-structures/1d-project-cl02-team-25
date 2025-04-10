@@ -39,6 +39,7 @@ module game_cu (
         BRANCH_INTERVAL_CHECK_LEVEL2,
         BRANCH_INTERVAL_CHECK_LEVEL3,
         MODE_CHECK_EQ1,
+        BRANCH_MODE_CHECK_EQ1,
         END
     }
     dff game_fsm[$width(GameStates)](#INIT(GameStates.START_SET_TIMER), .clk(clk), .rst(rst))
@@ -158,6 +159,26 @@ module game_cu (
                         }
                 
                 
+                //MODE CHECKING FOR 1 (CAN WE PROGRESS WITH BUTTON GENERATION?)
+                GameStates.MODE_CHECK_EQ1:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d3 //mode
+                    asel=b00 //Ra
+                    bsel=b0001 //1 (Mode 1 is ready to generate new button)
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_MODE_CHECK_EQ1
+                GameStates.BRANCH_MODE_CHECK_EQ1:
+                    regfile_ra2=d9 //Temp for Cmp
+                    if(regfile_rd2[0]){
+                        //if mode really is 1
+                        //go to generate buttonmap
+                        }else{
+                        //if mode is not 1, then it is 0/2
+                        //go to check mode 0
+                        }
+
+                                
                 //ENDING
                 GameStates.END:
                     alu_out_sel=b01

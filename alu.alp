@@ -214,12 +214,6 @@
                     "type": "DiskFile",
                     "path": "source/game_regfiles.luc"
                 }
-            },
-            {
-                "file": {
-                    "type": "DiskFile",
-                    "path": "source/variable_timer.luc"
-                }
             }
         ],
         "constraintFiles": [

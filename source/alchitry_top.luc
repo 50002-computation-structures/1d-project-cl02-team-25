@@ -15,7 +15,10 @@ module alchitry_top (
     const CLK_FREQ = $is_sim() ? 1000 : 100000000 // put 1000 for sim, 100M for hardware 
     const SEVEN_SEG_DIV = $is_sim() ? 3 : 16 // put 3 for sim, 16 for hardware
     const SLOW_CLOCK_DIV = $is_sim() ? 9 : 26 // put 9 for sim, 26 for hardware 
-    const FAST_CLOCK_DIV = $is_sim() ? 7 : 21 // put 7 for sim, 21 for hardware 
+    const LVL1_CLOCK_DIV = $is_sim() ? 8 : 25 // put 8 for sim, 25 for hardware
+    const LVL2_CLOCK_DIV = $is_sim() ? 7 : 24
+    const LVL3_CLOCK_DIV = $is_sim() ? 6 : 23
+    //const FAST_CLOCK_DIV = $is_sim() ? 7 : 21 // put 7 for sim, 21 for hardware 
     
     .clk(clk) {
         // The reset conditioner is used to synchronize the reset signal to the FPGA
@@ -35,7 +38,7 @@ module alchitry_top (
         
         .rst(rst){
             multi_seven_seg seg(#DIV(SEVEN_SEG_DIV))
-            game_datapath game_datapath(#SLOW_CLOCK_DIV(SLOW_CLOCK_DIV), #FAST_CLOCK_DIV(FAST_CLOCK_DIV))
+            game_datapath game_datapath(#SLOW_CLOCK_DIV(SLOW_CLOCK_DIV), #LVL1_CLOCK_DIV(LVL1_CLOCK_DIV),#LVL2_CLOCK_DIV(LVL2_CLOCK_DIV),#LVL3_CLOCK_DIV(LVL3_CLOCK_DIV))
         }
     }
     
@@ -81,6 +84,9 @@ module alchitry_top (
         io_led[0]=game_datapath.activebuttonout
         io_led[1]=game_datapath.activetypeout
         io_led[2]=game_datapath.scoreout
+        led[3]=game_datapath.interval1blinker
+        led[4]=game_datapath.interval2blinker
+        led[5]=game_datapath.interval3blinker
         led[2]=game_datapath.slow_clock_out
         led[1:0]=game_datapath.levelcounterout +1
         //TO ADD SCORE LINKAGE
