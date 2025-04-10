@@ -1,7 +1,5 @@
 Me screaming at myself
 
-1) Don't forget to actually customise the randomise function. I NEED IT TO BE MY OWN OTHERWISE THE GAME WILL SUCK BECAUSE OF COOLDOWNS AND AWAKE TIMERS!!!!
-2) For now, I will reinstate Cooldowns. Please REMEMBER TO CONNECT THE COOLDOWNS IN THE REGFILES
 3) WE HAVE A WIN CONDITION NOW AT >=100 LITERALLY DO NOT FORGET PLS
 
 Other perhaps iffy things:
@@ -17,8 +15,7 @@ Other perhaps iffy things:
 	- 1: button1
 	- 2: button2
 	- you get the picture
-- I will be relying on 3 separate custom implementations of variabletimer currently they are all hooked up to the same thing
-	- see interval1, interval2 and interval3 in datapath
-	- please change
+-Rebalance the timers
 - Debug is literally nothing
 - Resetbutton removed (check for residue)
+- I'm not sure whether awake check and cooldown check should check at 0 or will that introduce more cooldown than necessary????

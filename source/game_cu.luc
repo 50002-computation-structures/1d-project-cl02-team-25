@@ -28,18 +28,38 @@ module game_cu (
     enum GameStates{
         START_SET_TIMER,
         WAIT_TO_START,
+        
         IDLE,
+        
         CHECK_TIMER_EQ0,
         BRANCH_TIMER_EQ0,
         DECREASE_TIMER,
+        
         INTERVAL_CHECK_LEVEL1,
         INTERVAL_CHECK_LEVEL2,
         INTERVAL_CHECK_LEVEL3,
         BRANCH_INTERVAL_CHECK_LEVEL1,
         BRANCH_INTERVAL_CHECK_LEVEL2,
         BRANCH_INTERVAL_CHECK_LEVEL3,
+        
         MODE_CHECK_EQ1,
         BRANCH_MODE_CHECK_EQ1,
+        
+        MODE_CHECK_EQ0,
+        BRANCH_MODE_CHECK_EQ0,
+        
+        COOLDOWN_EQ0,
+        BRANCH_COOLDOWN_EQ0,
+        DECREASE_COOLDOWN,
+        RESET_MODE_1,
+        
+        AWAKE_EQ0,
+        BRANCH_AWAKE_EQ0,
+        DECREASE_AWAKE,
+        RESET_MODE_0,
+        
+        GENERATE_BUTTONMAP, //todo
+        SET_MODE_2,
         END
     }
     dff game_fsm[$width(GameStates)](#INIT(GameStates.START_SET_TIMER), .clk(clk), .rst(rst))
@@ -60,7 +80,7 @@ module game_cu (
         }
         else{
             case(game_fsm.q){
-                //Timer Stuff
+                //TIMER STUFF
                 GameStates.START_SET_TIMER:
                     alufn=b000000 //ADD
                     regfile_ra1=d0 //timer
@@ -94,14 +114,14 @@ module game_cu (
                         game_fsm.d=GameStates.DECREASE_TIMER
                         }
                 GameStates.DECREASE_TIMER:
-                    alufn=b000001 //Subtract
+                    alufn=b000001 //SUB
                     regfile_ra1=d0 //timer
                     asel=b00 //Ra
                     bsel=b0001 //1
                     regfile_we=1
                     regfile_wa=d0 //timer
                     game_fsm.d=GameStates.IDLE
-                
+                //---------END OF TIMERSTUFF---------------------------------
                 
                
                 //CHECKING LEVEL INTERVALS
@@ -120,8 +140,8 @@ module game_cu (
                         //if it truly is level 1
                         game_fsm.d=GameStates.MODE_CHECK_EQ1
                         }else{
-                        //If it is not level one, we do not trigger on this interval. Go back and WAIT YOUR TURN!!!
-                        game_fsm.d=GameStates.IDLE
+                            //If it is not level one, we do not trigger on this interval. Go back and WAIT YOUR TURN!!!
+                            game_fsm.d=GameStates.IDLE
                         }
                 GameStates.INTERVAL_CHECK_LEVEL2:
                     alufn=b110011 //CMPEQ
@@ -133,7 +153,7 @@ module game_cu (
                     game_fsm.d=GameStates.BRANCH_INTERVAL_CHECK_LEVEL2
                 GameStates.BRANCH_INTERVAL_CHECK_LEVEL2:
                     regfile_ra2=d9 //Temp for Cmp
-                    if(regfile_rd2[0]){
+                    if(regfile_rd2[0]){                    
                         //If it is truly level 2 move on
                         game_fsm.d=GameStates.MODE_CHECK_EQ1
                         }else{
@@ -151,12 +171,13 @@ module game_cu (
                 GameStates.BRANCH_INTERVAL_CHECK_LEVEL3:
                     regfile_ra2=d9 //Temp for Cmp
                     if(regfile_rd2[0]){
-                            //If truly level 3, move on
-                            game_fsm.d=GameStates.MODE_CHECK_EQ1
-                        }else{
-                            //if not, go back and wait
-                            game_fsm.d=GameStates.IDLE
-                        }
+                        //If truly level 3, move on
+                        game_fsm.d=GameStates.MODE_CHECK_EQ1
+                    }else{
+                        //if not, go back and wait
+                        game_fsm.d=GameStates.IDLE
+                    }
+                //---------END OF LEVELINTERVALSTUFF---------------------------------
                 
                 
                 //MODE CHECKING FOR 1 (CAN WE PROGRESS WITH BUTTON GENERATION?)
@@ -171,14 +192,118 @@ module game_cu (
                 GameStates.BRANCH_MODE_CHECK_EQ1:
                     regfile_ra2=d9 //Temp for Cmp
                     if(regfile_rd2[0]){
-                        //if mode really is 1
-                        //go to generate buttonmap
-                        }else{
+                        game_fsm.d=GameStates.GENERATE_BUTTONMAP
+                    }else{
                         //if mode is not 1, then it is 0/2
                         //go to check mode 0
-                        }
+                        game_fsm.d=GameStates.MODE_CHECK_EQ0
+                    }
+                //---------END OF MODECHECK1---------------------------------
+                
+                
+                //MODE CHECKING FOR 0 (ARE WE IN ACTIVE BUTTON STATE OR COOLDOWN STATE?)
+                GameStates.MODE_CHECK_EQ0:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d3 //mode
+                    regfile_ra2=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0000 //Rb/Rc
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_MODE_CHECK_EQ0
+                GameStates.BRANCH_MODE_CHECK_EQ0:
+                    regfile_ra2=d9
+                    if(regfile_rd2[0]){
+                        //if mode is 0, we are in cooldown mode
+                        //check cooldown
+                        game_fsm.d=GameStates.COOLDOWN_EQ0
+                    }else{
+                        //we are in button active mode
+                        //check awake
+                        game_fsm.d=GameStates.AWAKE_EQ0
+                    }
+                //---------END OF MODECHECK0---------------------------------
 
-                                
+                
+                //COOLDOWN DECREMENTERS AND STUFF
+                GameStates.COOLDOWN_EQ0:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d8 //Cooldown
+                    regfile_ra2=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0000 //Rb/Rc
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_COOLDOWN_EQ0
+                GameStates.BRANCH_COOLDOWN_EQ0:
+                    regfile_ra2=d9
+                    if(regfile_rd2[0]){
+                        //If cooldown is 0. We are ready to generate buttons again
+                        //Reset mode to 1
+                        game_fsm.d=GameStates.RESET_MODE_1
+                    }else{
+                        //otherwise, we need to decrease the cooldown this interval
+                        //go to decrease cooldown
+                        game_fsm.d=GameStates.DECREASE_COOLDOWN
+                    }
+                GameStates.DECREASE_COOLDOWN:
+                    alufn=b000001//SUB
+                    regfile_ra1=d8 //Cooldown
+                    asel=b00 //Ra
+                    bsel=b0001 //1
+                    regfile_we=1
+                    regfile_wa=d8 //Cooldown
+                    game_fsm.d=GameStates.IDLE
+                GameStates.RESET_MODE_1:
+                    //we add 0 to 1 and write it to mode
+                    alufn=b000000 //ADD
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel= b0001 //1
+                    regfile_we=1
+                    regfile_wa=d3 //mode
+                    game_fsm.d=GameStates.IDLE
+                //---------END OF COOLDOWNSTUFF---------------------------------
+                
+                
+                //AWAKESTUFF
+                GameStates.AWAKE_EQ0:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d5 //Awake
+                    regfile_ra2=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0000 //Rb/Rc
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_AWAKE_EQ0
+                GameStates.BRANCH_AWAKE_EQ0:
+                    regfile_ra2=d9
+                    if(regfile_rd2[0]){
+                        //If our awake is 0, our buttons need to turn off now
+                        //reset mode to 0
+                        game_fsm.d=GameStates.RESET_MODE_0
+                    }else{
+                        //If our awake is not 0, decrease
+                        game_fsm.d=GameStates.DECREASE_AWAKE
+                    }
+                GameStates.DECREASE_AWAKE:
+                    alufn=b000001 //SUB
+                    regfile_ra1=d5 //awake
+                    asel=b00 //Ra
+                    bsel=b0001 //1
+                    regfile_we=1
+                    regfile_wa=d5 //awake
+                    game_fsm.d=GameStates.IDLE
+                GameStates.RESET_MODE_0:
+                    alufn=b000001 //SUB
+                    asel=b01 //5
+                    bsel=b0101 //5
+                    regfile_we=1
+                    regfile_wa=d3
+                    game_fsm.d=GameStates.IDLE
+                //---------END OF AWAKESTUFF---------------------------------
+
+                    
                 //ENDING
                 GameStates.END:
                     alu_out_sel=b01
