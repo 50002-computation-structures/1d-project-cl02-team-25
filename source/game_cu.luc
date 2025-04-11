@@ -56,6 +56,8 @@ module game_cu (
         AWAKE_EQ0,
         BRANCH_AWAKE_EQ0,
         DECREASE_AWAKE,
+        RESET_ACTIVE_BUTTON_0,
+        RESET_ACTIVE_TYPE_0,
         RESET_MODE_0,
         
         GENERATE_BUTTONMAP, //todo
@@ -64,6 +66,17 @@ module game_cu (
         SET_AWAKE, //todo
         SET_COOLDOWN, //todo
         RESET_MODE_2,
+        
+        B1_IS_ACTIVE_BUTTON,
+        B2_IS_ACTIVE_BUTTON,
+        B3_IS_ACTIVE_BUTTON,
+        B4_IS_ACTIVE_BUTTON,
+        B5_IS_ACTIVE_BUTTON,        
+        B6_IS_ACTIVE_BUTTON,
+        BRANCH_IS_ACTIVE_BUTTON,
+        
+        IS_THIS_THE_KILLBUTTON,
+        
         END
     }
     dff game_fsm[$width(GameStates)](#INIT(GameStates.START_SET_TIMER), .clk(clk), .rst(rst))
@@ -285,7 +298,7 @@ module game_cu (
                     if(regfile_rd2[0]){
                         //If our awake is 0, our buttons need to turn off now
                         //reset mode to 0
-                        game_fsm.d=GameStates.RESET_MODE_0
+                        game_fsm.d=GameStates.RESET_ACTIVE_BUTTON_0
                     }else{
                         //If our awake is not 0, decrease
                         game_fsm.d=GameStates.DECREASE_AWAKE
@@ -307,14 +320,43 @@ module game_cu (
                     game_fsm.d=GameStates.IDLE
                 //---------END OF AWAKESTUFF---------------------------------
 
-                   
+                 
+                //RESET BUTTONS
+                GameStates.RESET_ACTIVE_BUTTON_0:
+                    alufn=b000001 //SUB
+                    asel=b01 //5
+                    bsel=b0101 //5
+                    regfile_we=1
+                    regfile_wa=d6 //activebutton
+                    game_fsm.d=GameStates.RESET_ACTIVE_TYPE_0
+                GameStates.RESET_ACTIVE_TYPE_0:
+                    alufn=b000001 //SUB
+                    asel=b01 //5
+                    bsel=b0101 //5
+                    regfile_we=1
+                    regfile_wa=d7 //activetype
+                    game_fsm.d=GameStates.RESET_MODE_0
+                //---------END OF BUTTON RESETS--------------------------------
+                
+                              
                 //BUTTON GENERATION STUFF
                 GameStates.GENERATE_BUTTONMAP:
                     game_fsm.d=GameStates.SET_ACTIVE_BUTTON
                 GameStates.SET_ACTIVE_BUTTON:
-                    
+                    alufn=b000000 //ADD
+                    regfile_ra1=d31 //0 register
+                    asel=b00
+                    bsel=b0001 //1 for now
+                    regfile_we=1
+                    regfile_wa=d6 //activebutton
                     game_fsm.d=GameStates.SET_ACTIVE_TYPE
                 GameStates.SET_ACTIVE_TYPE:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d31 //0 register
+                    asel=b00
+                    bsel=b0001 //button type 1
+                    regfile_we=1
+                    regfile_wa=d7//activetype
                     game_fsm.d=GameStates.SET_AWAKE
                 GameStates.SET_AWAKE:
                     alufn=b000000 //ADD
@@ -340,8 +382,77 @@ module game_cu (
                     regfile_we=1
                     regfile_wa=d3 //mode
                     game_fsm.d=GameStates.IDLE
+                //---------END OF BUTTON GENERATION--------------------------------
                 
                 
+                //BUTTON INPUT CHECKING
+                    //B1_IS_ACTIVE_BUTTON,
+                    //B2_IS_ACTIVE_BUTTON,
+                    //B3_IS_ACTIVE_BUTTON,
+                    //B4_IS_ACTIVE_BUTTON,
+                    //B5_IS_ACTIVE_BUTTON,        
+                    //B6_IS_ACTIVE_BUTTON,
+                    //BRANCH_IS_ACTIVE_BUTTON,
+                GameStates.B1_IS_ACTIVE_BUTTON:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d6 //activebutton
+                    asel=b00 //Ra
+                    bsel=b0001 //1 (For button 1)
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                GameStates.B2_IS_ACTIVE_BUTTON:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d6 //activebutton
+                    asel=b00 //Ra
+                    bsel=b0010 //2 (for button 2)
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                GameStates.B3_IS_ACTIVE_BUTTON:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d6 //activebutton
+                    asel=b00 //Ra
+                    bsel=b0011 //3 (for button 3)
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                GameStates.B4_IS_ACTIVE_BUTTON:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d6 //activebutton
+                    asel=b00 //Ra
+                    bsel=b0100 //4 (for button 4)
+                    regfile_we=1
+                    regfile_wa=d9//Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                GameStates.B5_IS_ACTIVE_BUTTON:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d6 //activebutton
+                    asel=b00 //Ra
+                    bsel=b0101 //5 (for button 5)
+                    regfile_we=1
+                    regfile_wa=d9//Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                GameStates.B6_IS_ACTIVE_BUTTON:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d6 //activebutton
+                    asel=b00 //Ra
+                    bsel=b0110 //6 (for button 6)
+                    regfile_we=1
+                    regfile_wa=d9//Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                GameStates.BRANCH_IS_ACTIVE_BUTTON:
+                    regfile_ra2=d9
+                    if(regfile_rd2[0]){
+                        //If this button really is the button, see if we die
+                        game_fsm.d=GameStates.IS_THIS_THE_KILLBUTTON
+                    }else{
+                        //Else we do nothing
+                        game_fsm.d=GameStates.IDLE
+                    }
+                //---------END OF BUTTON INPUT CHECKING--------------------------------
+                    
+                              
                 //ENDING
                 GameStates.END:
                     alu_out_sel=b01
