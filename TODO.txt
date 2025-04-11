@@ -1,5 +1,6 @@
 Me screaming at myself
 
+1)BUTTON GEN STUFF IS LIKE...UH....... NOT DONE
 3) WE HAVE A WIN CONDITION NOW AT >=100 LITERALLY DO NOT FORGET PLS
 
 Other perhaps iffy things:
@@ -19,3 +20,6 @@ Other perhaps iffy things:
 - Debug is literally nothing
 - Resetbutton removed (check for residue)
 - I'm not sure whether awake check and cooldown check should check at 0 or will that introduce more cooldown than necessary????
+	- I dont think I can change this to 1 or else I risk decrementing into the negatives on startup!
+	- I might rebalance the game values to take this into account that we have one tick of nothingness between the button timing out and the cooldown begin
+	  AND one tick between cooldown begin and button reentering the 
