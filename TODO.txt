@@ -1,8 +1,8 @@
 Me screaming at myself
 
 1)BUTTON GEN STUFF IS LIKE...UH....... NOT DONE
-2) Button input connections on the IDLE state.
 3) WE HAVE A WIN CONDITION NOW AT >=100 LITERALLY DO NOT FORGET PLS
+4) A BUNCH OF STUFF END AT TEMP END STATE END. PLS CHANGE
 
 Other perhaps iffy things:
 - Currently, I am outputting the buttontype as the score. This is done so I can directly increment the score from the regfile.

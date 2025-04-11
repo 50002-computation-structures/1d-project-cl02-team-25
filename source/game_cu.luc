@@ -76,6 +76,20 @@ module game_cu (
         BRANCH_IS_ACTIVE_BUTTON,
         
         IS_THIS_THE_KILLBUTTON,
+        BRANCH_IS_THIS_THE_KILLBUTTON,
+        
+        TEMPSCORE_TABULATE,
+        IS_TEMPSCORE_MT99,
+        BRANCH_IS_TEMPSCORE_MT99,
+        ADD_SCORE,
+        
+        SCORE_MTEQ5,
+        BRANCH_SCORE_MTEQ5,
+        SET_LVL_2,
+        SCORE_MTEQ20,
+        BRANCH_SCORE_MTEQ20,
+        SET_LVL_3,        
+        RESET_AWAKE_0,
         
         END
     }
@@ -386,13 +400,6 @@ module game_cu (
                 
                 
                 //BUTTON INPUT CHECKING
-                    //B1_IS_ACTIVE_BUTTON,
-                    //B2_IS_ACTIVE_BUTTON,
-                    //B3_IS_ACTIVE_BUTTON,
-                    //B4_IS_ACTIVE_BUTTON,
-                    //B5_IS_ACTIVE_BUTTON,        
-                    //B6_IS_ACTIVE_BUTTON,
-                    //BRANCH_IS_ACTIVE_BUTTON,
                 GameStates.B1_IS_ACTIVE_BUTTON:
                     alufn=b110011 //CMPEQ
                     regfile_ra1=d6 //activebutton
@@ -452,7 +459,141 @@ module game_cu (
                     }
                 //---------END OF BUTTON INPUT CHECKING--------------------------------
                     
-                              
+                 
+                //HAVE WE PRESSED THE KILLBUTTON
+                        //IS_THIS_THE_KILLBUTTON,
+                        //BRANCH_IS_THIS_THE_KILLBUTTON,
+                GameStates.IS_THIS_THE_KILLBUTTON:
+                    alufn=b110011 //CMPEQ
+                    regfile_ra1=d7 //activetype
+                    asel=b00 //Ra
+                    bsel=b0111 //20
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_IS_THIS_THE_KILLBUTTON
+                GameStates.BRANCH_IS_THIS_THE_KILLBUTTON:
+                    regfile_ra2=d9
+                    if(regfile_rd2[0]){
+                        //If this is the killbutton
+                        game_fsm.d=GameStates.END
+                    }else{
+                        //Else we move on to tabulate the tempscore
+                        game_fsm.d=GameStates.TEMPSCORE_TABULATE
+                    }
+                //---------END OF KILL BUTTON CHECK--------------------------------
+            
+                
+                //SCORE TABULATION
+                    //TEMPSCORE_TABULATE,
+                    //IS_TEMPSCORE_MT99,
+                    //BRANCH_IS_TEMPSCORE_MT99,
+                    //ADD_SCORE,
+                GameStates.TEMPSCORE_TABULATE:
+                    alufn=000000 //ADD
+                    regfile_ra1=d1 //score
+                    regfile_ra2=d7 //activetype
+                    asel=b00 //Ra
+                    bsel=b0000 //Rb/Rc
+                    regfile_we=1
+                    regfile_wa=d10 //Temp for Add
+                    game_fsm.d=GameStates.IS_TEMPSCORE_MT99
+                GameStates.IS_TEMPSCORE_MT99:
+                    alufn=b110101 //CMPLT 99<tempscore
+                    regfile_ra2=d10 //Temp for Add
+                    asel=b11 //99
+                    bsel=b0000 //Rb/Rc
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_IS_TEMPSCORE_MT99
+                GameStates.BRANCH_IS_TEMPSCORE_MT99:
+                    regfile_ra2=d9
+                    if(regfile_rd2[0]){
+                        //If the tempscore exceeds 99
+                        game_fsm.d=GameStates.END
+                    }else{
+                        //Else we move on to add the score for real
+                        game_fsm.d=GameStates.ADD_SCORE
+                    }
+                GameStates.ADD_SCORE:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d1 //score
+                    regfile_ra2=d7 //active type (type is rep by the score of button)
+                    asel=b00 //Ra
+                    bsel=b0000 //Rb/Rc
+                    regfile_we=1
+                    regfile_wa=d1
+                    game_fsm.d=GameStates.SCORE_MTEQ5
+                //---------END OF SCORE TABULATION--------------------------------
+                               
+                
+                //LEVEL INCREMENT
+                     //SCORE_MTEQ5,
+                    //BRANCH_SCORE_MTEQ5,
+                    //SET_LVL_2,
+                    //SCORE_MTEQ20,
+                    //BRANCH_SCORE_MTEQ20,
+                    //SET_LVL_3,
+                GameStates.SCORE_MTEQ5:
+                    alufn=b110111 //CMPLE 5<=score
+                    regfile_ra2=d1 //score
+                    asel=b01 //5
+                    bsel=b0000 //Rb/Rc
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_SCORE_MTEQ5
+                GameStates.BRANCH_SCORE_MTEQ5:
+                    regfile_ra2=d9
+                    if(regfile_rd2[0]){
+                        //If it is really more than 5 we set level to 2
+                        game_fsm.d=GameStates.SET_LVL_2
+                    }else{
+                        //Else we move on to reset the awake timer
+                        game_fsm.d=GameStates.RESET_AWAKE_0
+                    }
+                GameStates.SET_LVL_2:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0010 //2
+                    regfile_we=1
+                    regfile_wa=d4 //levelcounter
+                    game_fsm.d=GameStates.SCORE_MTEQ20
+                GameStates.SCORE_MTEQ20:
+                    alufn=b110111 //CMPLE 20<=score
+                    regfile_ra2=d1 //score
+                    asel=b10 //20
+                    bsel=b0000 //Rb/Rc
+                    regfile_we=1
+                    regfile_wa=d9 //Temp for Cmp
+                    game_fsm.d=GameStates.BRANCH_SCORE_MTEQ20
+                GameStates.BRANCH_SCORE_MTEQ20:
+                    regfile_ra2=d9
+                    if(regfile_rd2[0]){
+                        //If it is really more than 20 we set to level 3
+                        game_fsm.d=GameStates.SET_LVL_3
+                    }else{
+                        //Else we move on to reset the awake timer
+                        game_fsm.d=GameStates.RESET_AWAKE_0
+                    }
+                GameStates.SET_LVL_3:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0011 //3
+                    regfile_we=1
+                    regfile_wa=d4 //levelcounter
+                    game_fsm.d=GameStates.RESET_AWAKE_0
+                GameStates.RESET_AWAKE_0:
+                    alufn=b000001 //SUB
+                    asel=b01 //5
+                    bsel= b0101 //5
+                    regfile_we=1
+                    regfile_wa=d5 //awake
+                    game_fsm.d=GameStates.RESET_ACTIVE_BUTTON_0
+                //this loops back to standard buttontype, button, mode reset protocol
+                //---------END OF LEVEL INCREMENT--------------------------------
+                
+                               
                 //ENDING
                 GameStates.END:
                     alu_out_sel=b01
@@ -473,6 +614,24 @@ module game_cu (
                     }
                     else if(interval3){
                         game_fsm.d=GameStates.INTERVAL_CHECK_LEVEL3
+                    }
+                    else if(button1){
+                        game_fsm.d=GameStates.B1_IS_ACTIVE_BUTTON
+                    }
+                    else if(button2){
+                        game_fsm.d=GameStates.B2_IS_ACTIVE_BUTTON
+                    }
+                    else if(button3){
+                        game_fsm.d=GameStates.B3_IS_ACTIVE_BUTTON
+                    }
+                    else if(button4){
+                        game_fsm.d=GameStates.B4_IS_ACTIVE_BUTTON
+                    }
+                    else if(button5){
+                        game_fsm.d=GameStates.B5_IS_ACTIVE_BUTTON
+                    }
+                    else if(button6){
+                        game_fsm.d=GameStates.B6_IS_ACTIVE_BUTTON
                     }
                     else{
                         game_fsm.d=GameStates.IDLE
