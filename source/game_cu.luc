@@ -59,7 +59,11 @@ module game_cu (
         RESET_MODE_0,
         
         GENERATE_BUTTONMAP, //todo
-        SET_MODE_2,
+        SET_ACTIVE_BUTTON,
+        SET_ACTIVE_TYPE,
+        SET_AWAKE,
+        SET_COOLDOWN,
+        RESET_MODE_2,
         END
     }
     dff game_fsm[$width(GameStates)](#INIT(GameStates.START_SET_TIMER), .clk(clk), .rst(rst))
@@ -191,6 +195,14 @@ module game_cu (
                     game_fsm.d=GameStates.BRANCH_MODE_CHECK_EQ1
                 GameStates.BRANCH_MODE_CHECK_EQ1:
                     regfile_ra2=d9 //Temp for Cmp
+                //Test
+                    alufn=b000000 //Add
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0001 //1
+                    regfile_we=1
+                    regfile_wa=d1 //scoreout
+                //end test
                     if(regfile_rd2[0]){
                         game_fsm.d=GameStates.GENERATE_BUTTONMAP
                     }else{
@@ -213,6 +225,14 @@ module game_cu (
                     game_fsm.d=GameStates.BRANCH_MODE_CHECK_EQ0
                 GameStates.BRANCH_MODE_CHECK_EQ0:
                     regfile_ra2=d9
+                                    //Test
+                    alufn=b000000 //Add
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0010 //2
+                    regfile_we=1
+                    regfile_wa=d1 //scoreout
+                //end test
                     if(regfile_rd2[0]){
                         //if mode is 0, we are in cooldown mode
                         //check cooldown
@@ -237,6 +257,14 @@ module game_cu (
                     game_fsm.d=GameStates.BRANCH_COOLDOWN_EQ0
                 GameStates.BRANCH_COOLDOWN_EQ0:
                     regfile_ra2=d9
+                                    //Test
+                    alufn=b000000 //Add
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0011 //3
+                    regfile_we=1
+                    regfile_wa=d1 //scoreout
+                //end test
                     if(regfile_rd2[0]){
                         //If cooldown is 0. We are ready to generate buttons again
                         //Reset mode to 1
@@ -278,6 +306,14 @@ module game_cu (
                     game_fsm.d=GameStates.BRANCH_AWAKE_EQ0
                 GameStates.BRANCH_AWAKE_EQ0:
                     regfile_ra2=d9
+                                    //Test
+                    alufn=b000000 //Add
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0101 //5
+                    regfile_we=1
+                    regfile_wa=d1 //scoreout
+                //end test
                     if(regfile_rd2[0]){
                         //If our awake is 0, our buttons need to turn off now
                         //reset mode to 0
@@ -303,7 +339,60 @@ module game_cu (
                     game_fsm.d=GameStates.IDLE
                 //---------END OF AWAKESTUFF---------------------------------
 
-                    
+                   
+                //BUTTON GENERATION STUFF
+                GameStates.GENERATE_BUTTONMAP:
+                                    //Test
+                    alufn=b000000 //Add
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0100 //4
+                    regfile_we=1
+                    regfile_wa=d1 //scoreout
+                //end test
+                    game_fsm.d=GameStates.SET_ACTIVE_BUTTON
+                GameStates.SET_ACTIVE_BUTTON:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0101 //5
+                    regfile_we=1
+                    regfile_wa=d6 //activebutton
+                    game_fsm.d=GameStates.SET_ACTIVE_TYPE
+                GameStates.SET_ACTIVE_TYPE:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0101 //5
+                    regfile_we=1
+                    regfile_wa=d7 //activetype
+                    game_fsm.d=GameStates.SET_AWAKE
+                GameStates.SET_AWAKE:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0101 //5
+                    regfile_we=1
+                    regfile_wa=d5 //awake
+                    game_fsm.d=GameStates.SET_COOLDOWN
+                GameStates.SET_COOLDOWN:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0101 //5
+                    regfile_we=1
+                    regfile_wa=d8 //cooldown
+                    game_fsm.d=GameStates.RESET_MODE_2
+                GameStates.RESET_MODE_2:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0010 //2
+                    regfile_we=1
+                    regfile_wa=d3 //mode
+                    game_fsm.d=GameStates.IDLE
+                
+                
                 //ENDING
                 GameStates.END:
                     alu_out_sel=b01

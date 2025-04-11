@@ -81,8 +81,8 @@ module alchitry_top (
         io_select=~seg.sel
         // to test ALU 
         
-        io_led[0]=game_datapath.activebuttonout
-        io_led[1]=game_datapath.activetypeout
+        io_led[0]=game_datapath.awakeout
+        io_led[1]=game_datapath.cooldownout
         io_led[2]=game_datapath.scoreout
         led[3]=game_datapath.interval1blinker
         led[4]=game_datapath.interval2blinker

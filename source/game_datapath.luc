@@ -20,10 +20,10 @@ module game_datapath#(
     //output buttonmapout[32],
     //output modeout[32],
     output levelcounterout[32],
-    //output awakeout[32],
+    output awakeout[32],
     output activebuttonout[32],
     output activetypeout[32],
-    //output cooldownout[32],
+    output cooldownout[32],
     output interval1blinker[32],
     output interval2blinker[32],
     output interval3blinker[32],
@@ -113,6 +113,8 @@ module game_datapath#(
         interval1blinker=level_one_interval.value
         interval2blinker=level_two_interval.value
         interval3blinker=level_three_interval.value
+        awakeout=game_regfiles.awakeout
+        cooldownout=game_regfiles.cooldownout
         
         debug_general=game_cu.debug //literally nothing rn
         
