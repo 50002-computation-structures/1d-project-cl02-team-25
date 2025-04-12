@@ -82,6 +82,8 @@ module game_cu (
         IS_TEMPSCORE_MT99,
         BRANCH_IS_TEMPSCORE_MT99,
         ADD_SCORE,
+        FLASHBANG1,
+        FLASHBANG2,
         
         SCORE_MTEQ5,
         BRANCH_SCORE_MTEQ5,
@@ -355,6 +357,14 @@ module game_cu (
                               
                 //BUTTON GENERATION STUFF
                 GameStates.GENERATE_BUTTONMAP:
+                    //TEST
+                    //alufn=b000000 //ADD
+                    //regfile_ra1=d31
+                    //asel=b00 //Ra
+                    //bsel=b0100 //4
+                    //regfile_we=1
+                    //regfile_wa=d1//score
+                //END TEST
                     game_fsm.d=GameStates.SET_ACTIVE_BUTTON
                 GameStates.SET_ACTIVE_BUTTON:
                     alufn=b000000 //ADD
@@ -460,7 +470,7 @@ module game_cu (
                 //---------END OF BUTTON INPUT CHECKING--------------------------------
                     
                  
-                //HAVE WE PRESSED THE KILLBUTTON
+				            //HAVE WE PRESSED THE KILLBUTTON
                         //IS_THIS_THE_KILLBUTTON,
                         //BRANCH_IS_THIS_THE_KILLBUTTON,
                 GameStates.IS_THIS_THE_KILLBUTTON:
@@ -472,16 +482,16 @@ module game_cu (
                     regfile_wa=d9 //Temp for Cmp
                     game_fsm.d=GameStates.BRANCH_IS_THIS_THE_KILLBUTTON
                 GameStates.BRANCH_IS_THIS_THE_KILLBUTTON:
-                    regfile_ra2=d9
+                    regfile_ra2=d9                 
                     if(regfile_rd2[0]){
                         //If this is the killbutton
                         game_fsm.d=GameStates.END
-                    }else{
+                    }else{                       
                         //Else we move on to tabulate the tempscore
                         game_fsm.d=GameStates.TEMPSCORE_TABULATE
                     }
                 //---------END OF KILL BUTTON CHECK--------------------------------
-            
+                            
                 
                 //SCORE TABULATION
                     //TEMPSCORE_TABULATE,
@@ -554,7 +564,7 @@ module game_cu (
                     alufn=b000000 //ADD
                     regfile_ra1=d31 //0 register
                     asel=b00 //Ra
-                    bsel=b0010 //2
+                    bsel=b0001 //1 (1 for level 2)
                     regfile_we=1
                     regfile_wa=d4 //levelcounter
                     game_fsm.d=GameStates.SCORE_MTEQ20
@@ -579,7 +589,7 @@ module game_cu (
                     alufn=b000000 //ADD
                     regfile_ra1=d31 //0 register
                     asel=b00 //Ra
-                    bsel=b0011 //3
+                    bsel=b0010 //2 (2 for level 3)
                     regfile_we=1
                     regfile_wa=d4 //levelcounter
                     game_fsm.d=GameStates.RESET_AWAKE_0
@@ -593,6 +603,8 @@ module game_cu (
                 //this loops back to standard buttontype, button, mode reset protocol
                 //---------END OF LEVEL INCREMENT--------------------------------
                 
+
+
                                
                 //ENDING
                 GameStates.END:
@@ -615,22 +627,22 @@ module game_cu (
                     else if(interval3){
                         game_fsm.d=GameStates.INTERVAL_CHECK_LEVEL3
                     }
-                    else if(button1){
+                    else if(button1&&~button2&&~button3&&~button4&&~button5&&~button6){
                         game_fsm.d=GameStates.B1_IS_ACTIVE_BUTTON
                     }
-                    else if(button2){
+                    else if(~button1&&button2&&~button3&&~button4&&~button5&&~button6){
                         game_fsm.d=GameStates.B2_IS_ACTIVE_BUTTON
                     }
-                    else if(button3){
+                    else if(~button1&&~button2&&button3&&~button4&&~button5&&~button6){
                         game_fsm.d=GameStates.B3_IS_ACTIVE_BUTTON
                     }
-                    else if(button4){
+                    else if(~button1&&~button2&&~button3&&button4&&~button5&&~button6){
                         game_fsm.d=GameStates.B4_IS_ACTIVE_BUTTON
                     }
-                    else if(button5){
+                    else if(~button1&&~button2&&~button3&&~button4&&button5&&~button6){
                         game_fsm.d=GameStates.B5_IS_ACTIVE_BUTTON
                     }
-                    else if(button6){
+                    else if(~button1&&~button2&&~button3&&~button4&&~button5&&button6){
                         game_fsm.d=GameStates.B6_IS_ACTIVE_BUTTON
                     }
                     else{

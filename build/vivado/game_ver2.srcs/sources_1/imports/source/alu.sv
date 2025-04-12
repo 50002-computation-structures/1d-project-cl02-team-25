@@ -13,10 +13,8 @@ module alu (
         output reg v,
         output reg n
     );
-    logic [31:0] R_0b0a81e0_i;
-    logic [31:0] RR_0b0a81e0_i;
     localparam SIZE = 6'h20;
-    localparam _MP_SIZE_1026724692 = 6'h20;
+    localparam _MP_SIZE_795707361 = 6'h20;
     logic [31:0] M_adder_a;
     logic [31:0] M_adder_b;
     logic [5:0] M_adder_alufn_signal;
@@ -26,7 +24,7 @@ module alu (
     logic M_adder_n;
     
     adder #(
-        .SIZE(_MP_SIZE_1026724692)
+        .SIZE(_MP_SIZE_795707361)
     ) adder (
         .a(M_adder_a),
         .b(M_adder_b),
@@ -53,14 +51,14 @@ module alu (
     );
     
     
-    localparam _MP_SIZE_1148038194 = 6'h20;
+    localparam _MP_SIZE_706830509 = 6'h20;
     logic [31:0] M_boolean_a;
     logic [31:0] M_boolean_b;
     logic [5:0] M_boolean_alufn;
     logic [31:0] M_boolean_out;
     
     boolean #(
-        .SIZE(_MP_SIZE_1148038194)
+        .SIZE(_MP_SIZE_706830509)
     ) boolean (
         .a(M_boolean_a),
         .b(M_boolean_b),
@@ -115,61 +113,6 @@ module alu (
     );
     
     
-    logic [31:0] M_mux4_s0;
-    logic [31:0] M_mux4_s1;
-    logic [31:0][3:0] M_mux4_in;
-    logic [31:0] M_mux4_out;
-    
-    genvar idx_0_241341898;
-    
-    generate
-        for (idx_0_241341898 = 0; idx_0_241341898 < 32; idx_0_241341898 = idx_0_241341898 + 1) begin: forLoop_idx_0_241341898
-            mux_4 mux4 (
-                .s0(M_mux4_s0[idx_0_241341898]),
-                .s1(M_mux4_s1[idx_0_241341898]),
-                .in(M_mux4_in[idx_0_241341898]),
-                .out(M_mux4_out[idx_0_241341898])
-            );
-        end
-    endgenerate
-    
-    
-    logic [31:0] M_mux4_01_s0;
-    logic [31:0] M_mux4_01_s1;
-    logic [31:0][3:0] M_mux4_01_in;
-    logic [31:0] M_mux4_01_out;
-    
-    genvar idx_0_1864824587;
-    
-    generate
-        for (idx_0_1864824587 = 0; idx_0_1864824587 < 32; idx_0_1864824587 = idx_0_1864824587 + 1) begin: forLoop_idx_0_1864824587
-            mux_4 mux4_01 (
-                .s0(M_mux4_01_s0[idx_0_1864824587]),
-                .s1(M_mux4_01_s1[idx_0_1864824587]),
-                .in(M_mux4_01_in[idx_0_1864824587]),
-                .out(M_mux4_01_out[idx_0_1864824587])
-            );
-        end
-    endgenerate
-    
-    
-    logic [31:0] M_mux2_s0;
-    logic [31:0][1:0] M_mux2_in;
-    logic [31:0] M_mux2_out;
-    
-    genvar idx_0_990800886;
-    
-    generate
-        for (idx_0_990800886 = 0; idx_0_990800886 < 32; idx_0_990800886 = idx_0_990800886 + 1) begin: forLoop_idx_0_990800886
-            mux_2 mux2 (
-                .s0(M_mux2_s0[idx_0_990800886]),
-                .in(M_mux2_in[idx_0_990800886]),
-                .out(M_mux2_out[idx_0_990800886])
-            );
-        end
-    endgenerate
-    
-    
     logic [5:0] add_ctr;
     always @* begin
         M_adder_a = a;
@@ -194,29 +137,51 @@ module alu (
         M_divider_b = b;
         M_modulo_a = a;
         M_modulo_b = b;
-        M_mux4_s0 = {6'h20{alufn[3'h4]}};
-        M_mux4_s1 = {6'h20{alufn[3'h5]}};
-        M_mux4_01_s0 = {6'h20{alufn[1'h0]}};
-        M_mux4_01_s1 = {6'h20{alufn[1'h1]}};
-        M_mux2_s0 = {6'h20{alufn[2'h2]}};
-        for (RR_0b0a81e0_i = 0; RR_0b0a81e0_i < 6'h20; RR_0b0a81e0_i = RR_0b0a81e0_i + 1) begin
-      R_0b0a81e0_i = (0) + RR_0b0a81e0_i * (1);
-            M_mux4_in[R_0b0a81e0_i][1'h0] = M_mux4_01_out[R_0b0a81e0_i];
-            M_mux4_in[R_0b0a81e0_i][1'h1] = M_boolean_out[R_0b0a81e0_i];
-            M_mux4_in[R_0b0a81e0_i][2'h2] = M_shifter_shift[R_0b0a81e0_i];
-            M_mux4_01_in[R_0b0a81e0_i][1'h0] = M_adder_out[R_0b0a81e0_i];
-            M_mux4_01_in[R_0b0a81e0_i][1'h1] = M_mux2_out[R_0b0a81e0_i];
-            M_mux4_01_in[R_0b0a81e0_i][2'h2] = M_multiplier_out[R_0b0a81e0_i];
-            M_mux4_01_in[R_0b0a81e0_i][2'h3] = M_divider_out[R_0b0a81e0_i];
-            M_mux2_in[R_0b0a81e0_i][1'h0] = M_adder_out[R_0b0a81e0_i];
-            M_mux2_in[R_0b0a81e0_i][1'h1] = M_modulo_out[R_0b0a81e0_i];
-            if (R_0b0a81e0_i == 1'h0) begin
-                M_mux4_in[R_0b0a81e0_i][2'h3] = M_compare_cmp;
-            end else begin
-                M_mux4_in[R_0b0a81e0_i][2'h3] = 1'h0;
+        
+        case (alufn)
+            6'h0: begin
+                out = M_adder_out;
             end
-        end
-        out = M_mux4_out;
+            6'h1: begin
+                out = M_adder_out;
+            end
+            6'h2: begin
+                out = M_multiplier_out;
+            end
+            6'h18: begin
+                out = M_boolean_out;
+            end
+            6'h1e: begin
+                out = M_boolean_out;
+            end
+            6'h16: begin
+                out = M_boolean_out;
+            end
+            6'h1a: begin
+                out = M_boolean_out;
+            end
+            6'h20: begin
+                out = M_shifter_shift;
+            end
+            6'h21: begin
+                out = M_shifter_shift;
+            end
+            6'h23: begin
+                out = M_shifter_shift;
+            end
+            6'h33: begin
+                out = M_compare_cmp;
+            end
+            6'h35: begin
+                out = M_compare_cmp;
+            end
+            6'h37: begin
+                out = M_compare_cmp;
+            end
+            default: begin
+                out = 1'h0;
+            end
+        endcase
     end
     
     

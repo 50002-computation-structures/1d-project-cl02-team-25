@@ -102,7 +102,6 @@ read_verilog -library xil_defaultlib -sv {
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/multi_seven_seg.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/multiplier.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/mux_2.sv}
-  {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/mux_4.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/pipeline.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/rca.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/reset_conditioner.sv}
