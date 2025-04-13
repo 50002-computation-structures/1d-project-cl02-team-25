@@ -1,0 +1,116 @@
+module buttonmap_awake (
+    input a[32], // buttonmap
+    input b[32], // level
+    output out[32] // timings
+) {
+    always {
+        case(b){
+            d0:case(a[20:16]){
+                b00000: out = d4;
+                b00001: out = d3;
+                b00010: out = d4;
+                b00011: out = d3;
+                b00100: out = d4;
+                b00101: out = d3;
+                b00110: out = d4;
+                b00111: out = d4;
+                b01000: out = d4;
+                b01001: out = d3;
+                b01010: out = d4;
+                b01011: out = d3;
+                b01100: out = d4;
+                b01101: out = d3;
+                b01110: out = d4;
+                b01111: out = d3;
+                b10000: out = d4;
+                b10001: out = d3;
+                b10010: out = d4;
+                b10011: out = d3;
+                b10100: out = d4;
+                b10101: out = d4;
+                b10110: out = d4;
+                b10111: out = d3;
+                b11000: out = d4;
+                b11001: out = d3;
+                b11010: out = d4;
+                b11011: out = d3;
+                b11100: out = d4;
+                b11101: out = d3;
+                b11110: out = d4;
+                b11111: out = d4;
+                default: out = d4
+                }
+            d1:case(a[20:16]){
+                b00000: out = d8;
+                b00001: out = d3;
+                b00010: out = d6;
+                b00011: out = d4;
+                b00100: out = d6;
+                b00101: out = d5;
+                b00110: out = d8;
+                b00111: out = d3;
+                b01000: out = d7;
+                b01001: out = d5;
+                b01010: out = d6;
+                b01011: out = d5;
+                b01100: out = d8;
+                b01101: out = d3;
+                b01110: out = d7;
+                b01111: out = d4;
+                b10000: out = d6;
+                b10001: out = d5;
+                b10010: out = d7;
+                b10011: out = d4;
+                b10100: out = d6;
+                b10101: out = d5;
+                b10110: out = d6;
+                b10111: out = d5;
+                b11000: out = d6;
+                b11001: out = d5;
+                b11010: out = d7;
+                b11011: out = d4;
+                b11100: out = d6;
+                b11101: out = d5;
+                b11110: out = d7;
+                b11111: out = d4;
+                default:out=d6
+                }
+            d2:case(a[20:16]){
+                b00000: out = d10;
+                b00001: out = d5;
+                b00010: out = d8;
+                b00011: out = d6;
+                b00100: out = d8;
+                b00101: out = d7;
+                b00110: out = d10;
+                b00111: out = d5;
+                b01000: out = d9;
+                b01001: out = d7;
+                b01010: out = d8;
+                b01011: out = d7;
+                b01100: out = d10;
+                b01101: out = d5;
+                b01110: out = d9;
+                b01111: out = d6;
+                b10000: out = d8;
+                b10001: out = d7;
+                b10010: out = d9;
+                b10011: out = d6;
+                b10100: out = d8;
+                b10101: out = d7;
+                b10110: out = d8;
+                b10111: out = d7;
+                b11000: out = d8;
+                b11001: out = d7;
+                b11010: out = d9;
+                b11011: out = d6;
+                b11100: out = d8;
+                b11101: out = d7;
+                b11110: out = d9;
+                b11111: out = d6;
+                default: out=d6
+                }
+            default:out=d5
+        }
+    }
+}

@@ -60,11 +60,11 @@ module game_cu (
         RESET_ACTIVE_TYPE_0,
         RESET_MODE_0,
         
-        GENERATE_BUTTONMAP, //todo
-        SET_ACTIVE_BUTTON, //todo
-        SET_ACTIVE_TYPE, //todo
-        SET_AWAKE, //todo
-        SET_COOLDOWN, //todo
+        GENERATE_BUTTONMAP, 
+        SET_ACTIVE_BUTTON, 
+        SET_ACTIVE_TYPE, 
+        SET_AWAKE, 
+        SET_COOLDOWN, 
         RESET_MODE_2,
         
         B1_IS_ACTIVE_BUTTON,
@@ -357,6 +357,9 @@ module game_cu (
                               
                 //BUTTON GENERATION STUFF
                 GameStates.GENERATE_BUTTONMAP:
+                    regfile_we=1
+                    regfile_wa=d2 //buttonmap
+                    alu_out_sel=b100
                     //TEST
                     //alufn=b000000 //ADD
                     //regfile_ra1=d31
@@ -367,34 +370,38 @@ module game_cu (
                 //END TEST
                     game_fsm.d=GameStates.SET_ACTIVE_BUTTON
                 GameStates.SET_ACTIVE_BUTTON:
-                    alufn=b000000 //ADD
-                    regfile_ra1=d31 //0 register
-                    asel=b00
-                    bsel=b0001 //1 for now
+                    alufn=b111000 //activebutton function
+                    regfile_ra1=d2//buttonmap
+                    regfile_ra2=d4 //level
+                    asel=b00 //Ra
+                    bsel=b0000 //Rb/Rc
                     regfile_we=1
-                    regfile_wa=d6 //activebutton
+                    regfile_wa=d6//activebutton
                     game_fsm.d=GameStates.SET_ACTIVE_TYPE
                 GameStates.SET_ACTIVE_TYPE:
-                    alufn=b000000 //ADD
-                    regfile_ra1=d31 //0 register
-                    asel=b00
-                    bsel=b0001 //button type 1
+                    alufn=b111001 //activetype function
+                    regfile_ra1=d2 //buttonmap
+                    regfile_ra2=d4 //level
+                    asel=b00 //Ra
+                    bsel=b0000 //Rb/Rc
                     regfile_we=1
                     regfile_wa=d7//activetype
                     game_fsm.d=GameStates.SET_AWAKE
                 GameStates.SET_AWAKE:
-                    alufn=b000000 //ADD
-                    regfile_ra1=d31 //0 register
+                    alufn=b111010 //awake function
+                    regfile_ra1=d2 //buttonmap
+                    regfile_ra2=d4 //level
                     asel=b00 //Ra
-                    bsel=b0101 //5
+                    bsel=b0000 //Rb/Rc
                     regfile_we=1
                     regfile_wa=d5 //awake
                     game_fsm.d=GameStates.SET_COOLDOWN
                 GameStates.SET_COOLDOWN:
-                    alufn=b000000 //ADD
-                    regfile_ra1=d31 //0 register
+                    alufn=b111011 //cooldown function
+                    regfile_ra1=d2 //buttonmap
+                    regfile_ra2=d4 //level
                     asel=b00 //Ra
-                    bsel=b0101 //5
+                    bsel=b0000 //Rb/Rc
                     regfile_we=1
                     regfile_wa=d8 //cooldown
                     game_fsm.d=GameStates.RESET_MODE_2

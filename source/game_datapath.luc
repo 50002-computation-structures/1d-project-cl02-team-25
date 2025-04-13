@@ -2,7 +2,8 @@ module game_datapath#(
     SLOW_CLOCK_DIV ~ 26 : SLOW_CLOCK_DIV > 0,
     LVL1_CLOCK_DIV ~ 25 : LVL1_CLOCK_DIV > 0,
     LVL2_CLOCK_DIV ~ 24 : LVL2_CLOCK_DIV >0,
-    LVL3_CLOCK_DIV ~ 23 : LVL3_CLOCK_DIV >0   
+    LVL3_CLOCK_DIV ~ 23 : LVL3_CLOCK_DIV >0,
+    FAST_CLOCK_DIV ~ 20 : FAST_CLOCK_DIV>0 
 ) (
     input button1,
     input button2,
@@ -17,7 +18,7 @@ module game_datapath#(
     
     output timerout[32],
     output scoreout[32],
-    //output buttonmapout[32],
+    output buttonmapout[32],
     //output modeout[32],
     output levelcounterout[32],
     output awakeout[32],
@@ -36,6 +37,7 @@ module game_datapath#(
     
     alu game_alu
     .clk(clk){
+        generate_rn gen_rn(#FAST_CLOCK_DIV(FAST_CLOCK_DIV),.rst(rst))
         counter level_one_interval(#SIZE(1),#DIV(LVL1_CLOCK_DIV),.rst(rst))
         counter level_two_interval(#SIZE(1),#DIV(LVL2_CLOCK_DIV),.rst(rst))
         counter level_three_interval(#SIZE(1),#DIV(LVL3_CLOCK_DIV),.rst(rst))
@@ -99,9 +101,10 @@ module game_datapath#(
         game_alu.alufn=game_cu.alufn
         
         case(game_cu.alu_out_sel){
-            b01:game_regfiles.data=hFFFF
-            b10:game_regfiles.data=h1F1F
-            b11:game_regfiles.data=0
+            b001:game_regfiles.data=hFFFF
+            b010:game_regfiles.data=h1F1F
+            b011:game_regfiles.data=0
+            b100:game_regfiles.data=gen_rn.out //i need random numbers lmao
             default:game_regfiles.data=game_alu.out
         }
         timerout=game_regfiles.timerout
@@ -115,6 +118,7 @@ module game_datapath#(
         interval3blinker=level_three_interval.value
         awakeout=game_regfiles.awakeout
         cooldownout=game_regfiles.cooldownout
+        buttonmapout=game_regfiles.buttonmapout
         
         debug_general=game_cu.debug //literally nothing rn
         

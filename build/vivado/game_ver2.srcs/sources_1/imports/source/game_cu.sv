@@ -321,40 +321,47 @@ module game_cu (
                     D_game_fsm_d = 6'h19;
                 end
                 6'h1a: begin
+                    regfile_we = 1'h1;
+                    regfile_wa = 2'h2;
+                    alu_out_sel = 3'h4;
                     D_game_fsm_d = 6'h1b;
                 end
                 6'h1b: begin
-                    alufn = 6'h0;
-                    regfile_ra1 = 5'h1f;
+                    alufn = 6'h38;
+                    regfile_ra1 = 2'h2;
+                    regfile_ra2 = 3'h4;
                     asel = 2'h0;
-                    bsel = 4'h1;
+                    bsel = 4'h0;
                     regfile_we = 1'h1;
                     regfile_wa = 3'h6;
                     D_game_fsm_d = 6'h1c;
                 end
                 6'h1c: begin
-                    alufn = 6'h0;
-                    regfile_ra1 = 5'h1f;
+                    alufn = 6'h39;
+                    regfile_ra1 = 2'h2;
+                    regfile_ra2 = 3'h4;
                     asel = 2'h0;
-                    bsel = 4'h1;
+                    bsel = 4'h0;
                     regfile_we = 1'h1;
                     regfile_wa = 3'h7;
                     D_game_fsm_d = 6'h1d;
                 end
                 6'h1d: begin
-                    alufn = 6'h0;
-                    regfile_ra1 = 5'h1f;
+                    alufn = 6'h3a;
+                    regfile_ra1 = 2'h2;
+                    regfile_ra2 = 3'h4;
                     asel = 2'h0;
-                    bsel = 4'h5;
+                    bsel = 4'h0;
                     regfile_we = 1'h1;
                     regfile_wa = 3'h5;
                     D_game_fsm_d = 6'h1e;
                 end
                 6'h1e: begin
-                    alufn = 6'h0;
-                    regfile_ra1 = 5'h1f;
+                    alufn = 6'h3b;
+                    regfile_ra1 = 2'h2;
+                    regfile_ra2 = 3'h4;
                     asel = 2'h0;
-                    bsel = 4'h5;
+                    bsel = 4'h0;
                     regfile_we = 1'h1;
                     regfile_wa = 4'h8;
                     D_game_fsm_d = 6'h1f;

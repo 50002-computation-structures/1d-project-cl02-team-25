@@ -184,6 +184,36 @@
                     "type": "DiskFile",
                     "path": "source/x_bit_right_shifter.luc"
                 }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/generate_rn.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/buttonmap_button.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/buttonmap_type.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/buttonmap_awake.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/buttonmap_cooldown.luc"
+                }
             }
         ],
         "constraintFiles": [

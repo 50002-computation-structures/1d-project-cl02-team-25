@@ -28,7 +28,7 @@ module game_regfiles (
     logic [31:0] D_score_d, D_score_q = 1'h0;
     logic [31:0] D_buttonmap_d, D_buttonmap_q = 1'h0;
     logic [31:0] D_mode_d, D_mode_q = 1'h0;
-    logic [31:0] D_levelcounter_d, D_levelcounter_q = 2'h2;
+    logic [31:0] D_levelcounter_d, D_levelcounter_q = 1'h0;
     logic [31:0] D_awake_d, D_awake_q = 1'h0;
     logic [31:0] D_activebutton_d, D_activebutton_q = 1'h0;
     logic [31:0] D_activetype_d, D_activetype_q = 1'h0;
@@ -182,7 +182,7 @@ module game_regfiles (
             D_score_q <= 1'h0;
             D_buttonmap_q <= 1'h0;
             D_mode_q <= 1'h0;
-            D_levelcounter_q <= 2'h2;
+            D_levelcounter_q <= 1'h0;
             D_awake_q <= 1'h0;
             D_activebutton_q <= 1'h0;
             D_activetype_q <= 1'h0;

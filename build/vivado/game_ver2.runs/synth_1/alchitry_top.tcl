@@ -89,6 +89,10 @@ read_verilog -library xil_defaultlib -sv {
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/bin_to_dec.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/boolean.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/button_conditioner.sv}
+  {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv}
+  {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_button.sv}
+  {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv}
+  {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/compare.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/decoder.sv}
@@ -98,11 +102,13 @@ read_verilog -library xil_defaultlib -sv {
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_cu.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_datapath.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_regfiles.sv}
+  {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/generate_rn.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/modulo.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/multi_seven_seg.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/multiplier.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/mux_2.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/pipeline.sv}
+  {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/pn_gen.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/rca.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/reset_conditioner.sv}
   {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/seven_seg.sv}

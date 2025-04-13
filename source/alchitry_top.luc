@@ -18,6 +18,7 @@ module alchitry_top (
     const LVL1_CLOCK_DIV = $is_sim() ? 8 : 25 // put 8 for sim, 25 for hardware
     const LVL2_CLOCK_DIV = $is_sim() ? 7 : 24
     const LVL3_CLOCK_DIV = $is_sim() ? 6 : 23
+    const FAST_CLOCK_DIV = $is_sim() ? 3 : 20
     //const FAST_CLOCK_DIV = $is_sim() ? 7 : 21 // put 7 for sim, 21 for hardware 
     
     .clk(clk) {
@@ -38,7 +39,7 @@ module alchitry_top (
         
         .rst(rst){
             multi_seven_seg seg(#DIV(SEVEN_SEG_DIV))
-            game_datapath game_datapath(#SLOW_CLOCK_DIV(SLOW_CLOCK_DIV), #LVL1_CLOCK_DIV(LVL1_CLOCK_DIV),#LVL2_CLOCK_DIV(LVL2_CLOCK_DIV),#LVL3_CLOCK_DIV(LVL3_CLOCK_DIV))
+            game_datapath game_datapath(#FAST_CLOCK_DIV(FAST_CLOCK_DIV),#SLOW_CLOCK_DIV(SLOW_CLOCK_DIV), #LVL1_CLOCK_DIV(LVL1_CLOCK_DIV),#LVL2_CLOCK_DIV(LVL2_CLOCK_DIV),#LVL3_CLOCK_DIV(LVL3_CLOCK_DIV))
         }
     }
     

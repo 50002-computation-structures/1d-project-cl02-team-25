@@ -3,8 +3,8 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Sun Apr 13 04:14:48 2025
-# Process ID: 14412
+# Start of session at: Sun Apr 13 07:10:28 2025
+# Process ID: 8784
 # Current directory: C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.runs/synth_1
 # Command line: vivado.exe -log alchitry_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source alchitry_top.tcl
 # Log file: C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.runs/synth_1/alchitry_top.vds
@@ -19,9 +19,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tftg256-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 12708
+INFO: [Synth 8-7075] Helper process launched with PID 12764
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1285.477 ; gain = 440.809
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1287.160 ; gain = 441.074
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'alchitry_top' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/alchitry_top.sv:7]
 INFO: [Synth 8-6157] synthesizing module 'reset_conditioner' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/reset_conditioner.sv:7]
@@ -59,6 +59,7 @@ INFO: [Synth 8-6157] synthesizing module 'game_datapath' [C:/SUTD/Sem 4/Computat
 	Parameter LVL1_CLOCK_DIV bound to: 5'b11001 
 	Parameter LVL2_CLOCK_DIV bound to: 5'b11000 
 	Parameter LVL3_CLOCK_DIV bound to: 5'b10111 
+	Parameter FAST_CLOCK_DIV bound to: 5'b10100 
 INFO: [Synth 8-6157] synthesizing module 'alu' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/alu.sv:7]
 INFO: [Synth 8-6157] synthesizing module 'adder' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/adder.sv:7]
 	Parameter SIZE bound to: 6'b100000 
@@ -129,38 +130,78 @@ INFO: [Synth 8-6157] synthesizing module 'divider' [C:/SUTD/Sem 4/Computation St
 INFO: [Synth 8-6155] done synthesizing module 'divider' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/divider.sv:7]
 INFO: [Synth 8-6157] synthesizing module 'modulo' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/modulo.sv:7]
 INFO: [Synth 8-6155] done synthesizing module 'modulo' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/modulo.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'buttonmap_button' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_button.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_button.sv:14]
+INFO: [Synth 8-6155] done synthesizing module 'buttonmap_button' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_button.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'buttonmap_type' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:20]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:124]
+INFO: [Synth 8-6155] done synthesizing module 'buttonmap_type' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'buttonmap_awake' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:17]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:121]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:225]
+INFO: [Synth 8-6155] done synthesizing module 'buttonmap_awake' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'buttonmap_cooldown' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:17]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:121]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:225]
+INFO: [Synth 8-6155] done synthesizing module 'buttonmap_cooldown' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:7]
 INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/alu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'generate_rn' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/generate_rn.sv:7]
+	Parameter SEED bound to: 30'b101000011010110100101110011100 
+	Parameter FAST_CLOCK_DIV bound to: 5'b10100 
 INFO: [Synth 8-6157] synthesizing module 'counter__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
 	Parameter SIZE bound to: 1'b1 
-	Parameter DIV bound to: 5'b11001 
+	Parameter DIV bound to: 5'b10100 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
 INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
 INFO: [Synth 8-6157] synthesizing module 'counter__parameterized1' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
 	Parameter SIZE bound to: 1'b1 
-	Parameter DIV bound to: 5'b11000 
+	Parameter DIV bound to: 5'b10101 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
 INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized1' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'pn_gen' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/pn_gen.sv:7]
+	Parameter SEED bound to: 33'b110010100001100001111010000011000 
+INFO: [Synth 8-6155] done synthesizing module 'pn_gen' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/pn_gen.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'edge_detector__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/edge_detector.sv:7]
+	Parameter RISE bound to: 1'b1 
+	Parameter FALL bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'edge_detector__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'generate_rn' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/generate_rn.sv:7]
 INFO: [Synth 8-6157] synthesizing module 'counter__parameterized2' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
 	Parameter SIZE bound to: 1'b1 
-	Parameter DIV bound to: 5'b10111 
+	Parameter DIV bound to: 5'b11001 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
 INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized2' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
 INFO: [Synth 8-6157] synthesizing module 'counter__parameterized3' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
 	Parameter SIZE bound to: 1'b1 
-	Parameter DIV bound to: 5'b11010 
+	Parameter DIV bound to: 5'b11000 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
 INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized3' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'counter__parameterized4' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+	Parameter SIZE bound to: 1'b1 
+	Parameter DIV bound to: 5'b10111 
+	Parameter TOP bound to: 1'b0 
+	Parameter UP bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized4' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'counter__parameterized5' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+	Parameter SIZE bound to: 1'b1 
+	Parameter DIV bound to: 5'b11010 
+	Parameter TOP bound to: 1'b0 
+	Parameter UP bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized5' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
 INFO: [Synth 8-6157] synthesizing module 'game_cu' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_cu.sv:7]
 INFO: [Synth 8-155] case statement is not full and has no default [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_cu.sv:105]
 INFO: [Synth 8-6155] done synthesizing module 'game_cu' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_cu.sv:7]
 INFO: [Synth 8-6157] synthesizing module 'game_regfiles' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_regfiles.sv:7]
 INFO: [Synth 8-155] case statement is not full and has no default [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_regfiles.sv:53]
 INFO: [Synth 8-6155] done synthesizing module 'game_regfiles' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_regfiles.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_datapath.sv:260]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_datapath.sv:276]
 INFO: [Synth 8-6155] done synthesizing module 'game_datapath' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_datapath.sv:7]
 INFO: [Synth 8-6157] synthesizing module 'bin_to_dec' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/bin_to_dec.sv:7]
 	Parameter DIGITS bound to: 3'b100 
@@ -200,56 +241,89 @@ WARNING: [Synth 8-7129] Port regfile_rd2[4] in module game_cu is either unconnec
 WARNING: [Synth 8-7129] Port regfile_rd2[3] in module game_cu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port regfile_rd2[2] in module game_cu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port regfile_rd2[1] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[5] in module shifter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[4] in module shifter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[3] in module shifter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[2] in module shifter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[5] in module boolean is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[4] in module boolean is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[5] in module compare is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[4] in module compare is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[3] in module compare is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[0] in module compare is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn_signal[5] in module adder is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn_signal[4] in module adder is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn_signal[3] in module adder is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn_signal[2] in module adder is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn_signal[1] in module adder is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[2][7] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[2][6] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[2][5] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[2][4] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[2][3] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[2][2] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[2][1] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[2][0] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[1][7] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[1][6] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[1][5] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[1][4] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[1][3] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[1][2] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[1][1] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[1][0] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[0][7] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[0][6] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[0][5] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[0][4] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[0][3] in module alchitry_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[0][2] in module alchitry_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[31] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[30] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[29] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[28] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[27] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[26] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[25] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[24] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[23] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[22] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[21] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[20] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[19] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[18] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[17] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[16] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[10] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[9] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[8] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[7] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[6] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[5] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[4] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[3] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[2] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[1] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[0] in module buttonmap_cooldown is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[31] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[30] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[29] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[28] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[27] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[26] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[25] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[24] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[23] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[22] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[21] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[15] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[14] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[13] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[12] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[11] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[10] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[9] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[8] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[7] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[6] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[5] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[4] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[3] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[2] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[1] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[0] in module buttonmap_awake is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[31] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[30] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[29] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[28] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[27] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[26] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[25] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[24] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[23] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[22] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[21] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[20] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[19] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[18] in module buttonmap_type is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[17] in module buttonmap_type is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1419.711 ; gain = 575.043
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1423.398 ; gain = 577.312
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1419.711 ; gain = 575.043
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1423.398 ; gain = 577.312
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1419.711 ; gain = 575.043
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1423.398 ; gain = 577.312
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.040 . Memory (MB): peak = 1419.711 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.054 . Memory (MB): peak = 1423.398 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -262,26 +336,26 @@ Parsing XDC File [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2
 Finished Parsing XDC File [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/constraint/au_props.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1519.062 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1462.828 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1519.062 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1462.828 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1519.062 ; gain = 674.395
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1462.828 ; gain = 616.742
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tftg256-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1519.062 ; gain = 674.395
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1462.828 ; gain = 616.742
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1519.062 ; gain = 674.395
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1462.828 ; gain = 616.742
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'D_game_fsm_q_reg' in module 'game_cu'
 ---------------------------------------------------------------------------------------------------
@@ -343,7 +417,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'D_game_fsm_q_reg' in module
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'D_game_fsm_q_reg' using encoding 'sequential' in module 'game_cu'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1519.062 ; gain = 674.395
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1462.828 ; gain = 616.742
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -354,20 +428,22 @@ Detailed RTL Component Info :
 	   3 Input   14 Bit       Adders := 3     
 	   2 Input    2 Bit       Adders := 1     
 +---XORs : 
-	   2 Input     32 Bit         XORs := 2     
+	   2 Input     32 Bit         XORs := 4     
+	   4 Input     32 Bit         XORs := 1     
 	   3 Input      1 Bit         XORs := 528   
 	   2 Input      1 Bit         XORs := 2     
 +---Registers : 
-	               32 Bit    Registers := 11    
+	               32 Bit    Registers := 15    
 	                4 Bit    Registers := 1     
 	                2 Bit    Registers := 5     
-	                1 Bit    Registers := 9     
+	                1 Bit    Registers := 11    
 +---Multipliers : 
 	              32x32  Multipliers := 1     
 +---Muxes : 
-	   4 Input   32 Bit        Muxes := 3     
+	   4 Input   32 Bit        Muxes := 2     
 	   2 Input   32 Bit        Muxes := 5     
-	   6 Input   32 Bit        Muxes := 1     
+	  10 Input   32 Bit        Muxes := 1     
+	   5 Input   32 Bit        Muxes := 1     
 	  10 Input   14 Bit        Muxes := 1     
 	   2 Input   14 Bit        Muxes := 3     
 	  10 Input   10 Bit        Muxes := 1     
@@ -375,19 +451,23 @@ Detailed RTL Component Info :
 	  53 Input    6 Bit        Muxes := 1     
 	  78 Input    6 Bit        Muxes := 1     
 	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 4     
+	   4 Input    5 Bit        Muxes := 2     
+	  32 Input    5 Bit        Muxes := 2     
 	  53 Input    5 Bit        Muxes := 2     
-	   2 Input    5 Bit        Muxes := 2     
-	   4 Input    4 Bit        Muxes := 1     
+	   4 Input    4 Bit        Muxes := 2     
+	   2 Input    4 Bit        Muxes := 3     
+	  18 Input    4 Bit        Muxes := 1     
 	  53 Input    4 Bit        Muxes := 2     
-	   2 Input    4 Bit        Muxes := 2     
 	  11 Input    4 Bit        Muxes := 1     
 	  12 Input    4 Bit        Muxes := 3     
-	  14 Input    3 Bit        Muxes := 1     
+	  53 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 1     
 	  53 Input    2 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 1     
 	   4 Input    1 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 491   
-	  53 Input    1 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 494   
+	  53 Input    1 Bit        Muxes := 2     
 	  12 Input    1 Bit        Muxes := 11    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -408,59 +488,53 @@ WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-3917] design alchitry_top has port led[7] driven by constant 0
 WARNING: [Synth 8-3917] design alchitry_top has port led[6] driven by constant 0
 WARNING: [Synth 8-3917] design alchitry_top has port io_segment[7] driven by constant 1
-WARNING: [Synth 8-7129] Port regfile_rd2[31] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[30] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[29] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[28] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[27] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[26] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[25] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[24] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[23] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[22] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[21] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[20] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[19] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[18] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[17] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[16] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[15] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[14] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[13] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[12] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[11] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[10] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[9] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[8] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[7] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[6] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[5] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[4] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[3] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[2] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port regfile_rd2[1] in module game_cu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_dip[2][7] in module alchitry_top is either unconnected or has no load
-INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 1519.062 ; gain = 674.395
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 1472.930 ; gain = 626.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++-------------------+------------------+---------------+----------------+
+|Module Name        | RTL Object       | Depth x Width | Implemented As | 
++-------------------+------------------+---------------+----------------+
+|buttonmap_button   | out              | 64x3          | LUT            | 
+|buttonmap_awake    | out              | 32x4          | LUT            | 
+|buttonmap_awake    | out              | 32x4          | LUT            | 
+|buttonmap_awake    | out              | 32x2          | LUT            | 
+|buttonmap_cooldown | out              | 32x5          | LUT            | 
+|buttonmap_cooldown | out              | 32x4          | LUT            | 
+|buttonmap_cooldown | out              | 32x2          | LUT            | 
+|alu                | awake/out        | 32x4          | LUT            | 
+|alu                | awake/out        | 32x4          | LUT            | 
+|alu                | awake/out        | 32x2          | LUT            | 
+|alu                | cooldown/out     | 32x5          | LUT            | 
+|alu                | cooldown/out     | 32x4          | LUT            | 
+|alu                | cooldown/out     | 32x2          | LUT            | 
+|alu                | activebutton/out | 64x3          | LUT            | 
++-------------------+------------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1519.062 ; gain = 674.395
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:48 ; elapsed = 00:00:49 . Memory (MB): peak = 1472.930 ; gain = 626.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:00 ; elapsed = 00:01:00 . Memory (MB): peak = 1782.715 ; gain = 938.047
+Finished Timing Optimization : Time (s): cpu = 00:01:10 ; elapsed = 00:01:11 . Memory (MB): peak = 1796.574 ; gain = 950.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:01 ; elapsed = 00:01:02 . Memory (MB): peak = 1782.715 ; gain = 938.047
+Finished Technology Mapping : Time (s): cpu = 00:01:12 ; elapsed = 00:01:14 . Memory (MB): peak = 1796.574 ; gain = 950.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -478,37 +552,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 1782.715 ; gain = 938.047
+Finished IO Insertion : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 1782.715 ; gain = 938.047
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 1782.715 ; gain = 938.047
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 1782.715 ; gain = 938.047
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 1782.715 ; gain = 938.047
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 1782.715 ; gain = 938.047
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -525,42 +599,42 @@ Report Cell Usage:
 |      |Cell   |Count |
 +------+-------+------+
 |1     |BUFG   |     1|
-|2     |CARRY4 |    67|
-|3     |LUT1   |    21|
-|4     |LUT2   |   524|
-|5     |LUT3   |    60|
-|6     |LUT4   |   202|
-|7     |LUT5   |   205|
-|8     |LUT6   |  1099|
-|9     |MUXF7  |     8|
+|2     |CARRY4 |    83|
+|3     |LUT1   |    24|
+|4     |LUT2   |   530|
+|5     |LUT3   |    61|
+|6     |LUT4   |   213|
+|7     |LUT5   |   207|
+|8     |LUT6   |  1213|
+|9     |MUXF7  |    34|
 |10    |FDPE   |     4|
-|11    |FDRE   |   549|
-|12    |FDSE   |     1|
+|11    |FDRE   |   762|
+|12    |FDSE   |     9|
 |13    |IBUF   |    10|
 |14    |OBUF   |    45|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 1782.715 ; gain = 938.047
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 57 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:57 ; elapsed = 00:01:03 . Memory (MB): peak = 1782.715 ; gain = 838.695
-Synthesis Optimization Complete : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 1782.715 ; gain = 938.047
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:08 ; elapsed = 00:01:15 . Memory (MB): peak = 1796.574 ; gain = 911.059
+Synthesis Optimization Complete : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1782.715 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 75 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1796.574 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 117 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1782.715 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1796.574 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 7f987f4e
+Synth Design complete | Checksum: 22c72b21
 INFO: [Common 17-83] Releasing license: Synthesis
-108 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
+135 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:08 ; elapsed = 00:01:09 . Memory (MB): peak = 1782.715 ; gain = 1329.973
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1782.715 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:19 ; elapsed = 00:01:21 . Memory (MB): peak = 1796.574 ; gain = 1344.332
+Write ShapeDB Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1796.574 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.runs/synth_1/alchitry_top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file alchitry_top_utilization_synth.rpt -pb alchitry_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Apr 13 04:16:03 2025...
+INFO: [Common 17-206] Exiting Vivado at Sun Apr 13 07:11:56 2025...

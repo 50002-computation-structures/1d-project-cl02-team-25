@@ -14,7 +14,7 @@ module alu (
         output reg n
     );
     localparam SIZE = 6'h20;
-    localparam _MP_SIZE_795707361 = 6'h20;
+    localparam _MP_SIZE_1156542066 = 6'h20;
     logic [31:0] M_adder_a;
     logic [31:0] M_adder_b;
     logic [5:0] M_adder_alufn_signal;
@@ -24,7 +24,7 @@ module alu (
     logic M_adder_n;
     
     adder #(
-        .SIZE(_MP_SIZE_795707361)
+        .SIZE(_MP_SIZE_1156542066)
     ) adder (
         .a(M_adder_a),
         .b(M_adder_b),
@@ -51,14 +51,14 @@ module alu (
     );
     
     
-    localparam _MP_SIZE_706830509 = 6'h20;
+    localparam _MP_SIZE_1844656957 = 6'h20;
     logic [31:0] M_boolean_a;
     logic [31:0] M_boolean_b;
     logic [5:0] M_boolean_alufn;
     logic [31:0] M_boolean_out;
     
     boolean #(
-        .SIZE(_MP_SIZE_706830509)
+        .SIZE(_MP_SIZE_1844656957)
     ) boolean (
         .a(M_boolean_a),
         .b(M_boolean_b),
@@ -113,6 +113,50 @@ module alu (
     );
     
     
+    logic [31:0] M_activebutton_a;
+    logic [31:0] M_activebutton_b;
+    logic [31:0] M_activebutton_out;
+    
+    buttonmap_button activebutton (
+        .a(M_activebutton_a),
+        .b(M_activebutton_b),
+        .out(M_activebutton_out)
+    );
+    
+    
+    logic [31:0] M_activetype_a;
+    logic [31:0] M_activetype_b;
+    logic [31:0] M_activetype_out;
+    
+    buttonmap_type activetype (
+        .a(M_activetype_a),
+        .b(M_activetype_b),
+        .out(M_activetype_out)
+    );
+    
+    
+    logic [31:0] M_awake_a;
+    logic [31:0] M_awake_b;
+    logic [31:0] M_awake_out;
+    
+    buttonmap_awake awake (
+        .a(M_awake_a),
+        .b(M_awake_b),
+        .out(M_awake_out)
+    );
+    
+    
+    logic [31:0] M_cooldown_a;
+    logic [31:0] M_cooldown_b;
+    logic [31:0] M_cooldown_out;
+    
+    buttonmap_cooldown cooldown (
+        .a(M_cooldown_a),
+        .b(M_cooldown_b),
+        .out(M_cooldown_out)
+    );
+    
+    
     logic [5:0] add_ctr;
     always @* begin
         M_adder_a = a;
@@ -137,6 +181,14 @@ module alu (
         M_divider_b = b;
         M_modulo_a = a;
         M_modulo_b = b;
+        M_activebutton_a = a;
+        M_activebutton_b = b;
+        M_activetype_a = a;
+        M_activetype_b = b;
+        M_awake_a = a;
+        M_awake_b = b;
+        M_cooldown_a = a;
+        M_cooldown_b = b;
         
         case (alufn)
             6'h0: begin
@@ -177,6 +229,18 @@ module alu (
             end
             6'h37: begin
                 out = M_compare_cmp;
+            end
+            6'h38: begin
+                out = M_activebutton_out;
+            end
+            6'h39: begin
+                out = M_activetype_out;
+            end
+            6'h3a: begin
+                out = M_awake_out;
+            end
+            6'h3b: begin
+                out = M_cooldown_out;
             end
             default: begin
                 out = 1'h0;

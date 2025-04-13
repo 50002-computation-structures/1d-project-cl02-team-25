@@ -15,6 +15,10 @@ module alu (
     multiplier multiplier
     divider divider
     modulo modulo
+    buttonmap_button activebutton
+    buttonmap_type activetype
+    buttonmap_awake awake
+    buttonmap_cooldown cooldown
     sig add_ctr[6]
 
 
@@ -51,6 +55,18 @@ module alu (
         modulo.a = a
         modulo.b = b
         
+        activebutton.a=a
+        activebutton.b=b
+        
+        activetype.a=a
+        activetype.b=b
+        
+        awake.a=a
+        awake.b=b
+        
+        cooldown.a=a
+        cooldown.b=b
+           
         case(alufn){
             b000000:out=adder.out
             b000001:out=adder.out
@@ -65,6 +81,11 @@ module alu (
             b110011:out=compare.cmp
             b110101:out=compare.cmp
             b110111:out=compare.cmp
+            
+            b111000:out=activebutton.out
+            b111001:out=activetype.out
+            b111010:out=awake.out
+            b111011:out=cooldown.out
             default:out=0
             
                 
