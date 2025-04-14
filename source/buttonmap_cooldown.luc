@@ -5,41 +5,7 @@ module buttonmap_cooldown (
 ) {
     always {
         case(b){
-            d0:case(a[15:11]){
-                b00000: out = d4;
-                b00001: out = d3;
-                b00010: out = d4;
-                b00011: out = d3;
-                b00100: out = d4;
-                b00101: out = d3;
-                b00110: out = d4;
-                b00111: out = d4;
-                b01000: out = d4;
-                b01001: out = d3;
-                b01010: out = d4;
-                b01011: out = d3;
-                b01100: out = d4;
-                b01101: out = d3;
-                b01110: out = d4;
-                b01111: out = d3;
-                b10000: out = d4;
-                b10001: out = d3;
-                b10010: out = d4;
-                b10011: out = d3;
-                b10100: out = d4;
-                b10101: out = d4;
-                b10110: out = d4;
-                b10111: out = d3;
-                b11000: out = d4;
-                b11001: out = d3;
-                b11010: out = d4;
-                b11011: out = d3;
-                b11100: out = d4;
-                b11101: out = d3;
-                b11110: out = d4;
-                b11111: out = d4;
-                default: out = d4
-                }
+            d0:out=d4
             d1:case(a[15:11]){
                 b00000: out = d8;
                 b00001: out = d3;
@@ -75,40 +41,40 @@ module buttonmap_cooldown (
                 b11111: out = d4;
                 default:out=d6
                 }
-            d2:case(a[15:11]){
-                b00000: out = d20;
-                b00001: out = d10;
-                b00010: out = d6;
-                b00011: out = d6;
-                b00100: out = d16;
+            d3:case(a[15:11]){
+                b00000: out = d12;
+                b00001: out = d6;
+                b00010: out = d4;
+                b00011: out = d4;
+                b00100: out = d7;
                 b00101: out = d14;
-                b00110: out = d20;
-                b00111: out = d10;
-                b01000: out = d18;
+                b00110: out = d12;
+                b00111: out = d6;
+                b01000: out = d9;
                 b01001: out = d14;
-                b01010: out = d16;
+                b01010: out = d7;
                 b01011: out = d14;
-                b01100: out = d20;
-                b01101: out = d10;
-                b01110: out = d18;
-                b01111: out = d12;
-                b10000: out = d16;
+                b01100: out = d12;
+                b01101: out = d6;
+                b01110: out = d9;
+                b01111: out = d8;
+                b10000: out = d7;
                 b10001: out = d14;
-                b10010: out = d6;
-                b10011: out = d12;
-                b10100: out = d16;
+                b10010: out = d4;
+                b10011: out = d8;
+                b10100: out = d7;
                 b10101: out = d14;
-                b10110: out = d16;
-                b10111: out = d6;
-                b11000: out = d16;
+                b10110: out = d7;
+                b10111: out = d4;
+                b11000: out = d7;
                 b11001: out = d14;
-                b11010: out = d18;
-                b11011: out = d12;
-                b11100: out = d16;
+                b11010: out = d9;
+                b11011: out = d8;
+                b11100: out = d7;
                 b11101: out = d14;
-                b11110: out = d18;
-                b11111: out = d12;
-                default: out=d6
+                b11110: out = d9;
+                b11111: out = d8;
+                default: out=d4
                 }
             default:out=d5
         }

@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.runs/impl_1/alchitry_top.tcl"
+  variable script "C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.runs/impl_1/alchitry_top.tcl"
   variable category "vivado_impl"
 }
 
@@ -130,16 +130,16 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.cache/wt} [current_project]
-  set_property parent.project_path {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.xpr} [current_project]
-  set_property ip_output_repo {{C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.cache/ip}} [current_project]
+  set_property webtalk.parent_dir {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.cache/wt} [current_project]
+  set_property parent.project_path {C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.xpr} [current_project]
+  set_property ip_output_repo {{C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.cache/ip}} [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet {{C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.runs/synth_1/alchitry_top.dcp}}
+  add_files -quiet {{C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.runs/synth_1/alchitry_top.dcp}}
 OPTRACE "read constraints: implementation" START { }
-  read_xdc {{C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/constraint/alchitry.xdc}}
-  read_xdc {{C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/constraint/au_props.xdc}}
+  read_xdc {{C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/constraint/alchitry.xdc}}
+  read_xdc {{C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/constraint/au_props.xdc}}
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }

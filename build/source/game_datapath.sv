@@ -6,9 +6,7 @@
 
 module game_datapath #(
         parameter SLOW_CLOCK_DIV = 5'h1a,
-        parameter LVL1_CLOCK_DIV = 5'h19,
-        parameter LVL2_CLOCK_DIV = 5'h18,
-        parameter LVL3_CLOCK_DIV = 5'h17,
+        parameter INTERVAL_CLOCK_DIV = 5'h18,
         parameter FAST_CLOCK_DIV = 5'h14
     ) (
         input wire button1,
@@ -23,14 +21,15 @@ module game_datapath #(
         output reg [31:0] timerout,
         output reg [31:0] scoreout,
         output reg [31:0] buttonmapout,
+        output reg [31:0] modeout,
         output reg [31:0] levelcounterout,
         output reg [31:0] awakeout,
         output reg [31:0] activebuttonout,
         output reg [31:0] activetypeout,
         output reg [31:0] cooldownout,
-        output reg [31:0] interval1blinker,
-        output reg [31:0] interval2blinker,
-        output reg [31:0] interval3blinker,
+        output reg [31:0] setledout,
+        output reg [31:0] cooltimerout,
+        output reg gameintervalblinker,
         output reg slow_clock_out,
         output reg [3:0] debug_general
     );
@@ -55,13 +54,13 @@ module game_datapath #(
     );
     
     
-    localparam _MP_SEED_1660195351 = 30'h286b4b9c;
-    localparam _MP_FAST_CLOCK_DIV_1660195351 = FAST_CLOCK_DIV;
+    localparam _MP_SEED_658006777 = 30'h286b4b9c;
+    localparam _MP_FAST_CLOCK_DIV_658006777 = FAST_CLOCK_DIV;
     logic [31:0] M_gen_rn_out;
     
     generate_rn #(
-        .SEED(_MP_SEED_1660195351),
-        .FAST_CLOCK_DIV(_MP_FAST_CLOCK_DIV_1660195351)
+        .SEED(_MP_SEED_658006777),
+        .FAST_CLOCK_DIV(_MP_FAST_CLOCK_DIV_658006777)
     ) gen_rn (
         .rst(rst),
         .clk(clk),
@@ -69,71 +68,17 @@ module game_datapath #(
     );
     
     
-    localparam _MP_SIZE_84632371 = 1'h1;
-    localparam _MP_DIV_84632371 = LVL1_CLOCK_DIV;
-    localparam _MP_TOP_84632371 = 1'h0;
-    localparam _MP_UP_84632371 = 1'h1;
-    logic [0:0] M_level_one_interval_value;
-    
-    counter #(
-        .SIZE(_MP_SIZE_84632371),
-        .DIV(_MP_DIV_84632371),
-        .TOP(_MP_TOP_84632371),
-        .UP(_MP_UP_84632371)
-    ) level_one_interval (
-        .rst(rst),
-        .clk(clk),
-        .value(M_level_one_interval_value)
-    );
-    
-    
-    localparam _MP_SIZE_908222045 = 1'h1;
-    localparam _MP_DIV_908222045 = LVL2_CLOCK_DIV;
-    localparam _MP_TOP_908222045 = 1'h0;
-    localparam _MP_UP_908222045 = 1'h1;
-    logic [0:0] M_level_two_interval_value;
-    
-    counter #(
-        .SIZE(_MP_SIZE_908222045),
-        .DIV(_MP_DIV_908222045),
-        .TOP(_MP_TOP_908222045),
-        .UP(_MP_UP_908222045)
-    ) level_two_interval (
-        .rst(rst),
-        .clk(clk),
-        .value(M_level_two_interval_value)
-    );
-    
-    
-    localparam _MP_SIZE_1104683128 = 1'h1;
-    localparam _MP_DIV_1104683128 = LVL3_CLOCK_DIV;
-    localparam _MP_TOP_1104683128 = 1'h0;
-    localparam _MP_UP_1104683128 = 1'h1;
-    logic [0:0] M_level_three_interval_value;
-    
-    counter #(
-        .SIZE(_MP_SIZE_1104683128),
-        .DIV(_MP_DIV_1104683128),
-        .TOP(_MP_TOP_1104683128),
-        .UP(_MP_UP_1104683128)
-    ) level_three_interval (
-        .rst(rst),
-        .clk(clk),
-        .value(M_level_three_interval_value)
-    );
-    
-    
-    localparam _MP_SIZE_2022409669 = 1'h1;
-    localparam _MP_DIV_2022409669 = SLOW_CLOCK_DIV;
-    localparam _MP_TOP_2022409669 = 1'h0;
-    localparam _MP_UP_2022409669 = 1'h1;
+    localparam _MP_SIZE_1777810126 = 1'h1;
+    localparam _MP_DIV_1777810126 = SLOW_CLOCK_DIV;
+    localparam _MP_TOP_1777810126 = 1'h0;
+    localparam _MP_UP_1777810126 = 1'h1;
     logic [0:0] M_game_timer_clock_value;
     
     counter #(
-        .SIZE(_MP_SIZE_2022409669),
-        .DIV(_MP_DIV_2022409669),
-        .TOP(_MP_TOP_2022409669),
-        .UP(_MP_UP_2022409669)
+        .SIZE(_MP_SIZE_1777810126),
+        .DIV(_MP_DIV_1777810126),
+        .TOP(_MP_TOP_1777810126),
+        .UP(_MP_UP_1777810126)
     ) game_timer_clock (
         .rst(rst),
         .clk(clk),
@@ -141,59 +86,49 @@ module game_datapath #(
     );
     
     
-    localparam _MP_RISE_1751162558 = 1'h1;
-    localparam _MP_FALL_1751162558 = 1'h0;
-    logic M_edge_detector_level_one_interval_out;
+    localparam _MP_SIZE_301700829 = 1'h1;
+    localparam _MP_DIV_301700829 = INTERVAL_CLOCK_DIV;
+    localparam _MP_TOP_301700829 = 1'h0;
+    localparam _MP_UP_301700829 = 1'h1;
+    logic [0:0] M_game_interval_value;
     
-    edge_detector #(
-        .RISE(_MP_RISE_1751162558),
-        .FALL(_MP_FALL_1751162558)
-    ) edge_detector_level_one_interval (
-        .in(M_level_one_interval_value),
+    counter #(
+        .SIZE(_MP_SIZE_301700829),
+        .DIV(_MP_DIV_301700829),
+        .TOP(_MP_TOP_301700829),
+        .UP(_MP_UP_301700829)
+    ) game_interval (
+        .rst(rst),
         .clk(clk),
-        .out(M_edge_detector_level_one_interval_out)
+        .value(M_game_interval_value)
     );
     
     
-    localparam _MP_RISE_368352884 = 1'h1;
-    localparam _MP_FALL_368352884 = 1'h0;
-    logic M_edge_detector_level_two_interval_out;
-    
-    edge_detector #(
-        .RISE(_MP_RISE_368352884),
-        .FALL(_MP_FALL_368352884)
-    ) edge_detector_level_two_interval (
-        .in(M_level_two_interval_value),
-        .clk(clk),
-        .out(M_edge_detector_level_two_interval_out)
-    );
-    
-    
-    localparam _MP_RISE_790963933 = 1'h1;
-    localparam _MP_FALL_790963933 = 1'h0;
-    logic M_edge_detector_level_three_interval_out;
-    
-    edge_detector #(
-        .RISE(_MP_RISE_790963933),
-        .FALL(_MP_FALL_790963933)
-    ) edge_detector_level_three_interval (
-        .in(M_level_three_interval_value),
-        .clk(clk),
-        .out(M_edge_detector_level_three_interval_out)
-    );
-    
-    
-    localparam _MP_RISE_554582508 = 1'h1;
-    localparam _MP_FALL_554582508 = 1'h0;
+    localparam _MP_RISE_2097674434 = 1'h1;
+    localparam _MP_FALL_2097674434 = 1'h0;
     logic M_edge_detector_game_timer_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_554582508),
-        .FALL(_MP_FALL_554582508)
+        .RISE(_MP_RISE_2097674434),
+        .FALL(_MP_FALL_2097674434)
     ) edge_detector_game_timer (
         .in(M_game_timer_clock_value),
         .clk(clk),
         .out(M_edge_detector_game_timer_out)
+    );
+    
+    
+    localparam _MP_RISE_1724719333 = 1'h1;
+    localparam _MP_FALL_1724719333 = 1'h0;
+    logic M_edge_detector_game_interval_out;
+    
+    edge_detector #(
+        .RISE(_MP_RISE_1724719333),
+        .FALL(_MP_FALL_1724719333)
+    ) edge_detector_game_interval (
+        .in(M_game_interval_value),
+        .clk(clk),
+        .out(M_edge_detector_game_interval_out)
     );
     
     
@@ -217,9 +152,7 @@ module game_datapath #(
         .button6(button6),
         .buttonstart(buttonstart),
         .rst(rst),
-        .interval1(M_edge_detector_level_one_interval_out),
-        .interval2(M_edge_detector_level_two_interval_out),
-        .interval3(M_edge_detector_level_three_interval_out),
+        .gameinterval(M_edge_detector_game_interval_out),
         .decrease_timer(M_edge_detector_game_timer_out),
         .clk(clk),
         .regfile_rd2(M_game_cu_regfile_rd2),
@@ -247,6 +180,8 @@ module game_datapath #(
     logic [31:0] M_game_regfiles_activebuttonout;
     logic [31:0] M_game_regfiles_activetypeout;
     logic [31:0] M_game_regfiles_cooldownout;
+    logic [31:0] M_game_regfiles_setledout;
+    logic [31:0] M_game_regfiles_cooltimerout;
     
     game_regfiles game_regfiles (
         .we(M_game_cu_regfile_we),
@@ -266,7 +201,9 @@ module game_datapath #(
         .awakeout(M_game_regfiles_awakeout),
         .activebuttonout(M_game_regfiles_activebuttonout),
         .activetypeout(M_game_regfiles_activetypeout),
-        .cooldownout(M_game_regfiles_cooldownout)
+        .cooldownout(M_game_regfiles_cooldownout),
+        .setledout(M_game_regfiles_setledout),
+        .cooltimerout(M_game_regfiles_cooltimerout)
     );
     
     
@@ -308,19 +245,25 @@ module game_datapath #(
                 input_alu_b = 3'h4;
             end
             4'h5: begin
-                input_alu_b = 3'h5;
-            end
-            4'h6: begin
-                input_alu_b = 3'h6;
-            end
-            4'h7: begin
                 input_alu_b = 5'h14;
             end
+            4'h6: begin
+                input_alu_b = 7'h5a;
+            end
+            4'h7: begin
+                input_alu_b = 7'h63;
+            end
             4'h8: begin
-                input_alu_b = 6'h3c;
+                input_alu_b = 4'h8;
             end
             4'h9: begin
-                input_alu_b = 7'h63;
+                input_alu_b = 5'h10;
+            end
+            4'ha: begin
+                input_alu_b = 6'h20;
+            end
+            4'hb: begin
+                input_alu_b = 7'h64;
             end
             default: begin
                 input_alu_b = 1'h0;
@@ -349,16 +292,17 @@ module game_datapath #(
         endcase
         timerout = M_game_regfiles_timerout;
         scoreout = M_game_regfiles_scoreout;
+        buttonmapout = M_game_regfiles_buttonmapout;
+        modeout = M_game_regfiles_modeout;
         levelcounterout = M_game_regfiles_levelcounterout;
+        awakeout = M_game_regfiles_awakeout;
         activebuttonout = M_game_regfiles_activebuttonout;
         activetypeout = M_game_regfiles_activetypeout;
-        slow_clock_out = M_game_timer_clock_value;
-        interval1blinker = M_level_one_interval_value;
-        interval2blinker = M_level_two_interval_value;
-        interval3blinker = M_level_three_interval_value;
-        awakeout = M_game_regfiles_awakeout;
         cooldownout = M_game_regfiles_cooldownout;
-        buttonmapout = M_game_regfiles_buttonmapout;
+        setledout = M_game_regfiles_setledout;
+        cooltimerout = M_game_regfiles_cooltimerout;
+        gameintervalblinker = M_game_interval_value;
+        slow_clock_out = M_game_timer_clock_value;
         debug_general = M_game_cu_debug;
     end
     

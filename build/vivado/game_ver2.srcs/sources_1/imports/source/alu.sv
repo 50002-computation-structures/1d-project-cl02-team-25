@@ -14,7 +14,7 @@ module alu (
         output reg n
     );
     localparam SIZE = 6'h20;
-    localparam _MP_SIZE_1156542066 = 6'h20;
+    localparam _MP_SIZE_705489111 = 6'h20;
     logic [31:0] M_adder_a;
     logic [31:0] M_adder_b;
     logic [5:0] M_adder_alufn_signal;
@@ -24,7 +24,7 @@ module alu (
     logic M_adder_n;
     
     adder #(
-        .SIZE(_MP_SIZE_1156542066)
+        .SIZE(_MP_SIZE_705489111)
     ) adder (
         .a(M_adder_a),
         .b(M_adder_b),
@@ -51,14 +51,14 @@ module alu (
     );
     
     
-    localparam _MP_SIZE_1844656957 = 6'h20;
+    localparam _MP_SIZE_826395232 = 6'h20;
     logic [31:0] M_boolean_a;
     logic [31:0] M_boolean_b;
     logic [5:0] M_boolean_alufn;
     logic [31:0] M_boolean_out;
     
     boolean #(
-        .SIZE(_MP_SIZE_1844656957)
+        .SIZE(_MP_SIZE_826395232)
     ) boolean (
         .a(M_boolean_a),
         .b(M_boolean_b),
@@ -88,28 +88,6 @@ module alu (
         .a(M_multiplier_a),
         .b(M_multiplier_b),
         .out(M_multiplier_out)
-    );
-    
-    
-    logic [31:0] M_divider_a;
-    logic [31:0] M_divider_b;
-    logic [31:0] M_divider_out;
-    
-    divider divider (
-        .a(M_divider_a),
-        .b(M_divider_b),
-        .out(M_divider_out)
-    );
-    
-    
-    logic [31:0] M_modulo_a;
-    logic [31:0] M_modulo_b;
-    logic [31:0] M_modulo_out;
-    
-    modulo modulo (
-        .a(M_modulo_a),
-        .b(M_modulo_b),
-        .out(M_modulo_out)
     );
     
     
@@ -177,10 +155,6 @@ module alu (
         M_shifter_alufn = alufn;
         M_multiplier_a = a;
         M_multiplier_b = b;
-        M_divider_a = a;
-        M_divider_b = b;
-        M_modulo_a = a;
-        M_modulo_b = b;
         M_activebutton_a = a;
         M_activebutton_b = b;
         M_activetype_a = a;

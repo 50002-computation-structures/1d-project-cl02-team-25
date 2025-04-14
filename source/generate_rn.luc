@@ -21,6 +21,7 @@ module generate_rn
         edge_detector edge_detector_next(.in(generate_next_number_clock.value))
         edge_detector edge_detector_seed(.in(seed_clock.value))
         dff seed[16] // not globally reset
+        dff randomnumber[32]
         
     }
     
@@ -33,7 +34,8 @@ module generate_rn
             seed.d = seed.q + 1
         }
         
-        out = random_number.num
+        randomnumber.d=random_number.num
+        out = randomnumber.q
         
     }
 }

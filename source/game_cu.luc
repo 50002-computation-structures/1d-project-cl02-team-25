@@ -1,9 +1,7 @@
 module game_cu (
     input clk,
     input rst,
-    input interval1,
-    input interval2,
-    input interval3,
+    input gameinterval,
     input decrease_timer,
     input regfile_rd2[32], //i do actually need this
     
@@ -27,6 +25,7 @@ module game_cu (
 ) {
     enum GameStates{
         START_SET_TIMER,
+        START_COOL_TIMER,
         WAIT_TO_START,
         
         IDLE,
@@ -34,13 +33,7 @@ module game_cu (
         CHECK_TIMER_EQ0,
         BRANCH_TIMER_EQ0,
         DECREASE_TIMER,
-        
-        INTERVAL_CHECK_LEVEL1,
-        INTERVAL_CHECK_LEVEL2,
-        INTERVAL_CHECK_LEVEL3,
-        BRANCH_INTERVAL_CHECK_LEVEL1,
-        BRANCH_INTERVAL_CHECK_LEVEL2,
-        BRANCH_INTERVAL_CHECK_LEVEL3,
+        DECREASE_COOL_TIMER,
         
         MODE_CHECK_EQ1,
         BRANCH_MODE_CHECK_EQ1,
@@ -58,13 +51,15 @@ module game_cu (
         DECREASE_AWAKE,
         RESET_ACTIVE_BUTTON_0,
         RESET_ACTIVE_TYPE_0,
+        RESET_SET_LED_OUT_0,
         RESET_MODE_0,
         
         GENERATE_BUTTONMAP, 
         SET_ACTIVE_BUTTON, 
         SET_ACTIVE_TYPE, 
         SET_AWAKE, 
-        SET_COOLDOWN, 
+        SET_COOLDOWN,
+        SET_LED_OUT_1,
         RESET_MODE_2,
         
         B1_IS_ACTIVE_BUTTON,
@@ -82,8 +77,8 @@ module game_cu (
         IS_TEMPSCORE_MT99,
         BRANCH_IS_TEMPSCORE_MT99,
         ADD_SCORE,
-        FLASHBANG1,
-        FLASHBANG2,
+        MULTIPLY_POINTS_BY_100,
+        ADD_COOL_SCORE,
         
         SCORE_MTEQ5,
         BRANCH_SCORE_MTEQ5,
@@ -96,6 +91,8 @@ module game_cu (
         END
     }
     dff game_fsm[$width(GameStates)](#INIT(GameStates.START_SET_TIMER), .clk(clk), .rst(rst))
+    dff delay_fsm[6](.clk(clk), #INIT(0))
+    sig advance 
     always {
         alufn=0
         asel=0
@@ -106,6 +103,9 @@ module game_cu (
         regfile_ra2=0
         regfile_we=0
         debug=0
+        
+        delay_fsm.d = delay_fsm.q + 1
+        advance = &delay_fsm.q
         
         game_fsm.d=game_fsm.q
         if (rst){
@@ -118,132 +118,124 @@ module game_cu (
                     alufn=b000000 //ADD
                     regfile_ra1=d0 //timer
                     asel=b00 //Ra
-                    bsel=b1000 //60
-                    regfile_we=1
+                    bsel=b0110 //90
                     regfile_wa=d0 //timer
-                    game_fsm.d=GameStates.WAIT_TO_START
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.START_COOL_TIMER
+                        
+                    }
+                GameStates.START_COOL_TIMER:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d12 //cooltimer
+                    asel=b00 //Ra
+                    bsel=b0110 //90
+                    regfile_wa=d12 //cooltimer
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.WAIT_TO_START
+                        
+                    }
                 GameStates.WAIT_TO_START:
                     if(buttonstart){
                         game_fsm.d=GameStates.IDLE
-                        }
+                    }
                     else{
                         game_fsm.d=GameStates.WAIT_TO_START
-                        }
+                    }
                 GameStates.CHECK_TIMER_EQ0:
                     alufn=b110011 //CMPEQ
                     regfile_ra1=d0 //timer
                     regfile_ra2=d31 //0 register
                     asel=b00 //Ra
                     bsel=b0000 //Rb
-                    regfile_we=1
                     regfile_wa=d9 //Temp for comparisons
-                    game_fsm.d=GameStates.BRANCH_TIMER_EQ0
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_TIMER_EQ0
+                        
+                    }
                 GameStates.BRANCH_TIMER_EQ0:
                     regfile_ra2=d9 //Temp for comparisons
                     if (regfile_rd2[0]){
                         game_fsm.d=GameStates.END
-                        }
+                    }
                     else{
                         game_fsm.d=GameStates.DECREASE_TIMER
-                        }
+                    }
                 GameStates.DECREASE_TIMER:
                     alufn=b000001 //SUB
                     regfile_ra1=d0 //timer
                     asel=b00 //Ra
                     bsel=b0001 //1
-                    regfile_we=1
                     regfile_wa=d0 //timer
-                    game_fsm.d=GameStates.IDLE
-                //---------END OF TIMERSTUFF---------------------------------
-                
-               
-                //CHECKING LEVEL INTERVALS
-                GameStates.INTERVAL_CHECK_LEVEL1:
-                    alufn=b110011 //CMPEQ
-                    regfile_ra1=d4 //levelcounter
-                    regfile_ra2=d31 //0 (Level 1 is 0)
-                    asel=b00 //Ra
-                    bsel=b0000 //Rb
-                    regfile_we=1
-                    regfile_wa=d9 //Temp for comparisons
-                    game_fsm.d=GameStates.BRANCH_INTERVAL_CHECK_LEVEL1
-                GameStates.BRANCH_INTERVAL_CHECK_LEVEL1:
-                    regfile_ra2=d9 //Temp for Cmp
-                    if(regfile_rd2[0]){
-                        //if it truly is level 1
-                        game_fsm.d=GameStates.MODE_CHECK_EQ1
-                        }else{
-                            //If it is not level one, we do not trigger on this interval. Go back and WAIT YOUR TURN!!!
-                            game_fsm.d=GameStates.IDLE
-                        }
-                GameStates.INTERVAL_CHECK_LEVEL2:
-                    alufn=b110011 //CMPEQ
-                    regfile_ra1=d4 //levelcounter
-                    asel=b00 //Ra
-                    bsel=b0001 //1 (Level 2 is 1)
-                    regfile_we=1
-                    regfile_wa=d9
-                    game_fsm.d=GameStates.BRANCH_INTERVAL_CHECK_LEVEL2
-                GameStates.BRANCH_INTERVAL_CHECK_LEVEL2:
-                    regfile_ra2=d9 //Temp for Cmp
-                    if(regfile_rd2[0]){                    
-                        //If it is truly level 2 move on
-                        game_fsm.d=GameStates.MODE_CHECK_EQ1
-                        }else{
-                        //If it is not level 2, go back and wait
-                        game_fsm.d=GameStates.IDLE
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.DECREASE_COOL_TIMER
+                        
                     }
-                GameStates.INTERVAL_CHECK_LEVEL3:
-                    alufn=b110011 //CMPEQ
-                    regfile_ra1=d4 //levelcounter
+                GameStates.DECREASE_COOL_TIMER:
+                    alufn=b000001 //SUB
+                    regfile_ra1=d12 //cooltimer
                     asel=b00 //Ra
-                    bsel=b0010 //2 (Level 3 is 2)
-                    regfile_we=1
-                    regfile_wa=d9
-                    game_fsm.d=GameStates.BRANCH_INTERVAL_CHECK_LEVEL3
-                GameStates.BRANCH_INTERVAL_CHECK_LEVEL3:
-                    regfile_ra2=d9 //Temp for Cmp
-                    if(regfile_rd2[0]){
-                        //If truly level 3, move on
-                        game_fsm.d=GameStates.MODE_CHECK_EQ1
-                    }else{
-                        //if not, go back and wait
+                    bsel=b0001 //1
+                    regfile_wa=d12 //cooltimer
+                    if(advance){
+                        regfile_we=1
                         game_fsm.d=GameStates.IDLE
+                        
                     }
-                //---------END OF LEVELINTERVALSTUFF---------------------------------
+                //END OF TIMING DECREMENTERS----------------------------------------
                 
                 
-                //MODE CHECKING FOR 1 (CAN WE PROGRESS WITH BUTTON GENERATION?)
+                //MODE CHECKING FOR 1 (CAN WE PROG WITH BUTTON GEN)
                 GameStates.MODE_CHECK_EQ1:
                     alufn=b110011 //CMPEQ
                     regfile_ra1=d3 //mode
                     asel=b00 //Ra
-                    bsel=b0001 //1 (Mode 1 is ready to generate new button)
-                    regfile_we=1
+                    bsel=b0001 //1 (Mode 1 is ready)
                     regfile_wa=d9 //Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_MODE_CHECK_EQ1
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_MODE_CHECK_EQ1
+                        
+                    }
                 GameStates.BRANCH_MODE_CHECK_EQ1:
+                    //TEST
+                    //alufn=b000000//add
+                    //regfile_ra1=d31 //0 reg
+                    //asel=b00//Ra
+                    //bsel=b0100//4
+                    ////regfile_wa=d11//setled
+                    //ENDTEST                    
                     regfile_ra2=d9 //Temp for Cmp
                     if(regfile_rd2[0]){
-                        game_fsm.d=GameStates.GENERATE_BUTTONMAP
+                        //if mode 1, we are ready to generate
+
+                            game_fsm.d=GameStates.GENERATE_BUTTONMAP
+                            
+
                     }else{
                         //if mode is not 1, then it is 0/2
                         //go to check mode 0
                         game_fsm.d=GameStates.MODE_CHECK_EQ0
                     }
-                //---------END OF MODECHECK1---------------------------------
+                //END OF MODE CHECK 1----------------------------------------  
                 
                 
-                //MODE CHECKING FOR 0 (ARE WE IN ACTIVE BUTTON STATE OR COOLDOWN STATE?)
+                //MODE CHECK 0 (ARE WE ACTIVE/COOLDOWN?)
                 GameStates.MODE_CHECK_EQ0:
                     alufn=b110011 //CMPEQ
                     regfile_ra1=d3 //mode
                     regfile_ra2=d31 //0 register
                     asel=b00 //Ra
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
                     regfile_wa=d9 //Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_MODE_CHECK_EQ0
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_MODE_CHECK_EQ0 
+                        
+                    }
                 GameStates.BRANCH_MODE_CHECK_EQ0:
                     regfile_ra2=d9
                     if(regfile_rd2[0]){
@@ -255,8 +247,8 @@ module game_cu (
                         //check awake
                         game_fsm.d=GameStates.AWAKE_EQ0
                     }
-                //---------END OF MODECHECK0---------------------------------
-
+                //---------END OF MODECHECK0---------------------------------                
+                
                 
                 //COOLDOWN DECREMENTERS AND STUFF
                 GameStates.COOLDOWN_EQ0:
@@ -265,15 +257,29 @@ module game_cu (
                     regfile_ra2=d31 //0 register
                     asel=b00 //Ra
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
                     regfile_wa=d9 //Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_COOLDOWN_EQ0
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_COOLDOWN_EQ0
+                        
+                    }
                 GameStates.BRANCH_COOLDOWN_EQ0:
+                    //TEST
+                    //alufn=b000000//add
+                    //regfile_ra1=d31 //0 reg
+                    //asel=b00//Ra
+                    //bsel=b0011//3
+                    ////regfile_wa=d11//setled
+                    //ENDTEST
                     regfile_ra2=d9
                     if(regfile_rd2[0]){
                         //If cooldown is 0. We are ready to generate buttons again
                         //Reset mode to 1
-                        game_fsm.d=GameStates.RESET_MODE_1
+                        if(advance){
+                            regfile_we=1
+                            game_fsm.d=GameStates.RESET_MODE_1
+                            
+                        }
                     }else{
                         //otherwise, we need to decrease the cooldown this interval
                         //go to decrease cooldown
@@ -284,19 +290,25 @@ module game_cu (
                     regfile_ra1=d8 //Cooldown
                     asel=b00 //Ra
                     bsel=b0001 //1
-                    regfile_we=1
                     regfile_wa=d8 //Cooldown
-                    game_fsm.d=GameStates.IDLE
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.IDLE
+                        
+                    }
                 GameStates.RESET_MODE_1:
                     //we add 0 to 1 and write it to mode
                     alufn=b000000 //ADD
                     regfile_ra1=d31 //0 register
                     asel=b00 //Ra
                     bsel= b0001 //1
-                    regfile_we=1
                     regfile_wa=d3 //mode
-                    game_fsm.d=GameStates.IDLE
-                //---------END OF COOLDOWNSTUFF---------------------------------
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.IDLE
+                        
+                    }
+                //---------END OF COOLDOWNSTUFF---------------------------------                                
                 
                 
                 //AWAKESTUFF
@@ -306,15 +318,25 @@ module game_cu (
                     regfile_ra2=d31 //0 register
                     asel=b00 //Ra
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
                     regfile_wa=d9 //Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_AWAKE_EQ0
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_AWAKE_EQ0
+                        
+                    }
                 GameStates.BRANCH_AWAKE_EQ0:
+                    //TEST
+                    //alufn=b000000//add
+                    //regfile_ra1=d31 //0 reg
+                    //asel=b00//Ra
+                    //bsel=b0101//20
+                    ////regfile_wa=d11//setled
+                    //ENDTEST                    
                     regfile_ra2=d9
                     if(regfile_rd2[0]){
                         //If our awake is 0, our buttons need to turn off now
                         //reset mode to 0
-                        game_fsm.d=GameStates.RESET_ACTIVE_BUTTON_0
+                            game_fsm.d=GameStates.RESET_ACTIVE_BUTTON_0
                     }else{
                         //If our awake is not 0, decrease
                         game_fsm.d=GameStates.DECREASE_AWAKE
@@ -324,147 +346,208 @@ module game_cu (
                     regfile_ra1=d5 //awake
                     asel=b00 //Ra
                     bsel=b0001 //1
-                    regfile_we=1
                     regfile_wa=d5 //awake
-                    game_fsm.d=GameStates.IDLE
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.IDLE  
+                        
+                    }
                 GameStates.RESET_MODE_0:
                     alufn=b000001 //SUB
-                    asel=b01 //5
-                    bsel=b0101 //5
-                    regfile_we=1
-                    regfile_wa=d3
-                    game_fsm.d=GameStates.IDLE
+                    asel=b10 //20
+                    bsel=b0101 //20
+                    regfile_wa=d3 //mode
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.IDLE
+                        
+                    }
                 //---------END OF AWAKESTUFF---------------------------------
-
-                 
+                
+                
                 //RESET BUTTONS
                 GameStates.RESET_ACTIVE_BUTTON_0:
                     alufn=b000001 //SUB
-                    asel=b01 //5
-                    bsel=b0101 //5
-                    regfile_we=1
+                    asel=b10 //20
+                    bsel=b0101 //20
                     regfile_wa=d6 //activebutton
-                    game_fsm.d=GameStates.RESET_ACTIVE_TYPE_0
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.RESET_ACTIVE_TYPE_0
+                        
+                    }
                 GameStates.RESET_ACTIVE_TYPE_0:
                     alufn=b000001 //SUB
-                    asel=b01 //5
-                    bsel=b0101 //5
-                    regfile_we=1
+                    asel=b10 //20
+                    bsel=b0101 //20
                     regfile_wa=d7 //activetype
-                    game_fsm.d=GameStates.RESET_MODE_0
-                //---------END OF BUTTON RESETS--------------------------------
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.RESET_SET_LED_OUT_0
+                        
+                    }
+                GameStates.RESET_SET_LED_OUT_0:
+                    alufn=b000001 //SUB
+                    asel=b10 //20
+                    bsel=b0101 //20
+                    regfile_wa=d11 //setled
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.RESET_MODE_0
+                        
+                    }
+                //---------END OF BUTTON RESETS--------------------------------                
                 
-                              
+                
                 //BUTTON GENERATION STUFF
                 GameStates.GENERATE_BUTTONMAP:
-                    regfile_we=1
                     regfile_wa=d2 //buttonmap
                     alu_out_sel=b100
-                    //TEST
-                    //alufn=b000000 //ADD
-                    //regfile_ra1=d31
-                    //asel=b00 //Ra
-                    //bsel=b0100 //4
-                    //regfile_we=1
-                    //regfile_wa=d1//score
-                //END TEST
-                    game_fsm.d=GameStates.SET_ACTIVE_BUTTON
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.SET_ACTIVE_BUTTON
+                        
+                    }
                 GameStates.SET_ACTIVE_BUTTON:
                     alufn=b111000 //activebutton function
                     regfile_ra1=d2//buttonmap
                     regfile_ra2=d4 //level
                     asel=b00 //Ra
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
                     regfile_wa=d6//activebutton
-                    game_fsm.d=GameStates.SET_ACTIVE_TYPE
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.SET_ACTIVE_TYPE 
+                        
+                    }
                 GameStates.SET_ACTIVE_TYPE:
                     alufn=b111001 //activetype function
                     regfile_ra1=d2 //buttonmap
                     regfile_ra2=d4 //level
                     asel=b00 //Ra
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
                     regfile_wa=d7//activetype
-                    game_fsm.d=GameStates.SET_AWAKE
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.SET_AWAKE   
+                        
+                    }
                 GameStates.SET_AWAKE:
                     alufn=b111010 //awake function
                     regfile_ra1=d2 //buttonmap
                     regfile_ra2=d4 //level
                     asel=b00 //Ra
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
                     regfile_wa=d5 //awake
-                    game_fsm.d=GameStates.SET_COOLDOWN
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.SET_COOLDOWN
+                        
+                    }
                 GameStates.SET_COOLDOWN:
                     alufn=b111011 //cooldown function
                     regfile_ra1=d2 //buttonmap
                     regfile_ra2=d4 //level
                     asel=b00 //Ra
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
                     regfile_wa=d8 //cooldown
-                    game_fsm.d=GameStates.RESET_MODE_2
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.SET_LED_OUT_1
+                        
+                    }
+                GameStates.SET_LED_OUT_1:
+                    alufn=b000000 //ADD
+                    regfile_ra1=d31 //0 register
+                    asel=b00 //Ra
+                    bsel=b0001 //1
+                    regfile_wa=d11 //setled
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.RESET_MODE_2
+                        
+                    }
                 GameStates.RESET_MODE_2:
                     alufn=b000000 //ADD
                     regfile_ra1=d31 //0 register
                     asel=b00 //Ra
                     bsel=b0010 //2
-                    regfile_we=1
                     regfile_wa=d3 //mode
-                    game_fsm.d=GameStates.IDLE
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.IDLE
+                        
+                    }
                 //---------END OF BUTTON GENERATION--------------------------------
                 
                 
                 //BUTTON INPUT CHECKING
                 GameStates.B1_IS_ACTIVE_BUTTON:
                     alufn=b110011 //CMPEQ
-                    regfile_ra1=d6 //activebutton
+                    regfile_ra1=d6//activebutton
                     asel=b00 //Ra
-                    bsel=b0001 //1 (For button 1)
-                    regfile_we=1
-                    regfile_wa=d9 //Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                    bsel=b0001 //1 for button 1
+                    regfile_wa=d9 //Temp for CMP
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                        
+                    }
                 GameStates.B2_IS_ACTIVE_BUTTON:
                     alufn=b110011 //CMPEQ
                     regfile_ra1=d6 //activebutton
                     asel=b00 //Ra
-                    bsel=b0010 //2 (for button 2)
-                    regfile_we=1
-                    regfile_wa=d9 //Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                    bsel=b0010 //2 for button 2
+                    regfile_wa=d9 //Temp for CMP
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                        
+                    }
                 GameStates.B3_IS_ACTIVE_BUTTON:
                     alufn=b110011 //CMPEQ
                     regfile_ra1=d6 //activebutton
                     asel=b00 //Ra
-                    bsel=b0011 //3 (for button 3)
-                    regfile_we=1
-                    regfile_wa=d9 //Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                    bsel=b0100 //4 for button 3
+                    regfile_wa=d9 //Temp for CMP
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                        
+                    }
                 GameStates.B4_IS_ACTIVE_BUTTON:
                     alufn=b110011 //CMPEQ
                     regfile_ra1=d6 //activebutton
                     asel=b00 //Ra
-                    bsel=b0100 //4 (for button 4)
-                    regfile_we=1
-                    regfile_wa=d9//Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                    bsel=b1000//8 for button 4
+                    regfile_wa=d9 //Temp for CMP
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                        
+                    }
                 GameStates.B5_IS_ACTIVE_BUTTON:
-                    alufn=b110011 //CMPEQ
-                    regfile_ra1=d6 //activebutton
-                    asel=b00 //Ra
-                    bsel=b0101 //5 (for button 5)
-                    regfile_we=1
-                    regfile_wa=d9//Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                    alufn=b110011//CMPEQ
+                    regfile_ra1=d6
+                    asel=b00
+                    bsel=b1001 //16 for button 5
+                    regfile_wa=d9 //TEmp for CMP
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                        
+                    }
                 GameStates.B6_IS_ACTIVE_BUTTON:
                     alufn=b110011 //CMPEQ
-                    regfile_ra1=d6 //activebutton
-                    asel=b00 //Ra
-                    bsel=b0110 //6 (for button 6)
-                    regfile_we=1
-                    regfile_wa=d9//Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                    regfile_ra1=d6
+                    asel=b00
+                    bsel=b1010 //32 for button 6
+                    regfile_wa=d9 //Temp for CMP
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_IS_ACTIVE_BUTTON
+                        
+                    }
                 GameStates.BRANCH_IS_ACTIVE_BUTTON:
                     regfile_ra2=d9
                     if(regfile_rd2[0]){
@@ -473,21 +556,22 @@ module game_cu (
                     }else{
                         //Else we do nothing
                         game_fsm.d=GameStates.IDLE
-                    }
-                //---------END OF BUTTON INPUT CHECKING--------------------------------
-                    
-                 
-				            //HAVE WE PRESSED THE KILLBUTTON
-                        //IS_THIS_THE_KILLBUTTON,
-                        //BRANCH_IS_THIS_THE_KILLBUTTON,
+                    }    
+                //---------END OF BUTTON INPUT CHECKING--------------------------------                            
+                
+                
+                //HAVE WE PRESSED KILLBUTTON
                 GameStates.IS_THIS_THE_KILLBUTTON:
                     alufn=b110011 //CMPEQ
                     regfile_ra1=d7 //activetype
-                    asel=b00 //Ra
-                    bsel=b0111 //20
-                    regfile_we=1
-                    regfile_wa=d9 //Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_IS_THIS_THE_KILLBUTTON
+                    asel=b00//Ra
+                    bsel=b1000 //8 for kill button
+                    regfile_wa=d9 //Temp for CMP
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_IS_THIS_THE_KILLBUTTON
+                        
+                    }
                 GameStates.BRANCH_IS_THIS_THE_KILLBUTTON:
                     regfile_ra2=d9                 
                     if(regfile_rd2[0]){
@@ -498,30 +582,32 @@ module game_cu (
                         game_fsm.d=GameStates.TEMPSCORE_TABULATE
                     }
                 //---------END OF KILL BUTTON CHECK--------------------------------
-                            
+                
                 
                 //SCORE TABULATION
-                    //TEMPSCORE_TABULATE,
-                    //IS_TEMPSCORE_MT99,
-                    //BRANCH_IS_TEMPSCORE_MT99,
-                    //ADD_SCORE,
                 GameStates.TEMPSCORE_TABULATE:
-                    alufn=000000 //ADD
+                    alufn=b000000 //ADD
                     regfile_ra1=d1 //score
                     regfile_ra2=d7 //activetype
                     asel=b00 //Ra
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
                     regfile_wa=d10 //Temp for Add
-                    game_fsm.d=GameStates.IS_TEMPSCORE_MT99
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.IS_TEMPSCORE_MT99
+                        
+                    }
                 GameStates.IS_TEMPSCORE_MT99:
-                    alufn=b110101 //CMPLT 99<tempscore
+                    alufn=b110101//CMPLT 99<tempscore
                     regfile_ra2=d10 //Temp for Add
                     asel=b11 //99
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
                     regfile_wa=d9 //Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_IS_TEMPSCORE_MT99
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_IS_TEMPSCORE_MT99
+                        
+                    }
                 GameStates.BRANCH_IS_TEMPSCORE_MT99:
                     regfile_ra2=d9
                     if(regfile_rd2[0]){
@@ -537,27 +623,53 @@ module game_cu (
                     regfile_ra2=d7 //active type (type is rep by the score of button)
                     asel=b00 //Ra
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
                     regfile_wa=d1
-                    game_fsm.d=GameStates.SCORE_MTEQ5
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.MULTIPLY_POINTS_BY_100 
+                        
+                    }
+                //MULTIPLY_POINTS_BY_100,
+                //ADD_COOL_SCORE,
+                GameStates.MULTIPLY_POINTS_BY_100:
+                    //for the cooltimer
+                    alufn=b000010 //Multiply
+                    regfile_ra1=d7//active type (type rep score)
+                    asel=b00 //Ra
+                    bsel=b1011 //100
+                    regfile_wa=d10 //Temp for Add
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.ADD_COOL_SCORE
+                        
+                    }
+                GameStates.ADD_COOL_SCORE:
+                    alufn=b000000//ADD
+                    regfile_ra1=d12 //cooltimer
+                    regfile_ra2=d10 //Temp for Add
+                    asel=b00 //Ra
+                    bsel=b0000 //Rb/Rc
+                    regfile_wa=d12
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.SCORE_MTEQ5
+                        
+                    }
                 //---------END OF SCORE TABULATION--------------------------------
-                               
+                
                 
                 //LEVEL INCREMENT
-                     //SCORE_MTEQ5,
-                    //BRANCH_SCORE_MTEQ5,
-                    //SET_LVL_2,
-                    //SCORE_MTEQ20,
-                    //BRANCH_SCORE_MTEQ20,
-                    //SET_LVL_3,
                 GameStates.SCORE_MTEQ5:
                     alufn=b110111 //CMPLE 5<=score
                     regfile_ra2=d1 //score
                     asel=b01 //5
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
                     regfile_wa=d9 //Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_SCORE_MTEQ5
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_SCORE_MTEQ5
+                        
+                    }
                 GameStates.BRANCH_SCORE_MTEQ5:
                     regfile_ra2=d9
                     if(regfile_rd2[0]){
@@ -571,18 +683,24 @@ module game_cu (
                     alufn=b000000 //ADD
                     regfile_ra1=d31 //0 register
                     asel=b00 //Ra
-                    bsel=b0001 //1 (1 for level 2)
-                    regfile_we=1
+                    bsel=b0001 //1 (1 for level 1)
                     regfile_wa=d4 //levelcounter
-                    game_fsm.d=GameStates.SCORE_MTEQ20
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.SCORE_MTEQ20
+                        
+                    }
                 GameStates.SCORE_MTEQ20:
                     alufn=b110111 //CMPLE 20<=score
                     regfile_ra2=d1 //score
-                    asel=b10 //20
+                    asel=b10//20
                     bsel=b0000 //Rb/Rc
-                    regfile_we=1
-                    regfile_wa=d9 //Temp for Cmp
-                    game_fsm.d=GameStates.BRANCH_SCORE_MTEQ20
+                    regfile_wa=d9 //Temp for CMP
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.BRANCH_SCORE_MTEQ20
+                        
+                    }
                 GameStates.BRANCH_SCORE_MTEQ20:
                     regfile_ra2=d9
                     if(regfile_rd2[0]){
@@ -593,26 +711,31 @@ module game_cu (
                         game_fsm.d=GameStates.RESET_AWAKE_0
                     }
                 GameStates.SET_LVL_3:
-                    alufn=b000000 //ADD
+                    alufn=b000000//ADD
                     regfile_ra1=d31 //0 register
                     asel=b00 //Ra
-                    bsel=b0010 //2 (2 for level 3)
-                    regfile_we=1
-                    regfile_wa=d4 //levelcounter
-                    game_fsm.d=GameStates.RESET_AWAKE_0
+                    bsel=b0011//3 (3 for level 3)
+                    regfile_wa=d4//level counter
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.RESET_AWAKE_0
+                        
+                    }
                 GameStates.RESET_AWAKE_0:
                     alufn=b000001 //SUB
-                    asel=b01 //5
-                    bsel= b0101 //5
-                    regfile_we=1
+                    asel=b10 //20
+                    bsel=b0101 //20
                     regfile_wa=d5 //awake
-                    game_fsm.d=GameStates.RESET_ACTIVE_BUTTON_0
+                    if(advance){
+                        regfile_we=1
+                        game_fsm.d=GameStates.RESET_ACTIVE_BUTTON_0
+                        
+                    }
                 //this loops back to standard buttontype, button, mode reset protocol
-                //---------END OF LEVEL INCREMENT--------------------------------
+                //---------END OF LEVEL INCREMENT--------------------------------                
                 
-
-
-                               
+                
+                
                 //ENDING
                 GameStates.END:
                     alu_out_sel=b01
@@ -624,15 +747,9 @@ module game_cu (
                 GameStates.IDLE:
                     if(decrease_timer){
                         game_fsm.d=GameStates.CHECK_TIMER_EQ0
-                        }
-                    else if(interval1){
-                        game_fsm.d=GameStates.INTERVAL_CHECK_LEVEL1
                     }
-                    else if(interval2){
-                        game_fsm.d=GameStates.INTERVAL_CHECK_LEVEL2
-                    }
-                    else if(interval3){
-                        game_fsm.d=GameStates.INTERVAL_CHECK_LEVEL3
+                    else if(gameinterval){
+                        game_fsm.d=GameStates.MODE_CHECK_EQ1
                     }
                     else if(button1&&~button2&&~button3&&~button4&&~button5&&~button6){
                         game_fsm.d=GameStates.B1_IS_ACTIVE_BUTTON

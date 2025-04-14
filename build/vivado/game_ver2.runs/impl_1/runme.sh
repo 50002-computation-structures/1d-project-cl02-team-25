@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.runs/impl_1'
+HD_PWD='C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

@@ -13,8 +13,6 @@ module alu (
     boolean boolean(#SIZE(32))
     shifter shifter
     multiplier multiplier
-    divider divider
-    modulo modulo
     buttonmap_button activebutton
     buttonmap_type activetype
     buttonmap_awake awake
@@ -48,12 +46,7 @@ module alu (
         
         multiplier.a = a
         multiplier.b = b
-        
-        divider.a = a
-        divider.b = b
-        
-        modulo.a = a
-        modulo.b = b
+      
         
         activebutton.a=a
         activebutton.b=b

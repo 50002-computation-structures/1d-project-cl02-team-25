@@ -22,7 +22,9 @@ module game_regfiles (
         output reg [31:0] awakeout,
         output reg [31:0] activebuttonout,
         output reg [31:0] activetypeout,
-        output reg [31:0] cooldownout
+        output reg [31:0] cooldownout,
+        output reg [31:0] setledout,
+        output reg [31:0] cooltimerout
     );
     logic [31:0] D_timer_d, D_timer_q = 1'h0;
     logic [31:0] D_score_d, D_score_q = 1'h0;
@@ -35,6 +37,8 @@ module game_regfiles (
     logic [31:0] D_cooldown_d, D_cooldown_q = 1'h0;
     logic [31:0] D_tempforcmp_d, D_tempforcmp_q = 1'h0;
     logic [31:0] D_tempforadd_d, D_tempforadd_q = 1'h0;
+    logic [31:0] D_setled_d, D_setled_q = 1'h0;
+    logic [31:0] D_cooltimer_d, D_cooltimer_q = 1'h0;
     always @* begin
         D_timer_d = D_timer_q;
         D_score_d = D_score_q;
@@ -47,6 +51,8 @@ module game_regfiles (
         D_cooldown_d = D_cooldown_q;
         D_tempforcmp_d = D_tempforcmp_q;
         D_tempforadd_d = D_tempforadd_q;
+        D_setled_d = D_setled_q;
+        D_cooltimer_d = D_cooltimer_q;
         
         if (we) begin
             
@@ -84,6 +90,12 @@ module game_regfiles (
                 4'ha: begin
                     D_tempforadd_d = data;
                 end
+                4'hb: begin
+                    D_setled_d = data;
+                end
+                4'hc: begin
+                    D_cooltimer_d = data;
+                end
             endcase
         end
         
@@ -120,6 +132,12 @@ module game_regfiles (
             end
             4'ha: begin
                 rd1 = D_tempforadd_q;
+            end
+            4'hb: begin
+                rd1 = D_setled_q;
+            end
+            4'hc: begin
+                rd1 = D_cooltimer_q;
             end
             default: begin
                 rd1 = 1'h0;
@@ -160,6 +178,12 @@ module game_regfiles (
             4'ha: begin
                 rd2 = D_tempforadd_q;
             end
+            4'hb: begin
+                rd2 = D_setled_q;
+            end
+            4'hc: begin
+                rd2 = D_cooltimer_q;
+            end
             default: begin
                 rd2 = 1'h0;
             end
@@ -173,6 +197,8 @@ module game_regfiles (
         activebuttonout = D_activebutton_q;
         activetypeout = D_activetype_q;
         cooldownout = D_cooldown_q;
+        setledout = D_setled_q;
+        cooltimerout = D_cooltimer_q;
     end
     
     
@@ -189,6 +215,8 @@ module game_regfiles (
             D_cooldown_q <= 1'h0;
             D_tempforcmp_q <= 1'h0;
             D_tempforadd_q <= 1'h0;
+            D_setled_q <= 1'h0;
+            D_cooltimer_q <= 1'h0;
         end else begin
             D_timer_q <= D_timer_d;
             D_score_q <= D_score_d;
@@ -201,6 +229,8 @@ module game_regfiles (
             D_cooldown_q <= D_cooldown_d;
             D_tempforcmp_q <= D_tempforcmp_d;
             D_tempforadd_q <= D_tempforadd_d;
+            D_setled_q <= D_setled_d;
+            D_cooltimer_q <= D_cooltimer_d;
         end
     end
 endmodule

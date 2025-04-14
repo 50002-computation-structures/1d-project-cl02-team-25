@@ -18,7 +18,9 @@ module game_regfiles (
     output awakeout[32],
     output activebuttonout[32],
     output activetypeout[32],
-    output cooldownout[32]
+    output cooldownout[32],
+    output setledout[32],
+    output cooltimerout[32]
 ) {
     .clk(clk){
         .rst(rst){
@@ -33,6 +35,8 @@ module game_regfiles (
             dff cooldown[32](#INIT(0))
             dff tempforcmp[32](#INIT(0))
             dff tempforadd[32](#INIT(0))
+            dff setled[32](#INIT(0))
+            dff cooltimer[32](#INIT(0))
         }
     }
     always {
@@ -49,6 +53,8 @@ module game_regfiles (
                 d8:cooldown.d=data
                 d9:tempforcmp.d=data
                 d10:tempforadd.d=data
+                d11:setled.d=data
+                d12:cooltimer.d=data
             }
         }
         case(ra1){
@@ -63,6 +69,8 @@ module game_regfiles (
             d8:rd1=cooldown.q
             d9:rd1=tempforcmp.q
             d10:rd1=tempforadd.q
+            d11:rd1=setled.q
+            d12:rd1=cooltimer.q
             default:rd1=0
         }
         case(ra2){
@@ -77,6 +85,8 @@ module game_regfiles (
             d8:rd2=cooldown.q
             d9:rd2=tempforcmp.q
             d10:rd2=tempforadd.q
+            d11:rd2=setled.q
+            d12:rd2=cooltimer.q
             default:rd2=0
         }
         //buttonreset
@@ -89,5 +99,7 @@ module game_regfiles (
         activebuttonout=activebutton.q
         activetypeout=activetype.q
         cooldownout=cooldown.q
+        setledout=setled.q
+        cooltimerout=cooltimer.q
     }
 }

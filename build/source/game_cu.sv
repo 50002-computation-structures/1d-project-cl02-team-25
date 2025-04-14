@@ -7,9 +7,7 @@
 module game_cu (
         input wire clk,
         input wire rst,
-        input wire interval1,
-        input wire interval2,
-        input wire interval3,
+        input wire gameinterval,
         input wire decrease_timer,
         input wire [31:0] regfile_rd2,
         input wire button1,
@@ -30,62 +28,63 @@ module game_cu (
         output reg [3:0] debug
     );
     localparam E_GameStates_START_SET_TIMER = 6'h0;
-    localparam E_GameStates_WAIT_TO_START = 6'h1;
-    localparam E_GameStates_IDLE = 6'h2;
-    localparam E_GameStates_CHECK_TIMER_EQ0 = 6'h3;
-    localparam E_GameStates_BRANCH_TIMER_EQ0 = 6'h4;
-    localparam E_GameStates_DECREASE_TIMER = 6'h5;
-    localparam E_GameStates_INTERVAL_CHECK_LEVEL1 = 6'h6;
-    localparam E_GameStates_INTERVAL_CHECK_LEVEL2 = 6'h7;
-    localparam E_GameStates_INTERVAL_CHECK_LEVEL3 = 6'h8;
-    localparam E_GameStates_BRANCH_INTERVAL_CHECK_LEVEL1 = 6'h9;
-    localparam E_GameStates_BRANCH_INTERVAL_CHECK_LEVEL2 = 6'ha;
-    localparam E_GameStates_BRANCH_INTERVAL_CHECK_LEVEL3 = 6'hb;
-    localparam E_GameStates_MODE_CHECK_EQ1 = 6'hc;
-    localparam E_GameStates_BRANCH_MODE_CHECK_EQ1 = 6'hd;
-    localparam E_GameStates_MODE_CHECK_EQ0 = 6'he;
-    localparam E_GameStates_BRANCH_MODE_CHECK_EQ0 = 6'hf;
-    localparam E_GameStates_COOLDOWN_EQ0 = 6'h10;
-    localparam E_GameStates_BRANCH_COOLDOWN_EQ0 = 6'h11;
-    localparam E_GameStates_DECREASE_COOLDOWN = 6'h12;
-    localparam E_GameStates_RESET_MODE_1 = 6'h13;
-    localparam E_GameStates_AWAKE_EQ0 = 6'h14;
-    localparam E_GameStates_BRANCH_AWAKE_EQ0 = 6'h15;
-    localparam E_GameStates_DECREASE_AWAKE = 6'h16;
-    localparam E_GameStates_RESET_ACTIVE_BUTTON_0 = 6'h17;
-    localparam E_GameStates_RESET_ACTIVE_TYPE_0 = 6'h18;
-    localparam E_GameStates_RESET_MODE_0 = 6'h19;
-    localparam E_GameStates_GENERATE_BUTTONMAP = 6'h1a;
-    localparam E_GameStates_SET_ACTIVE_BUTTON = 6'h1b;
-    localparam E_GameStates_SET_ACTIVE_TYPE = 6'h1c;
-    localparam E_GameStates_SET_AWAKE = 6'h1d;
-    localparam E_GameStates_SET_COOLDOWN = 6'h1e;
-    localparam E_GameStates_RESET_MODE_2 = 6'h1f;
-    localparam E_GameStates_B1_IS_ACTIVE_BUTTON = 6'h20;
-    localparam E_GameStates_B2_IS_ACTIVE_BUTTON = 6'h21;
-    localparam E_GameStates_B3_IS_ACTIVE_BUTTON = 6'h22;
-    localparam E_GameStates_B4_IS_ACTIVE_BUTTON = 6'h23;
-    localparam E_GameStates_B5_IS_ACTIVE_BUTTON = 6'h24;
-    localparam E_GameStates_B6_IS_ACTIVE_BUTTON = 6'h25;
-    localparam E_GameStates_BRANCH_IS_ACTIVE_BUTTON = 6'h26;
-    localparam E_GameStates_IS_THIS_THE_KILLBUTTON = 6'h27;
-    localparam E_GameStates_BRANCH_IS_THIS_THE_KILLBUTTON = 6'h28;
-    localparam E_GameStates_TEMPSCORE_TABULATE = 6'h29;
-    localparam E_GameStates_IS_TEMPSCORE_MT99 = 6'h2a;
-    localparam E_GameStates_BRANCH_IS_TEMPSCORE_MT99 = 6'h2b;
-    localparam E_GameStates_ADD_SCORE = 6'h2c;
-    localparam E_GameStates_FLASHBANG1 = 6'h2d;
-    localparam E_GameStates_FLASHBANG2 = 6'h2e;
-    localparam E_GameStates_SCORE_MTEQ5 = 6'h2f;
-    localparam E_GameStates_BRANCH_SCORE_MTEQ5 = 6'h30;
-    localparam E_GameStates_SET_LVL_2 = 6'h31;
-    localparam E_GameStates_SCORE_MTEQ20 = 6'h32;
-    localparam E_GameStates_BRANCH_SCORE_MTEQ20 = 6'h33;
-    localparam E_GameStates_SET_LVL_3 = 6'h34;
-    localparam E_GameStates_RESET_AWAKE_0 = 6'h35;
-    localparam E_GameStates_END = 6'h36;
+    localparam E_GameStates_START_COOL_TIMER = 6'h1;
+    localparam E_GameStates_WAIT_TO_START = 6'h2;
+    localparam E_GameStates_IDLE = 6'h3;
+    localparam E_GameStates_CHECK_TIMER_EQ0 = 6'h4;
+    localparam E_GameStates_BRANCH_TIMER_EQ0 = 6'h5;
+    localparam E_GameStates_DECREASE_TIMER = 6'h6;
+    localparam E_GameStates_DECREASE_COOL_TIMER = 6'h7;
+    localparam E_GameStates_MODE_CHECK_EQ1 = 6'h8;
+    localparam E_GameStates_BRANCH_MODE_CHECK_EQ1 = 6'h9;
+    localparam E_GameStates_MODE_CHECK_EQ0 = 6'ha;
+    localparam E_GameStates_BRANCH_MODE_CHECK_EQ0 = 6'hb;
+    localparam E_GameStates_COOLDOWN_EQ0 = 6'hc;
+    localparam E_GameStates_BRANCH_COOLDOWN_EQ0 = 6'hd;
+    localparam E_GameStates_DECREASE_COOLDOWN = 6'he;
+    localparam E_GameStates_RESET_MODE_1 = 6'hf;
+    localparam E_GameStates_AWAKE_EQ0 = 6'h10;
+    localparam E_GameStates_BRANCH_AWAKE_EQ0 = 6'h11;
+    localparam E_GameStates_DECREASE_AWAKE = 6'h12;
+    localparam E_GameStates_RESET_ACTIVE_BUTTON_0 = 6'h13;
+    localparam E_GameStates_RESET_ACTIVE_TYPE_0 = 6'h14;
+    localparam E_GameStates_RESET_SET_LED_OUT_0 = 6'h15;
+    localparam E_GameStates_RESET_MODE_0 = 6'h16;
+    localparam E_GameStates_GENERATE_BUTTONMAP = 6'h17;
+    localparam E_GameStates_SET_ACTIVE_BUTTON = 6'h18;
+    localparam E_GameStates_SET_ACTIVE_TYPE = 6'h19;
+    localparam E_GameStates_SET_AWAKE = 6'h1a;
+    localparam E_GameStates_SET_COOLDOWN = 6'h1b;
+    localparam E_GameStates_SET_LED_OUT_1 = 6'h1c;
+    localparam E_GameStates_RESET_MODE_2 = 6'h1d;
+    localparam E_GameStates_B1_IS_ACTIVE_BUTTON = 6'h1e;
+    localparam E_GameStates_B2_IS_ACTIVE_BUTTON = 6'h1f;
+    localparam E_GameStates_B3_IS_ACTIVE_BUTTON = 6'h20;
+    localparam E_GameStates_B4_IS_ACTIVE_BUTTON = 6'h21;
+    localparam E_GameStates_B5_IS_ACTIVE_BUTTON = 6'h22;
+    localparam E_GameStates_B6_IS_ACTIVE_BUTTON = 6'h23;
+    localparam E_GameStates_BRANCH_IS_ACTIVE_BUTTON = 6'h24;
+    localparam E_GameStates_IS_THIS_THE_KILLBUTTON = 6'h25;
+    localparam E_GameStates_BRANCH_IS_THIS_THE_KILLBUTTON = 6'h26;
+    localparam E_GameStates_TEMPSCORE_TABULATE = 6'h27;
+    localparam E_GameStates_IS_TEMPSCORE_MT99 = 6'h28;
+    localparam E_GameStates_BRANCH_IS_TEMPSCORE_MT99 = 6'h29;
+    localparam E_GameStates_ADD_SCORE = 6'h2a;
+    localparam E_GameStates_MULTIPLY_POINTS_BY_100 = 6'h2b;
+    localparam E_GameStates_ADD_COOL_SCORE = 6'h2c;
+    localparam E_GameStates_SCORE_MTEQ5 = 6'h2d;
+    localparam E_GameStates_BRANCH_SCORE_MTEQ5 = 6'h2e;
+    localparam E_GameStates_SET_LVL_2 = 6'h2f;
+    localparam E_GameStates_SCORE_MTEQ20 = 6'h30;
+    localparam E_GameStates_BRANCH_SCORE_MTEQ20 = 6'h31;
+    localparam E_GameStates_SET_LVL_3 = 6'h32;
+    localparam E_GameStates_RESET_AWAKE_0 = 6'h33;
+    localparam E_GameStates_END = 6'h34;
     logic [5:0] D_game_fsm_d, D_game_fsm_q = 6'h0;
+    logic [5:0] D_delay_fsm_d, D_delay_fsm_q = 1'h0;
+    logic advance;
     always @* begin
+        D_delay_fsm_d = D_delay_fsm_q;
         D_game_fsm_d = D_game_fsm_q;
         
         alufn = 1'h0;
@@ -97,6 +96,8 @@ module game_cu (
         regfile_ra2 = 1'h0;
         regfile_we = 1'h0;
         debug = 1'h0;
+        D_delay_fsm_d = D_delay_fsm_q + 1'h1;
+        advance = (&D_delay_fsm_q);
         D_game_fsm_d = D_game_fsm_q;
         if (rst) begin
             D_game_fsm_d = 6'h0;
@@ -107,141 +108,168 @@ module game_cu (
                     alufn = 6'h0;
                     regfile_ra1 = 1'h0;
                     asel = 2'h0;
-                    bsel = 4'h8;
-                    regfile_we = 1'h1;
+                    bsel = 4'h6;
                     regfile_wa = 1'h0;
-                    D_game_fsm_d = 6'h1;
-                end
-                6'h1: begin
-                    if (buttonstart) begin
-                        D_game_fsm_d = 6'h2;
-                    end else begin
+                    if (advance) begin
+                        regfile_we = 1'h1;
                         D_game_fsm_d = 6'h1;
                     end
                 end
-                6'h3: begin
+                6'h1: begin
+                    alufn = 6'h0;
+                    regfile_ra1 = 4'hc;
+                    asel = 2'h0;
+                    bsel = 4'h6;
+                    regfile_wa = 4'hc;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h2;
+                    end
+                end
+                6'h2: begin
+                    if (buttonstart) begin
+                        D_game_fsm_d = 6'h3;
+                    end else begin
+                        D_game_fsm_d = 6'h2;
+                    end
+                end
+                6'h4: begin
                     alufn = 6'h33;
                     regfile_ra1 = 1'h0;
                     regfile_ra2 = 5'h1f;
                     asel = 2'h0;
                     bsel = 4'h0;
-                    regfile_we = 1'h1;
                     regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h4;
-                end
-                6'h4: begin
-                    regfile_ra2 = 4'h9;
-                    if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'h36;
-                    end else begin
+                    if (advance) begin
+                        regfile_we = 1'h1;
                         D_game_fsm_d = 6'h5;
                     end
                 end
                 6'h5: begin
+                    regfile_ra2 = 4'h9;
+                    if (regfile_rd2[1'h0]) begin
+                        D_game_fsm_d = 6'h34;
+                    end else begin
+                        D_game_fsm_d = 6'h6;
+                    end
+                end
+                6'h6: begin
                     alufn = 6'h1;
                     regfile_ra1 = 1'h0;
                     asel = 2'h0;
                     bsel = 4'h1;
-                    regfile_we = 1'h1;
                     regfile_wa = 1'h0;
-                    D_game_fsm_d = 6'h2;
-                end
-                6'h6: begin
-                    alufn = 6'h33;
-                    regfile_ra1 = 3'h4;
-                    regfile_ra2 = 5'h1f;
-                    asel = 2'h0;
-                    bsel = 4'h0;
-                    regfile_we = 1'h1;
-                    regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h9;
-                end
-                6'h9: begin
-                    regfile_ra2 = 4'h9;
-                    if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'hc;
-                    end else begin
-                        D_game_fsm_d = 6'h2;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h7;
                     end
                 end
                 6'h7: begin
-                    alufn = 6'h33;
-                    regfile_ra1 = 3'h4;
+                    alufn = 6'h1;
+                    regfile_ra1 = 4'hc;
                     asel = 2'h0;
                     bsel = 4'h1;
-                    regfile_we = 1'h1;
-                    regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'ha;
-                end
-                6'ha: begin
-                    regfile_ra2 = 4'h9;
-                    if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'hc;
-                    end else begin
-                        D_game_fsm_d = 6'h2;
+                    regfile_wa = 4'hc;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h3;
                     end
                 end
                 6'h8: begin
                     alufn = 6'h33;
-                    regfile_ra1 = 3'h4;
+                    regfile_ra1 = 2'h3;
                     asel = 2'h0;
-                    bsel = 4'h2;
-                    regfile_we = 1'h1;
+                    bsel = 4'h1;
                     regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'hb;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h9;
+                    end
+                end
+                6'h9: begin
+                    regfile_ra2 = 4'h9;
+                    if (regfile_rd2[1'h0]) begin
+                        D_game_fsm_d = 6'h17;
+                    end else begin
+                        D_game_fsm_d = 6'ha;
+                    end
+                end
+                6'ha: begin
+                    alufn = 6'h33;
+                    regfile_ra1 = 2'h3;
+                    regfile_ra2 = 5'h1f;
+                    asel = 2'h0;
+                    bsel = 4'h0;
+                    regfile_wa = 4'h9;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'hb;
+                    end
                 end
                 6'hb: begin
                     regfile_ra2 = 4'h9;
                     if (regfile_rd2[1'h0]) begin
                         D_game_fsm_d = 6'hc;
                     end else begin
-                        D_game_fsm_d = 6'h2;
+                        D_game_fsm_d = 6'h10;
                     end
                 end
                 6'hc: begin
-                    alufn = 6'h33;
-                    regfile_ra1 = 2'h3;
-                    asel = 2'h0;
-                    bsel = 4'h1;
-                    regfile_we = 1'h1;
-                    regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'hd;
-                end
-                6'hd: begin
-                    regfile_ra2 = 4'h9;
-                    if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'h1a;
-                    end else begin
-                        D_game_fsm_d = 6'he;
-                    end
-                end
-                6'he: begin
-                    alufn = 6'h33;
-                    regfile_ra1 = 2'h3;
-                    regfile_ra2 = 5'h1f;
-                    asel = 2'h0;
-                    bsel = 4'h0;
-                    regfile_we = 1'h1;
-                    regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'hf;
-                end
-                6'hf: begin
-                    regfile_ra2 = 4'h9;
-                    if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'h10;
-                    end else begin
-                        D_game_fsm_d = 6'h14;
-                    end
-                end
-                6'h10: begin
                     alufn = 6'h33;
                     regfile_ra1 = 4'h8;
                     regfile_ra2 = 5'h1f;
                     asel = 2'h0;
                     bsel = 4'h0;
-                    regfile_we = 1'h1;
                     regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h11;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'hd;
+                    end
+                end
+                6'hd: begin
+                    regfile_ra2 = 4'h9;
+                    if (regfile_rd2[1'h0]) begin
+                        if (advance) begin
+                            regfile_we = 1'h1;
+                            D_game_fsm_d = 6'hf;
+                        end
+                    end else begin
+                        D_game_fsm_d = 6'he;
+                    end
+                end
+                6'he: begin
+                    alufn = 6'h1;
+                    regfile_ra1 = 4'h8;
+                    asel = 2'h0;
+                    bsel = 4'h1;
+                    regfile_wa = 4'h8;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h3;
+                    end
+                end
+                6'hf: begin
+                    alufn = 6'h0;
+                    regfile_ra1 = 5'h1f;
+                    asel = 2'h0;
+                    bsel = 4'h1;
+                    regfile_wa = 2'h3;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h3;
+                    end
+                end
+                6'h10: begin
+                    alufn = 6'h33;
+                    regfile_ra1 = 3'h5;
+                    regfile_ra2 = 5'h1f;
+                    asel = 2'h0;
+                    bsel = 4'h0;
+                    regfile_wa = 4'h9;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h11;
+                    end
                 end
                 6'h11: begin
                     regfile_ra2 = 4'h9;
@@ -253,342 +281,392 @@ module game_cu (
                 end
                 6'h12: begin
                     alufn = 6'h1;
-                    regfile_ra1 = 4'h8;
-                    asel = 2'h0;
-                    bsel = 4'h1;
-                    regfile_we = 1'h1;
-                    regfile_wa = 4'h8;
-                    D_game_fsm_d = 6'h2;
-                end
-                6'h13: begin
-                    alufn = 6'h0;
-                    regfile_ra1 = 5'h1f;
-                    asel = 2'h0;
-                    bsel = 4'h1;
-                    regfile_we = 1'h1;
-                    regfile_wa = 2'h3;
-                    D_game_fsm_d = 6'h2;
-                end
-                6'h14: begin
-                    alufn = 6'h33;
                     regfile_ra1 = 3'h5;
-                    regfile_ra2 = 5'h1f;
                     asel = 2'h0;
-                    bsel = 4'h0;
-                    regfile_we = 1'h1;
-                    regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h15;
-                end
-                6'h15: begin
-                    regfile_ra2 = 4'h9;
-                    if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'h17;
-                    end else begin
-                        D_game_fsm_d = 6'h16;
+                    bsel = 4'h1;
+                    regfile_wa = 3'h5;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h3;
                     end
                 end
                 6'h16: begin
                     alufn = 6'h1;
-                    regfile_ra1 = 3'h5;
-                    asel = 2'h0;
-                    bsel = 4'h1;
-                    regfile_we = 1'h1;
-                    regfile_wa = 3'h5;
-                    D_game_fsm_d = 6'h2;
-                end
-                6'h19: begin
-                    alufn = 6'h1;
-                    asel = 2'h1;
+                    asel = 2'h2;
                     bsel = 4'h5;
-                    regfile_we = 1'h1;
                     regfile_wa = 2'h3;
-                    D_game_fsm_d = 6'h2;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h3;
+                    end
+                end
+                6'h13: begin
+                    alufn = 6'h1;
+                    asel = 2'h2;
+                    bsel = 4'h5;
+                    regfile_wa = 3'h6;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h14;
+                    end
+                end
+                6'h14: begin
+                    alufn = 6'h1;
+                    asel = 2'h2;
+                    bsel = 4'h5;
+                    regfile_wa = 3'h7;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h15;
+                    end
+                end
+                6'h15: begin
+                    alufn = 6'h1;
+                    asel = 2'h2;
+                    bsel = 4'h5;
+                    regfile_wa = 4'hb;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h16;
+                    end
                 end
                 6'h17: begin
-                    alufn = 6'h1;
-                    asel = 2'h1;
-                    bsel = 4'h5;
-                    regfile_we = 1'h1;
-                    regfile_wa = 3'h6;
-                    D_game_fsm_d = 6'h18;
-                end
-                6'h18: begin
-                    alufn = 6'h1;
-                    asel = 2'h1;
-                    bsel = 4'h5;
-                    regfile_we = 1'h1;
-                    regfile_wa = 3'h7;
-                    D_game_fsm_d = 6'h19;
-                end
-                6'h1a: begin
-                    regfile_we = 1'h1;
                     regfile_wa = 2'h2;
                     alu_out_sel = 3'h4;
-                    D_game_fsm_d = 6'h1b;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h18;
+                    end
                 end
-                6'h1b: begin
+                6'h18: begin
                     alufn = 6'h38;
                     regfile_ra1 = 2'h2;
                     regfile_ra2 = 3'h4;
                     asel = 2'h0;
                     bsel = 4'h0;
-                    regfile_we = 1'h1;
                     regfile_wa = 3'h6;
-                    D_game_fsm_d = 6'h1c;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h19;
+                    end
                 end
-                6'h1c: begin
+                6'h19: begin
                     alufn = 6'h39;
                     regfile_ra1 = 2'h2;
                     regfile_ra2 = 3'h4;
                     asel = 2'h0;
                     bsel = 4'h0;
-                    regfile_we = 1'h1;
                     regfile_wa = 3'h7;
-                    D_game_fsm_d = 6'h1d;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h1a;
+                    end
                 end
-                6'h1d: begin
+                6'h1a: begin
                     alufn = 6'h3a;
                     regfile_ra1 = 2'h2;
                     regfile_ra2 = 3'h4;
                     asel = 2'h0;
                     bsel = 4'h0;
-                    regfile_we = 1'h1;
                     regfile_wa = 3'h5;
-                    D_game_fsm_d = 6'h1e;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h1b;
+                    end
                 end
-                6'h1e: begin
+                6'h1b: begin
                     alufn = 6'h3b;
                     regfile_ra1 = 2'h2;
                     regfile_ra2 = 3'h4;
                     asel = 2'h0;
                     bsel = 4'h0;
-                    regfile_we = 1'h1;
                     regfile_wa = 4'h8;
-                    D_game_fsm_d = 6'h1f;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h1c;
+                    end
                 end
-                6'h1f: begin
+                6'h1c: begin
+                    alufn = 6'h0;
+                    regfile_ra1 = 5'h1f;
+                    asel = 2'h0;
+                    bsel = 4'h1;
+                    regfile_wa = 4'hb;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h1d;
+                    end
+                end
+                6'h1d: begin
                     alufn = 6'h0;
                     regfile_ra1 = 5'h1f;
                     asel = 2'h0;
                     bsel = 4'h2;
-                    regfile_we = 1'h1;
                     regfile_wa = 2'h3;
-                    D_game_fsm_d = 6'h2;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h3;
+                    end
+                end
+                6'h1e: begin
+                    alufn = 6'h33;
+                    regfile_ra1 = 3'h6;
+                    asel = 2'h0;
+                    bsel = 4'h1;
+                    regfile_wa = 4'h9;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h24;
+                    end
+                end
+                6'h1f: begin
+                    alufn = 6'h33;
+                    regfile_ra1 = 3'h6;
+                    asel = 2'h0;
+                    bsel = 4'h2;
+                    regfile_wa = 4'h9;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h24;
+                    end
                 end
                 6'h20: begin
                     alufn = 6'h33;
                     regfile_ra1 = 3'h6;
                     asel = 2'h0;
-                    bsel = 4'h1;
-                    regfile_we = 1'h1;
+                    bsel = 4'h4;
                     regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h26;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h24;
+                    end
                 end
                 6'h21: begin
                     alufn = 6'h33;
                     regfile_ra1 = 3'h6;
                     asel = 2'h0;
-                    bsel = 4'h2;
-                    regfile_we = 1'h1;
+                    bsel = 4'h8;
                     regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h26;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h24;
+                    end
                 end
                 6'h22: begin
                     alufn = 6'h33;
                     regfile_ra1 = 3'h6;
                     asel = 2'h0;
-                    bsel = 4'h3;
-                    regfile_we = 1'h1;
+                    bsel = 4'h9;
                     regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h26;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h24;
+                    end
                 end
                 6'h23: begin
                     alufn = 6'h33;
                     regfile_ra1 = 3'h6;
                     asel = 2'h0;
-                    bsel = 4'h4;
-                    regfile_we = 1'h1;
+                    bsel = 4'ha;
                     regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h26;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h24;
+                    end
                 end
                 6'h24: begin
-                    alufn = 6'h33;
-                    regfile_ra1 = 3'h6;
-                    asel = 2'h0;
-                    bsel = 4'h5;
-                    regfile_we = 1'h1;
-                    regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h26;
+                    regfile_ra2 = 4'h9;
+                    if (regfile_rd2[1'h0]) begin
+                        D_game_fsm_d = 6'h25;
+                    end else begin
+                        D_game_fsm_d = 6'h3;
+                    end
                 end
                 6'h25: begin
                     alufn = 6'h33;
-                    regfile_ra1 = 3'h6;
+                    regfile_ra1 = 3'h7;
                     asel = 2'h0;
-                    bsel = 4'h6;
-                    regfile_we = 1'h1;
+                    bsel = 4'h8;
                     regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h26;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h26;
+                    end
                 end
                 6'h26: begin
                     regfile_ra2 = 4'h9;
                     if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'h27;
+                        D_game_fsm_d = 6'h34;
                     end else begin
-                        D_game_fsm_d = 6'h2;
+                        D_game_fsm_d = 6'h27;
                     end
                 end
                 6'h27: begin
-                    alufn = 6'h33;
-                    regfile_ra1 = 3'h7;
-                    asel = 2'h0;
-                    bsel = 4'h7;
-                    regfile_we = 1'h1;
-                    regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h28;
-                end
-                6'h28: begin
-                    regfile_ra2 = 4'h9;
-                    if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'h36;
-                    end else begin
-                        D_game_fsm_d = 6'h29;
-                    end
-                end
-                6'h29: begin
-                    alufn = 1'h0;
+                    alufn = 6'h0;
                     regfile_ra1 = 1'h1;
                     regfile_ra2 = 3'h7;
                     asel = 2'h0;
                     bsel = 4'h0;
-                    regfile_we = 1'h1;
                     regfile_wa = 4'ha;
-                    D_game_fsm_d = 6'h2a;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h28;
+                    end
                 end
-                6'h2a: begin
+                6'h28: begin
                     alufn = 6'h35;
                     regfile_ra2 = 4'ha;
                     asel = 2'h3;
                     bsel = 4'h0;
-                    regfile_we = 1'h1;
                     regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h2b;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h29;
+                    end
                 end
-                6'h2b: begin
+                6'h29: begin
                     regfile_ra2 = 4'h9;
                     if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'h36;
+                        D_game_fsm_d = 6'h34;
                     end else begin
+                        D_game_fsm_d = 6'h2a;
+                    end
+                end
+                6'h2a: begin
+                    alufn = 6'h0;
+                    regfile_ra1 = 1'h1;
+                    regfile_ra2 = 3'h7;
+                    asel = 2'h0;
+                    bsel = 4'h0;
+                    regfile_wa = 1'h1;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h2b;
+                    end
+                end
+                6'h2b: begin
+                    alufn = 6'h2;
+                    regfile_ra1 = 3'h7;
+                    asel = 2'h0;
+                    bsel = 4'hb;
+                    regfile_wa = 4'ha;
+                    if (advance) begin
+                        regfile_we = 1'h1;
                         D_game_fsm_d = 6'h2c;
                     end
                 end
                 6'h2c: begin
                     alufn = 6'h0;
-                    regfile_ra1 = 1'h1;
-                    regfile_ra2 = 3'h7;
+                    regfile_ra1 = 4'hc;
+                    regfile_ra2 = 4'ha;
                     asel = 2'h0;
                     bsel = 4'h0;
-                    regfile_we = 1'h1;
-                    regfile_wa = 1'h1;
-                    D_game_fsm_d = 6'h2f;
+                    regfile_wa = 4'hc;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h2d;
+                    end
                 end
-                6'h2f: begin
+                6'h2d: begin
                     alufn = 6'h37;
                     regfile_ra2 = 1'h1;
                     asel = 2'h1;
                     bsel = 4'h0;
-                    regfile_we = 1'h1;
                     regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h30;
-                end
-                6'h30: begin
-                    regfile_ra2 = 4'h9;
-                    if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'h31;
-                    end else begin
-                        D_game_fsm_d = 6'h35;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h2e;
                     end
                 end
-                6'h31: begin
+                6'h2e: begin
+                    regfile_ra2 = 4'h9;
+                    if (regfile_rd2[1'h0]) begin
+                        D_game_fsm_d = 6'h2f;
+                    end else begin
+                        D_game_fsm_d = 6'h33;
+                    end
+                end
+                6'h2f: begin
                     alufn = 6'h0;
                     regfile_ra1 = 5'h1f;
                     asel = 2'h0;
                     bsel = 4'h1;
-                    regfile_we = 1'h1;
                     regfile_wa = 3'h4;
-                    D_game_fsm_d = 6'h32;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h30;
+                    end
                 end
-                6'h32: begin
+                6'h30: begin
                     alufn = 6'h37;
                     regfile_ra2 = 1'h1;
                     asel = 2'h2;
                     bsel = 4'h0;
-                    regfile_we = 1'h1;
                     regfile_wa = 4'h9;
-                    D_game_fsm_d = 6'h33;
-                end
-                6'h33: begin
-                    regfile_ra2 = 4'h9;
-                    if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'h34;
-                    end else begin
-                        D_game_fsm_d = 6'h35;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h31;
                     end
                 end
-                6'h34: begin
+                6'h31: begin
+                    regfile_ra2 = 4'h9;
+                    if (regfile_rd2[1'h0]) begin
+                        D_game_fsm_d = 6'h32;
+                    end else begin
+                        D_game_fsm_d = 6'h33;
+                    end
+                end
+                6'h32: begin
                     alufn = 6'h0;
                     regfile_ra1 = 5'h1f;
                     asel = 2'h0;
-                    bsel = 4'h2;
-                    regfile_we = 1'h1;
+                    bsel = 4'h3;
                     regfile_wa = 3'h4;
-                    D_game_fsm_d = 6'h35;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h33;
+                    end
                 end
-                6'h35: begin
+                6'h33: begin
                     alufn = 6'h1;
-                    asel = 2'h1;
+                    asel = 2'h2;
                     bsel = 4'h5;
-                    regfile_we = 1'h1;
                     regfile_wa = 3'h5;
-                    D_game_fsm_d = 6'h17;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h13;
+                    end
                 end
-                6'h36: begin
+                6'h34: begin
                     alu_out_sel = 2'h1;
-                    D_game_fsm_d = 6'h36;
+                    D_game_fsm_d = 6'h34;
                 end
-                6'h2: begin
+                6'h3: begin
                     if (decrease_timer) begin
-                        D_game_fsm_d = 6'h3;
+                        D_game_fsm_d = 6'h4;
                     end else begin
-                        if (interval1) begin
-                            D_game_fsm_d = 6'h6;
+                        if (gameinterval) begin
+                            D_game_fsm_d = 6'h8;
                         end else begin
-                            if (interval2) begin
-                                D_game_fsm_d = 6'h7;
+                            if (button1 && ~button2 && ~button3 && ~button4 && ~button5 && ~button6) begin
+                                D_game_fsm_d = 6'h1e;
                             end else begin
-                                if (interval3) begin
-                                    D_game_fsm_d = 6'h8;
+                                if (~button1 && button2 && ~button3 && ~button4 && ~button5 && ~button6) begin
+                                    D_game_fsm_d = 6'h1f;
                                 end else begin
-                                    if (button1 && ~button2 && ~button3 && ~button4 && ~button5 && ~button6) begin
+                                    if (~button1 && ~button2 && button3 && ~button4 && ~button5 && ~button6) begin
                                         D_game_fsm_d = 6'h20;
                                     end else begin
-                                        if (~button1 && button2 && ~button3 && ~button4 && ~button5 && ~button6) begin
+                                        if (~button1 && ~button2 && ~button3 && button4 && ~button5 && ~button6) begin
                                             D_game_fsm_d = 6'h21;
                                         end else begin
-                                            if (~button1 && ~button2 && button3 && ~button4 && ~button5 && ~button6) begin
+                                            if (~button1 && ~button2 && ~button3 && ~button4 && button5 && ~button6) begin
                                                 D_game_fsm_d = 6'h22;
                                             end else begin
-                                                if (~button1 && ~button2 && ~button3 && button4 && ~button5 && ~button6) begin
+                                                if (~button1 && ~button2 && ~button3 && ~button4 && ~button5 && button6) begin
                                                     D_game_fsm_d = 6'h23;
                                                 end else begin
-                                                    if (~button1 && ~button2 && ~button3 && ~button4 && button5 && ~button6) begin
-                                                        D_game_fsm_d = 6'h24;
-                                                    end else begin
-                                                        if (~button1 && ~button2 && ~button3 && ~button4 && ~button5 && button6) begin
-                                                            D_game_fsm_d = 6'h25;
-                                                        end else begin
-                                                            D_game_fsm_d = 6'h2;
-                                                        end
-                                                    end
+                                                    D_game_fsm_d = 6'h3;
                                                 end
                                             end
                                         end
@@ -609,5 +687,9 @@ module game_cu (
         end else begin
             D_game_fsm_q <= D_game_fsm_d;
         end
+    end
+    always @(posedge (clk)) begin
+        D_delay_fsm_q <= D_delay_fsm_d;
+        
     end
 endmodule

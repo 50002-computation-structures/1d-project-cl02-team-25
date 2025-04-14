@@ -15,10 +15,8 @@ module alchitry_top (
     const CLK_FREQ = $is_sim() ? 1000 : 100000000 // put 1000 for sim, 100M for hardware 
     const SEVEN_SEG_DIV = $is_sim() ? 3 : 16 // put 3 for sim, 16 for hardware
     const SLOW_CLOCK_DIV = $is_sim() ? 9 : 26 // put 9 for sim, 26 for hardware 
-    const LVL1_CLOCK_DIV = $is_sim() ? 8 : 25 // put 8 for sim, 25 for hardware
-    const LVL2_CLOCK_DIV = $is_sim() ? 7 : 24
-    const LVL3_CLOCK_DIV = $is_sim() ? 6 : 23
     const FAST_CLOCK_DIV = $is_sim() ? 3 : 20
+    const INTERVAL_CLOCK_DIV= $is_sim() ? 7 : 24
     //const FAST_CLOCK_DIV = $is_sim() ? 7 : 21 // put 7 for sim, 21 for hardware 
     
     .clk(clk) {
@@ -29,21 +27,27 @@ module alchitry_top (
         edge_detector edge_det_b2 (#RISE(1), #FALL(0))
         edge_detector edge_det_b3 (#RISE(1), #FALL(0))
         edge_detector edge_det_b4 (#RISE(1), #FALL(0))
+        edge_detector edge_det_b5 (#RISE(1), #FALL(0))
+        edge_detector edge_det_b6 (#RISE(1), #FALL(0))
         edge_detector edge_det_start (#RISE(1), #FALL(0))
+        edge_detector edge_det_reset (#RISE(1), #FALL(0))
         
         button_conditioner btn_cond_b1 (#CLK_FREQ(CLK_FREQ))
         button_conditioner btn_cond_b2 (#CLK_FREQ(CLK_FREQ))
         button_conditioner btn_cond_b3 (#CLK_FREQ(CLK_FREQ))
         button_conditioner btn_cond_b4 (#CLK_FREQ(CLK_FREQ))
+        button_conditioner btn_cond_b5 (#CLK_FREQ(CLK_FREQ))
+        button_conditioner btn_cond_b6 (#CLK_FREQ(CLK_FREQ))
         button_conditioner btn_cond_start (#CLK_FREQ(CLK_FREQ))
+        button_conditioner btn_cond_reset (#CLK_FREQ(CLK_FREQ))
         
         .rst(rst){
             multi_seven_seg seg(#DIV(SEVEN_SEG_DIV))
-            game_datapath game_datapath(#FAST_CLOCK_DIV(FAST_CLOCK_DIV),#SLOW_CLOCK_DIV(SLOW_CLOCK_DIV), #LVL1_CLOCK_DIV(LVL1_CLOCK_DIV),#LVL2_CLOCK_DIV(LVL2_CLOCK_DIV),#LVL3_CLOCK_DIV(LVL3_CLOCK_DIV))
+            game_datapath game_datapath(#SLOW_CLOCK_DIV(SLOW_CLOCK_DIV),#INTERVAL_CLOCK_DIV(INTERVAL_CLOCK_DIV),#FAST_CLOCK_DIV(FAST_CLOCK_DIV))
         }
     }
     
-    bin_to_dec decimal_renderer(#DIGITS(4), #LEADING_ZEROS(1))
+    bin_to_dec decimal_renderer(#DIGITS(4),#LEADING_ZEROS(1))
     always {
         reset_cond.in = ~rst_n // input raw inverted reset signal
         rst = reset_cond.out   // conditioned reset
@@ -60,36 +64,59 @@ module alchitry_top (
         btn_cond_b2.in=io_button[2]
         btn_cond_b3.in=io_button[3]
         btn_cond_b4.in=io_button[4]
+        btn_cond_b5.in=io_dip[0][0]
+        btn_cond_b6.in=io_dip[0][1]
         btn_cond_start.in=io_button[1]
+        btn_cond_reset.in=io_dip[2][7]
         
         edge_det_b1.in=btn_cond_b1.out
         edge_det_b2.in=btn_cond_b2.out
         edge_det_b3.in=btn_cond_b3.out
         edge_det_b4.in=btn_cond_b4.out
+        edge_det_b5.in=btn_cond_b5.out
+        edge_det_b6.in=btn_cond_b6.out
         edge_det_start.in=btn_cond_start.out
+        edge_det_reset.in=btn_cond_reset.out
         
         game_datapath.button1=edge_det_b1.out
         game_datapath.button2=edge_det_b2.out
         game_datapath.button3=edge_det_b3.out
         game_datapath.button4=edge_det_b4.out
-        game_datapath.button5=io_dip[0][0] //this is nonsense ignore
-        game_datapath.button6=io_dip[0][1]
+        game_datapath.button5=edge_det_b5.out //this is nonsense ignore
+        game_datapath.button6=edge_det_b6.out
         game_datapath.buttonstart=edge_det_start.out
+        rst=edge_det_reset.out
         
-        decimal_renderer.value=game_datapath.timerout
-        seg.values = decimal_renderer.digits
-        io_segment=~seg.seg
-        io_select=~seg.sel
+        seg.values=4x{{4b0}}
+        decimal_renderer.value=game_datapath.cooltimerout
+        seg.values=decimal_renderer.digits
         // to test ALU 
         
+        io_led[2][0]=game_datapath.setledout[0]
+        io_led[2][7:5]=c{game_datapath.levelcounterout[1:0],b1}
         io_led[0]=game_datapath.activebuttonout
         io_led[1]=game_datapath.activetypeout
-        io_led[2]=game_datapath.scoreout
-        led[3]=game_datapath.interval1blinker
-        led[4]=game_datapath.interval2blinker
-        led[5]=game_datapath.interval3blinker
-        led[2]=game_datapath.slow_clock_out
-        led[1:0]=game_datapath.levelcounterout +1
+        case (io_dip[2][7]){
+            1:
+                case(game_datapath.activebuttonout){
+                    d1: io_led[0] = 8hFF 
+                    d2: io_led[0] = 8hFE 
+                    d4: io_led[0] = 8hFC 
+                    d8: io_led[0] = 8hF0 
+                    d16: io_led[0] = 8hE0 
+                    d32: io_led[0] = 8hC0
+                    default:
+                        io_led[0] = 8h80           
+                }
+            default:
+                io_led[0]=game_datapath.activebuttonout
+        }
+        
+        io_segment = ~seg.seg
+        io_select = seg.sel
+        //io_led[2]=game_datapath.scoreout
+        //led[4]=game_datapath.gameintervalblinker
+        //led[3]=game_datapath.slow_clock_out
         //TO ADD SCORE LINKAGE
     }
 }

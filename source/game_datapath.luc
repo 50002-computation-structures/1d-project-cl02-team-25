@@ -1,8 +1,6 @@
 module game_datapath#(
     SLOW_CLOCK_DIV ~ 26 : SLOW_CLOCK_DIV > 0,
-    LVL1_CLOCK_DIV ~ 25 : LVL1_CLOCK_DIV > 0,
-    LVL2_CLOCK_DIV ~ 24 : LVL2_CLOCK_DIV >0,
-    LVL3_CLOCK_DIV ~ 23 : LVL3_CLOCK_DIV >0,
+    INTERVAL_CLOCK_DIV ~24: INTERVAL_CLOCK_DIV>0,
     FAST_CLOCK_DIV ~ 20 : FAST_CLOCK_DIV>0 
 ) (
     input button1,
@@ -19,16 +17,16 @@ module game_datapath#(
     output timerout[32],
     output scoreout[32],
     output buttonmapout[32],
-    //output modeout[32],
+    output modeout[32],
     output levelcounterout[32],
     output awakeout[32],
     output activebuttonout[32],
     output activetypeout[32],
     output cooldownout[32],
-    output interval1blinker[32],
-    output interval2blinker[32],
-    output interval3blinker[32],
+    output setledout[32],
+    output cooltimerout[32],
     
+    output gameintervalblinker,  
     output slow_clock_out,
     output debug_general[4]
 ) {
@@ -38,39 +36,37 @@ module game_datapath#(
     alu game_alu
     .clk(clk){
         generate_rn gen_rn(#FAST_CLOCK_DIV(FAST_CLOCK_DIV),.rst(rst))
-        counter level_one_interval(#SIZE(1),#DIV(LVL1_CLOCK_DIV),.rst(rst))
-        counter level_two_interval(#SIZE(1),#DIV(LVL2_CLOCK_DIV),.rst(rst))
-        counter level_three_interval(#SIZE(1),#DIV(LVL3_CLOCK_DIV),.rst(rst))
         counter game_timer_clock(#SIZE(1),#DIV(SLOW_CLOCK_DIV),.rst(rst))
+        counter game_interval(#SIZE(1),#DIV(INTERVAL_CLOCK_DIV),.rst(rst))
         
-        edge_detector edge_detector_level_one_interval(#RISE(1), #FALL(0), .in(level_one_interval.value))
-        edge_detector edge_detector_level_two_interval(#RISE(1), #FALL(0), .in(level_two_interval.value))
-        edge_detector edge_detector_level_three_interval(#RISE(1), #FALL(0), .in(level_three_interval.value))
         edge_detector edge_detector_game_timer(#RISE(1), #FALL(0), .in(game_timer_clock.value))
-        
+        edge_detector edge_detector_game_interval(#RISE(1), #FALL(0), .in(game_interval.value))
+
         game_cu game_cu(
-        .button1(button1),
-        .button2(button2),
-        .button3(button3),
-        .button4(button4),
-        .button5(button5),
-        .button6(button6),
-        .buttonstart(buttonstart),
-        .rst(rst),
-        .interval1(edge_detector_level_one_interval.out),
-        .interval2(edge_detector_level_two_interval.out),
-        .interval3(edge_detector_level_three_interval.out),
-        .decrease_timer(edge_detector_game_timer.out)
+            .button1(button1),
+            .button2(button2),
+            .button3(button3),
+            .button4(button4),
+            .button5(button5),
+            .button6(button6),
+            .buttonstart(buttonstart),
+            .rst(rst),
+            .gameinterval(edge_detector_game_interval.out),
+            .decrease_timer(edge_detector_game_timer.out)
+            //.clk(fsm_clock.value)
         )
         
         game_regfiles game_regfiles(
-        .we(game_cu.regfile_we),
-        .wa(game_cu.regfile_wa),
-        .ra1(game_cu.regfile_ra1),
-        .ra2(game_cu.regfile_ra2),
-        .rst(rst)
+            .we(game_cu.regfile_we),
+            .wa(game_cu.regfile_wa),
+            .ra1(game_cu.regfile_ra1),
+            .ra2(game_cu.regfile_ra2),
+            .rst(rst)
+            //.clk(fsm_clock.value)
         )
     }
+    
+    
     always {
         //following the bootstrap
         game_cu.regfile_rd2=game_regfiles.rd2
@@ -89,13 +85,15 @@ module game_datapath#(
             b0010:input_alu_b=d2
             b0011:input_alu_b=d3
             b0100:input_alu_b=d4
-            b0101:input_alu_b=d5
-            b0110:input_alu_b=d6
-            b0111:input_alu_b=d20
-            b1000:input_alu_b=d60
-            b1001:input_alu_b=d99
+            b0101:input_alu_b=d20
+            b0110:input_alu_b=d90
+            b0111:input_alu_b=d99
+            b1000:input_alu_b=d8
+            b1001:input_alu_b=d16
+            b1010:input_alu_b=d32
+            b1011:input_alu_b=d100
             default:input_alu_b=d0
-    }
+        }
         game_alu.a=input_alu_a
         game_alu.b=input_alu_b
         game_alu.alufn=game_cu.alufn
@@ -109,17 +107,18 @@ module game_datapath#(
         }
         timerout=game_regfiles.timerout
         scoreout=game_regfiles.scoreout
+        buttonmapout=game_regfiles.buttonmapout
+        modeout=game_regfiles.modeout
         levelcounterout=game_regfiles.levelcounterout
+        awakeout=game_regfiles.awakeout
         activebuttonout=game_regfiles.activebuttonout
         activetypeout=game_regfiles.activetypeout
-        slow_clock_out=game_timer_clock.value
-        interval1blinker=level_one_interval.value
-        interval2blinker=level_two_interval.value
-        interval3blinker=level_three_interval.value
-        awakeout=game_regfiles.awakeout
         cooldownout=game_regfiles.cooldownout
-        buttonmapout=game_regfiles.buttonmapout
+        setledout=game_regfiles.setledout
+        cooltimerout=game_regfiles.cooltimerout
         
+        gameintervalblinker=game_interval.value
+        slow_clock_out=game_timer_clock.value
         debug_general=game_cu.debug //literally nothing rn
         
     }

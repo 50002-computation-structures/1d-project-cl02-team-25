@@ -21,197 +21,189 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tftg256-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 12764
+INFO: [Synth 8-7075] Helper process launched with PID 696
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1287.160 ; gain = 441.074
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1283.840 ; gain = 438.727
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'alchitry_top' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/alchitry_top.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'reset_conditioner' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/reset_conditioner.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'alchitry_top' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/alchitry_top.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'reset_conditioner' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/reset_conditioner.sv:7]
 	Parameter STAGES bound to: 3'b100 
-INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/reset_conditioner.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'edge_detector' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/reset_conditioner.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'edge_detector' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/edge_detector.sv:7]
 	Parameter RISE bound to: 1'b1 
 	Parameter FALL bound to: 1'b0 
-INFO: [Synth 8-6155] done synthesizing module 'edge_detector' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/edge_detector.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'button_conditioner' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/button_conditioner.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'edge_detector' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'button_conditioner' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/button_conditioner.sv:7]
 	Parameter CLK_FREQ bound to: 27'b101111101011110000100000000 
 	Parameter MIN_DELAY bound to: 5'b10100 
 	Parameter NUM_SYNC bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'pipeline' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'pipeline' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/pipeline.sv:7]
 	Parameter DEPTH bound to: 2'b10 
-INFO: [Synth 8-6155] done synthesizing module 'pipeline' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/pipeline.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'button_conditioner' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/button_conditioner.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'multi_seven_seg' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/multi_seven_seg.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'pipeline' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/pipeline.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'button_conditioner' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/button_conditioner.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'multi_seven_seg' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/multi_seven_seg.sv:7]
 	Parameter DIGITS bound to: 3'b100 
 	Parameter DIV bound to: 5'b10000 
-INFO: [Synth 8-6157] synthesizing module 'counter' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'counter' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
 	Parameter SIZE bound to: 2 - type: integer 
 	Parameter DIV bound to: 5'b10000 
 	Parameter TOP bound to: 3'b011 
 	Parameter UP bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'counter' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'seven_seg' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/seven_seg.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'seven_seg' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/seven_seg.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'decoder' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/decoder.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'counter' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'seven_seg' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/seven_seg.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'seven_seg' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/seven_seg.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'decoder' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/decoder.sv:7]
 	Parameter WIDTH bound to: 2 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'decoder' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/decoder.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'multi_seven_seg' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/multi_seven_seg.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'game_datapath' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_datapath.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'decoder' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/decoder.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'multi_seven_seg' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/multi_seven_seg.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'game_datapath' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/game_datapath.sv:7]
 	Parameter SLOW_CLOCK_DIV bound to: 5'b11010 
-	Parameter LVL1_CLOCK_DIV bound to: 5'b11001 
-	Parameter LVL2_CLOCK_DIV bound to: 5'b11000 
-	Parameter LVL3_CLOCK_DIV bound to: 5'b10111 
+	Parameter INTERVAL_CLOCK_DIV bound to: 5'b11000 
 	Parameter FAST_CLOCK_DIV bound to: 5'b10100 
-INFO: [Synth 8-6157] synthesizing module 'alu' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/alu.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'adder' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/adder.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'alu' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/alu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'adder' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/adder.sv:7]
 	Parameter SIZE bound to: 6'b100000 
-INFO: [Synth 8-6157] synthesizing module 'rca' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/rca.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'rca' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/rca.sv:7]
 	Parameter SIZE bound to: 6'b100000 
-INFO: [Synth 8-6157] synthesizing module 'fa' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/fa.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'fa' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/fa.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'rca' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/rca.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'adder' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/adder.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'compare' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/compare.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'compare' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/compare.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'boolean' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/boolean.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'fa' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/fa.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fa' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/fa.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'rca' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/rca.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'adder' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/adder.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'compare' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/compare.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'compare' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/compare.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'boolean' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/boolean.sv:7]
 	Parameter SIZE bound to: 6'b100000 
-INFO: [Synth 8-6155] done synthesizing module 'boolean' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/boolean.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'shifter' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'boolean' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/boolean.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'shifter' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b10000 
-INFO: [Synth 8-6157] synthesizing module 'mux_2' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/mux_2.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/mux_2.sv:14]
-INFO: [Synth 8-6155] done synthesizing module 'mux_2' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/mux_2.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'mux_2' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/mux_2.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/mux_2.sv:14]
+INFO: [Synth 8-6155] done synthesizing module 'mux_2' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/mux_2.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b01000 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized1' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized1' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b00100 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized1' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized2' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized1' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized2' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b00010 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized2' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized3' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized2' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized3' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b00001 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized3' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized3' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b10000 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b01000 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized1' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized1' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b00100 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized1' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized2' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized1' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized2' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b00010 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized2' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized3' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized2' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized3' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b00001 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized3' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_right_arithmetic_shifter' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized3' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_arithmetic_shifter' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b10000 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_arithmetic_shifter' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_right_arithmetic_shifter__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_arithmetic_shifter' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_arithmetic_shifter__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b01000 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_arithmetic_shifter__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_right_arithmetic_shifter__parameterized1' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_arithmetic_shifter__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_arithmetic_shifter__parameterized1' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b00100 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_arithmetic_shifter__parameterized1' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_right_arithmetic_shifter__parameterized2' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_arithmetic_shifter__parameterized1' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_arithmetic_shifter__parameterized2' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b00010 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_arithmetic_shifter__parameterized2' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_right_arithmetic_shifter__parameterized3' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_arithmetic_shifter__parameterized2' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_arithmetic_shifter__parameterized3' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b00001 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_arithmetic_shifter__parameterized3' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'shifter' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'multiplier' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/multiplier.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'multiplier' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/multiplier.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'divider' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/divider.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'divider' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/divider.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'modulo' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/modulo.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'modulo' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/modulo.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'buttonmap_button' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_button.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_button.sv:14]
-INFO: [Synth 8-6155] done synthesizing module 'buttonmap_button' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_button.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'buttonmap_type' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:20]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:124]
-INFO: [Synth 8-6155] done synthesizing module 'buttonmap_type' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'buttonmap_awake' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:17]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:121]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:225]
-INFO: [Synth 8-6155] done synthesizing module 'buttonmap_awake' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'buttonmap_cooldown' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:17]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:121]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:225]
-INFO: [Synth 8-6155] done synthesizing module 'buttonmap_cooldown' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/alu.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'generate_rn' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/generate_rn.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_arithmetic_shifter__parameterized3' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/x_bit_right_arithmetic_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'shifter' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'multiplier' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/multiplier.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'multiplier' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/multiplier.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'buttonmap_button' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_button.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_button.sv:14]
+INFO: [Synth 8-6155] done synthesizing module 'buttonmap_button' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_button.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'buttonmap_type' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:20]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:124]
+INFO: [Synth 8-6155] done synthesizing module 'buttonmap_type' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_type.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'buttonmap_awake' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:17]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:121]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:225]
+INFO: [Synth 8-6155] done synthesizing module 'buttonmap_awake' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_awake.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'buttonmap_cooldown' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:20]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:124]
+INFO: [Synth 8-6155] done synthesizing module 'buttonmap_cooldown' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/buttonmap_cooldown.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/alu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'generate_rn' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/generate_rn.sv:7]
 	Parameter SEED bound to: 30'b101000011010110100101110011100 
 	Parameter FAST_CLOCK_DIV bound to: 5'b10100 
-INFO: [Synth 8-6157] synthesizing module 'counter__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'counter__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
 	Parameter SIZE bound to: 1'b1 
 	Parameter DIV bound to: 5'b10100 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'counter__parameterized1' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'counter__parameterized1' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
 	Parameter SIZE bound to: 1'b1 
 	Parameter DIV bound to: 5'b10101 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized1' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'pn_gen' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/pn_gen.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized1' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'pn_gen' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/pn_gen.sv:7]
 	Parameter SEED bound to: 33'b110010100001100001111010000011000 
-INFO: [Synth 8-6155] done synthesizing module 'pn_gen' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/pn_gen.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'edge_detector__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'pn_gen' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/pn_gen.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'edge_detector__parameterized0' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/edge_detector.sv:7]
 	Parameter RISE bound to: 1'b1 
 	Parameter FALL bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'edge_detector__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/edge_detector.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'generate_rn' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/generate_rn.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'counter__parameterized2' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
-	Parameter SIZE bound to: 1'b1 
-	Parameter DIV bound to: 5'b11001 
-	Parameter TOP bound to: 1'b0 
-	Parameter UP bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized2' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'counter__parameterized3' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
-	Parameter SIZE bound to: 1'b1 
-	Parameter DIV bound to: 5'b11000 
-	Parameter TOP bound to: 1'b0 
-	Parameter UP bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized3' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'counter__parameterized4' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
-	Parameter SIZE bound to: 1'b1 
-	Parameter DIV bound to: 5'b10111 
-	Parameter TOP bound to: 1'b0 
-	Parameter UP bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized4' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'counter__parameterized5' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'edge_detector__parameterized0' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'generate_rn' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/generate_rn.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'counter__parameterized2' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
 	Parameter SIZE bound to: 1'b1 
 	Parameter DIV bound to: 5'b11010 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized5' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'game_cu' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_cu.sv:7]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_cu.sv:105]
-INFO: [Synth 8-6155] done synthesizing module 'game_cu' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_cu.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'game_regfiles' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_regfiles.sv:7]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_regfiles.sv:53]
-INFO: [Synth 8-6155] done synthesizing module 'game_regfiles' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_regfiles.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_datapath.sv:276]
-INFO: [Synth 8-6155] done synthesizing module 'game_datapath' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/game_datapath.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'bin_to_dec' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/bin_to_dec.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized2' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'counter__parameterized3' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+	Parameter SIZE bound to: 1'b1 
+	Parameter DIV bound to: 5'b11000 
+	Parameter TOP bound to: 1'b0 
+	Parameter UP bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized3' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'game_cu' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/game_cu.sv:7]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/game_cu.sv:106]
+INFO: [Synth 8-6155] done synthesizing module 'game_cu' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/game_cu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'game_regfiles' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/game_regfiles.sv:7]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/game_regfiles.sv:59]
+INFO: [Synth 8-6155] done synthesizing module 'game_regfiles' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/game_regfiles.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/game_datapath.sv:213]
+INFO: [Synth 8-6155] done synthesizing module 'game_datapath' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/game_datapath.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'bin_to_dec' [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/bin_to_dec.sv:7]
 	Parameter DIGITS bound to: 3'b100 
 	Parameter LEADING_ZEROS bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'bin_to_dec' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/bin_to_dec.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'alchitry_top' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.srcs/sources_1/imports/source/alchitry_top.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'bin_to_dec' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/bin_to_dec.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'alchitry_top' (0#1) [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.srcs/sources_1/imports/source/alchitry_top.sv:7]
 WARNING: [Synth 8-3917] design alchitry_top has port led[7] driven by constant 0
 WARNING: [Synth 8-3917] design alchitry_top has port led[6] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[5] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[4] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[3] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[2] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[1] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[0] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port io_led[2][5] driven by constant 1
+WARNING: [Synth 8-3917] design alchitry_top has port io_led[2][4] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port io_led[2][3] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port io_led[2][2] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port io_led[2][1] driven by constant 0
 WARNING: [Synth 8-7129] Port regfile_rd2[31] in module game_cu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port regfile_rd2[30] in module game_cu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port regfile_rd2[29] in module game_cu is either unconnected or has no load
@@ -314,51 +306,51 @@ WARNING: [Synth 8-7129] Port a[18] in module buttonmap_type is either unconnecte
 WARNING: [Synth 8-7129] Port a[17] in module buttonmap_type is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1423.398 ; gain = 577.312
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1422.320 ; gain = 577.207
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1423.398 ; gain = 577.312
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1422.320 ; gain = 577.207
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1423.398 ; gain = 577.312
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1422.320 ; gain = 577.207
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.054 . Memory (MB): peak = 1423.398 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.047 . Memory (MB): peak = 1422.320 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/constraint/alchitry.xdc]
-Finished Parsing XDC File [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/constraint/alchitry.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/alchitry_top_propImpl.xdc].
+Parsing XDC File [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/constraint/alchitry.xdc]
+Finished Parsing XDC File [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/constraint/alchitry.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/alchitry_top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/alchitry_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/constraint/au_props.xdc]
-Finished Parsing XDC File [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/constraint/au_props.xdc]
+Parsing XDC File [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/constraint/au_props.xdc]
+Finished Parsing XDC File [C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/constraint/au_props.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1462.828 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1484.676 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 The system cannot find the path specified.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1462.828 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1484.676 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1462.828 ; gain = 616.742
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1484.676 ; gain = 639.562
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tftg256-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1462.828 ; gain = 616.742
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1484.676 ; gain = 639.562
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1462.828 ; gain = 616.742
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1484.676 ; gain = 639.562
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'D_game_fsm_q_reg' in module 'game_cu'
 ---------------------------------------------------------------------------------------------------
@@ -371,95 +363,93 @@ INFO: [Synth 8-802] inferred FSM for state register 'D_game_fsm_q_reg' in module
                 iSTATE35 |                           000100 |                           000100
                 iSTATE32 |                           000101 |                           000101
                 iSTATE30 |                           000110 |                           000110
-                iSTATE31 |                           000111 |                           001001
-                iSTATE28 |                           001000 |                           000111
-                iSTATE27 |                           001001 |                           001010
-                iSTATE33 |                           001010 |                           001000
-                iSTATE26 |                           001011 |                           001011
-                iSTATE17 |                           001100 |                           001100
-                iSTATE16 |                           001101 |                           001101
-                 iSTATE5 |                           001110 |                           011010
-                 iSTATE2 |                           001111 |                           011011
-                iSTATE48 |                           010000 |                           011100
-                iSTATE45 |                           010001 |                           011101
-                iSTATE42 |                           010010 |                           011110
-                iSTATE38 |                           010011 |                           011111
-                iSTATE15 |                           010100 |                           001110
-                iSTATE11 |                           010101 |                           001111
-                iSTATE29 |                           010110 |                           010000
-                iSTATE25 |                           010111 |                           010001
-                iSTATE22 |                           011000 |                           010011
-                iSTATE23 |                           011001 |                           010010
-                iSTATE13 |                           011010 |                           010100
-                iSTATE10 |                           011011 |                           010101
-                 iSTATE6 |                           011100 |                           010110
-                iSTATE14 |                           011101 |                           100000
-                iSTATE12 |                           011110 |                           100001
-                 iSTATE7 |                           011111 |                           100010
-                 iSTATE3 |                           100000 |                           100011
-                iSTATE50 |                           100001 |                           100100
-                iSTATE49 |                           100010 |                           100101
-                iSTATE44 |                           100011 |                           100110
-                iSTATE43 |                           100100 |                           100111
-                iSTATE47 |                           100101 |                           101000
-                iSTATE46 |                           100110 |                           101001
-                iSTATE41 |                           100111 |                           101010
+                iSTATE27 |                           000111 |                           000111
+                iSTATE33 |                           001000 |                           001000
+                iSTATE31 |                           001001 |                           001001
+                 iSTATE5 |                           001010 |                           010111
+                 iSTATE9 |                           001011 |                           011000
+                 iSTATE8 |                           001100 |                           011001
+                 iSTATE3 |                           001101 |                           011010
+                 iSTATE2 |                           001110 |                           011011
+                iSTATE48 |                           001111 |                           011100
+                iSTATE46 |                           010000 |                           011101
+                iSTATE28 |                           010001 |                           001010
+                iSTATE26 |                           010010 |                           001011
+                iSTATE17 |                           010011 |                           001100
+                iSTATE16 |                           010100 |                           001101
+                iSTATE12 |                           010101 |                           001111
+                iSTATE15 |                           010110 |                           001110
+                iSTATE29 |                           010111 |                           010000
+                iSTATE25 |                           011000 |                           010001
+                iSTATE22 |                           011001 |                           010010
+                iSTATE40 |                           011010 |                           011110
+                iSTATE38 |                           011011 |                           011111
+                iSTATE14 |                           011100 |                           100000
+                iSTATE11 |                           011101 |                           100001
+                 iSTATE7 |                           011110 |                           100010
+                 iSTATE4 |                           011111 |                           100011
+                iSTATE50 |                           100000 |                           100100
+                iSTATE49 |                           100001 |                           100101
+                iSTATE44 |                           100010 |                           100110
+                iSTATE41 |                           100011 |                           100111
+                iSTATE47 |                           100100 |                           101000
+                iSTATE45 |                           100101 |                           101001
+                iSTATE20 |                           100110 |                           110100
+                iSTATE42 |                           100111 |                           101010
                 iSTATE37 |                           101000 |                           101011
-                iSTATE18 |                           101001 |                           110110
-                iSTATE24 |                           101010 |                           101100
-                iSTATE19 |                           101011 |                           101111
-                iSTATE40 |                           101100 |                           110000
-                iSTATE39 |                           101101 |                           110001
-                iSTATE36 |                           101110 |                           110010
-                iSTATE34 |                           101111 |                           110011
-                iSTATE21 |                           110000 |                           110100
-                iSTATE20 |                           110001 |                           110101
-                 iSTATE4 |                           110010 |                           010111
-                 iSTATE9 |                           110011 |                           011000
-                 iSTATE8 |                           110100 |                           011001
+                iSTATE24 |                           101001 |                           101100
+                iSTATE23 |                           101010 |                           101101
+                iSTATE19 |                           101011 |                           101110
+                iSTATE18 |                           101100 |                           101111
+                iSTATE43 |                           101101 |                           110000
+                iSTATE39 |                           101110 |                           110001
+                iSTATE36 |                           101111 |                           110010
+                iSTATE34 |                           110000 |                           110011
+                iSTATE21 |                           110001 |                           010011
+                iSTATE13 |                           110010 |                           010100
+                iSTATE10 |                           110011 |                           010101
+                 iSTATE6 |                           110100 |                           010110
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'D_game_fsm_q_reg' using encoding 'sequential' in module 'game_cu'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1462.828 ; gain = 616.742
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1484.676 ; gain = 639.562
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   3 Input   32 Bit       Adders := 1     
 	   3 Input   14 Bit       Adders := 3     
-	   2 Input    2 Bit       Adders := 1     
+	   2 Input    6 Bit       Adders := 1     
 +---XORs : 
 	   2 Input     32 Bit         XORs := 4     
 	   4 Input     32 Bit         XORs := 1     
 	   3 Input      1 Bit         XORs := 528   
 	   2 Input      1 Bit         XORs := 2     
 +---Registers : 
-	               32 Bit    Registers := 15    
+	               32 Bit    Registers := 18    
+	                6 Bit    Registers := 1     
 	                4 Bit    Registers := 1     
-	                2 Bit    Registers := 5     
-	                1 Bit    Registers := 11    
-+---Multipliers : 
-	              32x32  Multipliers := 1     
+	                2 Bit    Registers := 8     
+	                1 Bit    Registers := 12    
 +---Muxes : 
 	   4 Input   32 Bit        Muxes := 2     
-	   2 Input   32 Bit        Muxes := 5     
 	  10 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 3     
 	   5 Input   32 Bit        Muxes := 1     
 	  10 Input   14 Bit        Muxes := 1     
 	   2 Input   14 Bit        Muxes := 3     
 	  10 Input   10 Bit        Muxes := 1     
+	   8 Input    8 Bit        Muxes := 1     
 	  10 Input    7 Bit        Muxes := 1     
+	  64 Input    6 Bit        Muxes := 1     
 	  53 Input    6 Bit        Muxes := 1     
-	  78 Input    6 Bit        Muxes := 1     
+	  73 Input    6 Bit        Muxes := 1     
 	   2 Input    6 Bit        Muxes := 1     
-	   2 Input    5 Bit        Muxes := 4     
-	   4 Input    5 Bit        Muxes := 2     
-	  32 Input    5 Bit        Muxes := 2     
 	  53 Input    5 Bit        Muxes := 2     
-	   4 Input    4 Bit        Muxes := 2     
-	   2 Input    4 Bit        Muxes := 3     
+	   2 Input    5 Bit        Muxes := 2     
+	   4 Input    4 Bit        Muxes := 4     
+	   2 Input    4 Bit        Muxes := 5     
 	  18 Input    4 Bit        Muxes := 1     
 	  53 Input    4 Bit        Muxes := 2     
 	  11 Input    4 Bit        Muxes := 1     
@@ -469,9 +459,9 @@ Detailed RTL Component Info :
 	  53 Input    2 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 1     
 	   4 Input    1 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 494   
+	   2 Input    1 Bit        Muxes := 497   
 	  53 Input    1 Bit        Muxes := 2     
-	  12 Input    1 Bit        Muxes := 11    
+	  14 Input    1 Bit        Muxes := 13    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -490,33 +480,44 @@ Start Cross Boundary and Area Optimization
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-3917] design alchitry_top has port led[7] driven by constant 0
 WARNING: [Synth 8-3917] design alchitry_top has port led[6] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[5] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[4] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[3] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[2] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[1] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[0] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port io_led[2][5] driven by constant 1
+WARNING: [Synth 8-3917] design alchitry_top has port io_led[2][4] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port io_led[2][3] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port io_led[2][2] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port io_led[2][1] driven by constant 0
 WARNING: [Synth 8-3917] design alchitry_top has port io_segment[7] driven by constant 1
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 1472.930 ; gain = 626.844
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1484.676 ; gain = 639.562
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 ROM: Preliminary Mapping Report
-+-------------------+------------------+---------------+----------------+
-|Module Name        | RTL Object       | Depth x Width | Implemented As | 
-+-------------------+------------------+---------------+----------------+
-|buttonmap_button   | out              | 64x3          | LUT            | 
-|buttonmap_awake    | out              | 32x4          | LUT            | 
-|buttonmap_awake    | out              | 32x4          | LUT            | 
-|buttonmap_awake    | out              | 32x2          | LUT            | 
-|buttonmap_cooldown | out              | 32x5          | LUT            | 
-|buttonmap_cooldown | out              | 32x4          | LUT            | 
-|buttonmap_cooldown | out              | 32x2          | LUT            | 
-|alu                | awake/out        | 32x4          | LUT            | 
-|alu                | awake/out        | 32x4          | LUT            | 
-|alu                | awake/out        | 32x2          | LUT            | 
-|alu                | cooldown/out     | 32x5          | LUT            | 
-|alu                | cooldown/out     | 32x4          | LUT            | 
-|alu                | cooldown/out     | 32x2          | LUT            | 
-|alu                | activebutton/out | 64x3          | LUT            | 
-+-------------------+------------------+---------------+----------------+
++-------------------+----------------+---------------+----------------+
+|Module Name        | RTL Object     | Depth x Width | Implemented As | 
++-------------------+----------------+---------------+----------------+
+|buttonmap_type     | out            | 32x4          | LUT            | 
+|buttonmap_type     | out            | 32x4          | LUT            | 
+|buttonmap_awake    | out            | 32x3          | LUT            | 
+|buttonmap_awake    | out            | 32x4          | LUT            | 
+|buttonmap_awake    | out            | 32x4          | LUT            | 
+|buttonmap_cooldown | out            | 32x4          | LUT            | 
+|buttonmap_cooldown | out            | 32x4          | LUT            | 
+|alu                | activetype/out | 32x4          | LUT            | 
+|alu                | activetype/out | 32x4          | LUT            | 
+|alu                | awake/out      | 32x3          | LUT            | 
+|alu                | awake/out      | 32x4          | LUT            | 
+|alu                | awake/out      | 32x4          | LUT            | 
+|alu                | cooldown/out   | 32x4          | LUT            | 
+|alu                | cooldown/out   | 32x4          | LUT            | 
++-------------------+----------------+---------------+----------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -525,19 +526,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:48 ; elapsed = 00:00:49 . Memory (MB): peak = 1472.930 ; gain = 626.844
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1484.676 ; gain = 639.562
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:10 ; elapsed = 00:01:11 . Memory (MB): peak = 1796.574 ; gain = 950.488
+Finished Timing Optimization : Time (s): cpu = 00:01:09 ; elapsed = 00:01:10 . Memory (MB): peak = 1785.730 ; gain = 940.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:12 ; elapsed = 00:01:14 . Memory (MB): peak = 1796.574 ; gain = 950.488
+Finished Technology Mapping : Time (s): cpu = 00:01:11 ; elapsed = 00:01:13 . Memory (MB): peak = 1785.730 ; gain = 940.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -555,37 +556,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
+Finished IO Insertion : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1785.730 ; gain = 940.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1785.730 ; gain = 940.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1785.730 ; gain = 940.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1785.730 ; gain = 940.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1785.730 ; gain = 940.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1785.730 ; gain = 940.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -602,43 +603,42 @@ Report Cell Usage:
 |      |Cell   |Count |
 +------+-------+------+
 |1     |BUFG   |     1|
-|2     |CARRY4 |    83|
+|2     |CARRY4 |    85|
 |3     |LUT1   |    24|
-|4     |LUT2   |   530|
-|5     |LUT3   |    61|
-|6     |LUT4   |   213|
-|7     |LUT5   |   207|
-|8     |LUT6   |  1213|
-|9     |MUXF7  |    34|
-|10    |FDPE   |     4|
-|11    |FDRE   |   762|
-|12    |FDSE   |     9|
-|13    |IBUF   |    10|
-|14    |OBUF   |    45|
+|4     |LUT2   |   537|
+|5     |LUT3   |   114|
+|6     |LUT4   |   204|
+|7     |LUT5   |   185|
+|8     |LUT6   |  1275|
+|9     |MUXF7  |    11|
+|10    |FDRE   |   872|
+|11    |FDSE   |     9|
+|12    |IBUF   |    10|
+|13    |OBUF   |    45|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1785.730 ; gain = 940.617
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 57 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:08 ; elapsed = 00:01:15 . Memory (MB): peak = 1796.574 ; gain = 911.059
-Synthesis Optimization Complete : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1796.574 ; gain = 950.488
+Synthesis finished with 0 errors, 0 critical warnings and 68 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:08 ; elapsed = 00:01:15 . Memory (MB): peak = 1785.730 ; gain = 878.262
+Synthesis Optimization Complete : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1785.730 ; gain = 940.617
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1796.574 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 117 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1785.730 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 96 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1796.574 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1785.730 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 The system cannot find the path specified.
-Synth Design complete | Checksum: 22c72b21
+Synth Design complete | Checksum: b61e86cf
 INFO: [Common 17-83] Releasing license: Synthesis
-135 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
+126 Infos, 128 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:19 ; elapsed = 00:01:21 . Memory (MB): peak = 1796.574 ; gain = 1344.332
-Write ShapeDB Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1796.574 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/game_ver2/build/vivado/game_ver2.runs/synth_1/alchitry_top.dcp' has been generated.
+synth_design: Time (s): cpu = 00:01:18 ; elapsed = 00:01:20 . Memory (MB): peak = 1785.730 ; gain = 1334.578
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1785.730 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/SUTD/Sem 4/Computation Structures 50.002/alchitry/fixedone/build/vivado/game_ver2.runs/synth_1/alchitry_top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file alchitry_top_utilization_synth.rpt -pb alchitry_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Apr 13 07:11:56 2025...
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 14 20:00:16 2025...

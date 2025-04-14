@@ -86,12 +86,6 @@
             {
                 "file": {
                     "type": "DiskFile",
-                    "path": "source/divider.luc"
-                }
-            },
-            {
-                "file": {
-                    "type": "DiskFile",
                     "path": "source/fa.luc"
                 }
             },
@@ -111,12 +105,6 @@
                 "file": {
                     "type": "DiskFile",
                     "path": "source/game_regfiles.luc"
-                }
-            },
-            {
-                "file": {
-                    "type": "DiskFile",
-                    "path": "source/modulo.luc"
                 }
             },
             {
@@ -219,14 +207,14 @@
         "constraintFiles": [
             {
                 "file": {
-                    "type": "Component",
-                    "path": "Constraints/alchitry.acf"
+                    "type": "DiskFile",
+                    "path": "constraint/alchitry-slow.acf"
                 }
             },
             {
                 "file": {
-                    "type": "Component",
-                    "path": "Constraints/io_v1_pulldown.acf"
+                    "type": "DiskFile",
+                    "path": "constraint/io_v1_pulldown.acf"
                 }
             }
         ],

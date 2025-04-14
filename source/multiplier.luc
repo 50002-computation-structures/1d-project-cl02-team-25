@@ -5,9 +5,10 @@ module multiplier (
 ) {
     fa fa[496]
     sig current_row_fa_index[$clog2(496)]
-    sig previous_row_fa_index[$clog2(496)]
+   sig previous_row_fa_index[$clog2(496)]
     
     always {
+  
         fa.a = 496x{0}
         fa.b = 496x{0}
         fa.cin = 496x{0}
@@ -48,5 +49,7 @@ module multiplier (
         fa.b[495] = fa.s[494]
         fa.cin[495] = 0
         out[31] = fa.s[495]
+        
+       // out = a * b
     }
 }
