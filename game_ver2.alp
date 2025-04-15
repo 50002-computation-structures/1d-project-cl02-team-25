@@ -68,12 +68,6 @@
             {
                 "file": {
                     "type": "DiskFile",
-                    "path": "source/bit_reverse.luc"
-                }
-            },
-            {
-                "file": {
-                    "type": "DiskFile",
                     "path": "source/boolean.luc"
                 }
             },
@@ -123,12 +117,6 @@
                 "file": {
                     "type": "DiskFile",
                     "path": "source/mux_2.luc"
-                }
-            },
-            {
-                "file": {
-                    "type": "DiskFile",
-                    "path": "source/mux_4.luc"
                 }
             },
             {

@@ -10,69 +10,69 @@ module shifter (
         input wire [5:0] alufn,
         output reg [31:0] shift
     );
-    logic [31:0] R_3ebd9a12_i;
-    logic [31:0] RR_3ebd9a12_i;
-    localparam logic [4:0][4:0] _MP_SHIFT_1943582882 = {{5'h1, 5'h2, 5'h4, 5'h8, 5'h10}};
+    logic [31:0] R_0304feef_i;
+    logic [31:0] RR_0304feef_i;
+    localparam logic [4:0][4:0] _MP_SHIFT_89028600 = {{5'h1, 5'h2, 5'h4, 5'h8, 5'h10}};
     logic [4:0][31:0] M_xbitleftshift_a;
     logic [4:0] M_xbitleftshift_shift;
     logic [4:0] M_xbitleftshift_pad;
     logic [4:0][31:0] M_xbitleftshift_out;
     
-    genvar idx_0_1943582882;
+    genvar idx_0_89028600;
     
     generate
-        for (idx_0_1943582882 = 0; idx_0_1943582882 < 5; idx_0_1943582882 = idx_0_1943582882 + 1) begin: forLoop_idx_0_1943582882
+        for (idx_0_89028600 = 0; idx_0_89028600 < 5; idx_0_89028600 = idx_0_89028600 + 1) begin: forLoop_idx_0_89028600
             x_bit_left_shifter #(
-                .SHIFT(_MP_SHIFT_1943582882[idx_0_1943582882])
+                .SHIFT(_MP_SHIFT_89028600[idx_0_89028600])
             ) xbitleftshift (
-                .a(M_xbitleftshift_a[idx_0_1943582882]),
-                .shift(M_xbitleftshift_shift[idx_0_1943582882]),
-                .pad(M_xbitleftshift_pad[idx_0_1943582882]),
-                .out(M_xbitleftshift_out[idx_0_1943582882])
+                .a(M_xbitleftshift_a[idx_0_89028600]),
+                .shift(M_xbitleftshift_shift[idx_0_89028600]),
+                .pad(M_xbitleftshift_pad[idx_0_89028600]),
+                .out(M_xbitleftshift_out[idx_0_89028600])
             );
         end
     endgenerate
     
     
-    localparam logic [4:0][4:0] _MP_SHIFT_323024621 = {{5'h1, 5'h2, 5'h4, 5'h8, 5'h10}};
+    localparam logic [4:0][4:0] _MP_SHIFT_1475588581 = {{5'h1, 5'h2, 5'h4, 5'h8, 5'h10}};
     logic [4:0][31:0] M_xbitrightshift_a;
     logic [4:0] M_xbitrightshift_shift;
     logic [4:0] M_xbitrightshift_pad;
     logic [4:0][31:0] M_xbitrightshift_out;
     
-    genvar idx_0_323024621;
+    genvar idx_0_1475588581;
     
     generate
-        for (idx_0_323024621 = 0; idx_0_323024621 < 5; idx_0_323024621 = idx_0_323024621 + 1) begin: forLoop_idx_0_323024621
+        for (idx_0_1475588581 = 0; idx_0_1475588581 < 5; idx_0_1475588581 = idx_0_1475588581 + 1) begin: forLoop_idx_0_1475588581
             x_bit_right_shifter #(
-                .SHIFT(_MP_SHIFT_323024621[idx_0_323024621])
+                .SHIFT(_MP_SHIFT_1475588581[idx_0_1475588581])
             ) xbitrightshift (
-                .a(M_xbitrightshift_a[idx_0_323024621]),
-                .shift(M_xbitrightshift_shift[idx_0_323024621]),
-                .pad(M_xbitrightshift_pad[idx_0_323024621]),
-                .out(M_xbitrightshift_out[idx_0_323024621])
+                .a(M_xbitrightshift_a[idx_0_1475588581]),
+                .shift(M_xbitrightshift_shift[idx_0_1475588581]),
+                .pad(M_xbitrightshift_pad[idx_0_1475588581]),
+                .out(M_xbitrightshift_out[idx_0_1475588581])
             );
         end
     endgenerate
     
     
-    localparam logic [4:0][4:0] _MP_SHIFT_231079894 = {{5'h1, 5'h2, 5'h4, 5'h8, 5'h10}};
+    localparam logic [4:0][4:0] _MP_SHIFT_1622614614 = {{5'h1, 5'h2, 5'h4, 5'h8, 5'h10}};
     logic [4:0][31:0] M_xbitrightsignshift_a;
     logic [4:0] M_xbitrightsignshift_shift;
     logic [4:0] M_xbitrightsignshift_pad;
     logic [4:0][31:0] M_xbitrightsignshift_out;
     
-    genvar idx_0_231079894;
+    genvar idx_0_1622614614;
     
     generate
-        for (idx_0_231079894 = 0; idx_0_231079894 < 5; idx_0_231079894 = idx_0_231079894 + 1) begin: forLoop_idx_0_231079894
+        for (idx_0_1622614614 = 0; idx_0_1622614614 < 5; idx_0_1622614614 = idx_0_1622614614 + 1) begin: forLoop_idx_0_1622614614
             x_bit_right_arithmetic_shifter #(
-                .SHIFT(_MP_SHIFT_231079894[idx_0_231079894])
+                .SHIFT(_MP_SHIFT_1622614614[idx_0_1622614614])
             ) xbitrightsignshift (
-                .a(M_xbitrightsignshift_a[idx_0_231079894]),
-                .shift(M_xbitrightsignshift_shift[idx_0_231079894]),
-                .pad(M_xbitrightsignshift_pad[idx_0_231079894]),
-                .out(M_xbitrightsignshift_out[idx_0_231079894])
+                .a(M_xbitrightsignshift_a[idx_0_1622614614]),
+                .shift(M_xbitrightsignshift_shift[idx_0_1622614614]),
+                .pad(M_xbitrightsignshift_pad[idx_0_1622614614]),
+                .out(M_xbitrightsignshift_out[idx_0_1622614614])
             );
         end
     endgenerate
@@ -89,28 +89,28 @@ module shifter (
         M_xbitrightsignshift_a = {{32'h0, 32'h0, 32'h0, 32'h0, 32'h0}};
         M_xbitrightsignshift_pad = 1'h0;
         M_xbitrightsignshift_shift = 1'h0;
-        for (RR_3ebd9a12_i = 0; RR_3ebd9a12_i < 3'h5; RR_3ebd9a12_i = RR_3ebd9a12_i + 1) begin
-      R_3ebd9a12_i = (0) + RR_3ebd9a12_i * (1);
-            if (R_3ebd9a12_i == 1'h0) begin
-                M_xbitleftshift_a[R_3ebd9a12_i] = a;
-                M_xbitleftshift_shift[R_3ebd9a12_i] = b[3'h4 - R_3ebd9a12_i];
-                M_xbitleftshift_pad[R_3ebd9a12_i] = 1'h0;
-                M_xbitrightshift_a[R_3ebd9a12_i] = a;
-                M_xbitrightshift_shift[R_3ebd9a12_i] = b[3'h4 - R_3ebd9a12_i];
-                M_xbitrightshift_pad[R_3ebd9a12_i] = 1'h0;
-                M_xbitrightsignshift_a[R_3ebd9a12_i] = a;
-                M_xbitrightsignshift_shift[R_3ebd9a12_i] = b[3'h4 - R_3ebd9a12_i];
-                M_xbitrightsignshift_pad[R_3ebd9a12_i] = a[5'h1f];
+        for (RR_0304feef_i = 0; RR_0304feef_i < 3'h5; RR_0304feef_i = RR_0304feef_i + 1) begin
+      R_0304feef_i = (0) + RR_0304feef_i * (1);
+            if (R_0304feef_i == 1'h0) begin
+                M_xbitleftshift_a[R_0304feef_i] = a;
+                M_xbitleftshift_shift[R_0304feef_i] = b[3'h4 - R_0304feef_i];
+                M_xbitleftshift_pad[R_0304feef_i] = 1'h0;
+                M_xbitrightshift_a[R_0304feef_i] = a;
+                M_xbitrightshift_shift[R_0304feef_i] = b[3'h4 - R_0304feef_i];
+                M_xbitrightshift_pad[R_0304feef_i] = 1'h0;
+                M_xbitrightsignshift_a[R_0304feef_i] = a;
+                M_xbitrightsignshift_shift[R_0304feef_i] = b[3'h4 - R_0304feef_i];
+                M_xbitrightsignshift_pad[R_0304feef_i] = a[5'h1f];
             end else begin
-                M_xbitleftshift_a[R_3ebd9a12_i] = M_xbitleftshift_out[R_3ebd9a12_i - 1'h1];
-                M_xbitleftshift_shift[R_3ebd9a12_i] = b[3'h4 - R_3ebd9a12_i];
-                M_xbitleftshift_pad[R_3ebd9a12_i] = 1'h0;
-                M_xbitrightshift_a[R_3ebd9a12_i] = M_xbitrightshift_out[R_3ebd9a12_i - 1'h1];
-                M_xbitrightshift_shift[R_3ebd9a12_i] = b[3'h4 - R_3ebd9a12_i];
-                M_xbitrightshift_pad[R_3ebd9a12_i] = 1'h0;
-                M_xbitrightsignshift_a[R_3ebd9a12_i] = M_xbitrightsignshift_out[R_3ebd9a12_i - 1'h1];
-                M_xbitrightsignshift_shift[R_3ebd9a12_i] = b[3'h4 - R_3ebd9a12_i];
-                M_xbitrightsignshift_pad[R_3ebd9a12_i] = a[5'h1f];
+                M_xbitleftshift_a[R_0304feef_i] = M_xbitleftshift_out[R_0304feef_i - 1'h1];
+                M_xbitleftshift_shift[R_0304feef_i] = b[3'h4 - R_0304feef_i];
+                M_xbitleftshift_pad[R_0304feef_i] = 1'h0;
+                M_xbitrightshift_a[R_0304feef_i] = M_xbitrightshift_out[R_0304feef_i - 1'h1];
+                M_xbitrightshift_shift[R_0304feef_i] = b[3'h4 - R_0304feef_i];
+                M_xbitrightshift_pad[R_0304feef_i] = 1'h0;
+                M_xbitrightsignshift_a[R_0304feef_i] = M_xbitrightsignshift_out[R_0304feef_i - 1'h1];
+                M_xbitrightsignshift_shift[R_0304feef_i] = b[3'h4 - R_0304feef_i];
+                M_xbitrightsignshift_pad[R_0304feef_i] = a[5'h1f];
             end
         end
         

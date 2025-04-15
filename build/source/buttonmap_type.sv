@@ -138,7 +138,7 @@ module buttonmap_type (
                         out = 3'h4;
                     end
                     5'h5: begin
-                        out = 4'h8;
+                        out = 3'h4;
                     end
                     5'h6: begin
                         out = 3'h4;
@@ -162,7 +162,7 @@ module buttonmap_type (
                         out = 3'h4;
                     end
                     5'hd: begin
-                        out = 4'h8;
+                        out = 3'h4;
                     end
                     5'he: begin
                         out = 3'h4;
@@ -180,7 +180,7 @@ module buttonmap_type (
                         out = 3'h4;
                     end
                     5'h13: begin
-                        out = 4'h8;
+                        out = 3'h4;
                     end
                     5'h14: begin
                         out = 3'h4;
@@ -204,7 +204,7 @@ module buttonmap_type (
                         out = 3'h4;
                     end
                     5'h1b: begin
-                        out = 4'h8;
+                        out = 3'h4;
                     end
                     5'h1c: begin
                         out = 3'h4;

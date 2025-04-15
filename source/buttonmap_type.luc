@@ -47,7 +47,7 @@ module buttonmap_type (
                 b00010: out = d4;
                 b00011: out = d1;
                 b00100: out = d4;
-                b00101: out = d8;
+                b00101: out = d4;
                 b00110: out = d4;
                 b00111: out = d1;
                 b01000: out = d4;
@@ -55,13 +55,13 @@ module buttonmap_type (
                 b01010: out = d4;
                 b01011: out = d1;
                 b01100: out = d4;
-                b01101: out = d8;
+                b01101: out = d4;
                 b01110: out = d4;
                 b01111: out = d1;
                 b10000: out = d4;
                 b10001: out = d8;
                 b10010: out = d4;
-                b10011: out = d8;
+                b10011: out = d4;
                 b10100: out = d4;
                 b10101: out = d1;
                 b10110: out = d4;
@@ -69,7 +69,7 @@ module buttonmap_type (
                 b11000: out = d4;
                 b11001: out = d1;
                 b11010: out = d4;
-                b11011: out = d8;
+                b11011: out = d4;
                 b11100: out = d4;
                 b11101: out = d8;
                 b11110: out = d4;

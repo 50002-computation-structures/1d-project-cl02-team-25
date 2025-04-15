@@ -20,9 +20,9 @@ PINOUT(V1), STANDARD(LVCMOS33) {
     pin io_led[2][2] A18
     pin io_led[2][3] A17
     pin io_led[2][4] A15
-    pin io_led[2][5] A14
-    pin io_led[2][6] A12
-    pin io_led[2][7] A11
+    pin io_led[2][5] C3
+    pin io_led[2][6] C6
+    pin io_led[2][7] C9
 
     PULL(DOWN) {
         pin io_dip[0][0] B30

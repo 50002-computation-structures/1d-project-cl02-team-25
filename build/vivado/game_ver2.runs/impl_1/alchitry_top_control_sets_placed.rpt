@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Mon Apr 14 20:00:51 2025
+| Date         : Tue Apr 15 14:22:51 2025
 | Host         : LAPTOP-7B86POIG running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file alchitry_top_control_sets_placed.rpt
 | Design       : alchitry_top
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |    29 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    84 |
+| Unused register locations in slices containing registers |    78 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              66 |           24 |
+| No           | No                    | No                     |              66 |           31 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |             113 |           31 |
-| Yes          | No                    | No                     |              32 |           10 |
+| Yes          | No                    | No                     |              32 |           11 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             681 |          241 |
+| Yes          | Yes                   | No                     |             679 |          210 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -73,35 +73,35 @@ Table of Contents
 +----------------+-------------------------------------------------------------------+---------------------------------------+------------------+----------------+--------------+
 |  Clock Signal  |                           Enable Signal                           |            Set/Reset Signal           | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+-------------------------------------------------------------------+---------------------------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q[5]_i_1_n_0      | btn_cond_reset/rst                    |                6 |              6 |         1.00 |
-|  clk_IBUF_BUFG | game_datapath/gen_rn/generate_next_number_clock/D_ctr_q_reg[21]_0 |                                       |                6 |             16 |         2.67 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q[5]_i_1_n_0      | btn_cond_reset/rst                    |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | game_datapath/gen_rn/generate_next_number_clock/D_ctr_q_reg[21]_0 |                                       |                7 |             16 |         2.29 |
 |  clk_IBUF_BUFG | game_datapath/gen_rn/generate_next_number_clock/D_ctr_q_reg[21]_0 | btn_cond_reset/rst                    |                5 |             16 |         3.20 |
 |  clk_IBUF_BUFG | game_datapath/gen_rn/edge_detector_seed/M_edge_detector_seed_out  |                                       |                4 |             16 |         4.00 |
-|  clk_IBUF_BUFG | btn_cond_b6/D_ctr_q[0]_i_2__9_n_0                                 | btn_cond_b6/sync/D_pipe_q_reg[1]_0    |                5 |             17 |         3.40 |
-|  clk_IBUF_BUFG | btn_cond_reset/D_ctr_q[0]_i_2__10_n_0                             | btn_cond_reset/sync/D_pipe_q_reg[1]_0 |                5 |             17 |         3.40 |
-|  clk_IBUF_BUFG | btn_cond_start/D_ctr_q[0]_i_2_n_0                                 | btn_cond_start/sync/D_pipe_q_reg[1]_0 |                5 |             17 |         3.40 |
+|  clk_IBUF_BUFG | btn_cond_b6/D_ctr_q[0]_i_2__4_n_0                                 | btn_cond_b6/sync/D_pipe_q_reg[1]_0    |                5 |             17 |         3.40 |
 |  clk_IBUF_BUFG | btn_cond_b1/sel                                                   | btn_cond_b1/sync/clear                |                5 |             17 |         3.40 |
-|  clk_IBUF_BUFG | btn_cond_b2/D_ctr_q[0]_i_2__5_n_0                                 | btn_cond_b2/sync/D_pipe_q_reg[1]_0    |                5 |             17 |         3.40 |
-|  clk_IBUF_BUFG | btn_cond_b3/D_ctr_q[0]_i_2__6_n_0                                 | btn_cond_b3/sync/D_pipe_q_reg[1]_0    |                5 |             17 |         3.40 |
-|  clk_IBUF_BUFG | btn_cond_b4/D_ctr_q[0]_i_2__7_n_0                                 | btn_cond_b4/sync/D_pipe_q_reg[1]_0    |                5 |             17 |         3.40 |
-|  clk_IBUF_BUFG | btn_cond_b5/D_ctr_q[0]_i_2__8_n_0                                 | btn_cond_b5/sync/D_pipe_q_reg[1]_0    |                5 |             17 |         3.40 |
+|  clk_IBUF_BUFG | btn_cond_b2/D_ctr_q[0]_i_2__0_n_0                                 | btn_cond_b2/sync/D_pipe_q_reg[1]_0    |                5 |             17 |         3.40 |
+|  clk_IBUF_BUFG | btn_cond_b3/D_ctr_q[0]_i_2__1_n_0                                 | btn_cond_b3/sync/D_pipe_q_reg[1]_0    |                5 |             17 |         3.40 |
+|  clk_IBUF_BUFG | btn_cond_b4/D_ctr_q[0]_i_2__2_n_0                                 | btn_cond_b4/sync/D_pipe_q_reg[1]_0    |                5 |             17 |         3.40 |
+|  clk_IBUF_BUFG | btn_cond_b5/D_ctr_q[0]_i_2__3_n_0                                 | btn_cond_b5/sync/D_pipe_q_reg[1]_0    |                5 |             17 |         3.40 |
+|  clk_IBUF_BUFG | btn_cond_start/D_ctr_q[0]_i_2__5_n_0                              | btn_cond_start/sync/D_pipe_q_reg[1]_0 |                5 |             17 |         3.40 |
+|  clk_IBUF_BUFG | btn_cond_reset/D_ctr_q[0]_i_2__10_n_0                             | btn_cond_reset/sync/D_pipe_q_reg[1]_0 |                5 |             17 |         3.40 |
 |  clk_IBUF_BUFG |                                                                   | seg/ctr/D_ctr_q[0]_i_1_n_0            |                5 |             18 |         3.60 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_11[0]    | btn_cond_reset/rst                    |                7 |             32 |         4.57 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_13[0]    | btn_cond_reset/rst                    |               13 |             32 |         2.46 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_6[0]     | btn_cond_reset/rst                    |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_12[0]    | btn_cond_reset/rst                    |                7 |             32 |         4.57 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_14[0]    | btn_cond_reset/rst                    |               25 |             32 |         1.28 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_7[0]     | btn_cond_reset/rst                    |                9 |             32 |         3.56 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_9[0]     | btn_cond_reset/rst                    |               12 |             32 |         2.67 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_10[0]    | btn_cond_reset/rst                    |               23 |             32 |         1.39 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_3[0]     | btn_cond_reset/rst                    |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/E[0]                                        | btn_cond_reset/rst                    |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_8[0]     | btn_cond_reset/rst                    |               10 |             33 |         3.30 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_4[0]     | btn_cond_reset/rst                    |               12 |             34 |         2.83 |
-|  clk_IBUF_BUFG | game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[4]_5[0]     | btn_cond_reset/rst                    |               25 |             40 |         1.60 |
-|  clk_IBUF_BUFG |                                                                   |                                       |               24 |             66 |         2.75 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_1[0]                           | btn_cond_reset/rst                    |                7 |             32 |         4.57 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_0[0]                           | btn_cond_reset/rst                    |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_6[0]                           | btn_cond_reset/rst                    |                6 |             32 |         5.33 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_4[0]                           | btn_cond_reset/rst                    |                7 |             32 |         4.57 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/E[0]                                        | btn_cond_reset/rst                    |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_10[0]                          | btn_cond_reset/rst                    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_8[0]                           | btn_cond_reset/rst                    |                5 |             32 |         6.40 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_2[0]                           | btn_cond_reset/rst                    |               20 |             32 |         1.60 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_3[0]                           | btn_cond_reset/rst                    |                7 |             32 |         4.57 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_7[0]                           | btn_cond_reset/rst                    |               17 |             32 |         1.88 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_5[0]                           | btn_cond_reset/rst                    |                7 |             32 |         4.57 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_11[0]                          | btn_cond_reset/rst                    |                9 |             33 |         3.67 |
+|  clk_IBUF_BUFG | game_datapath/game_cu/D_last_q_reg_9[0]                           | btn_cond_reset/rst                    |               22 |             40 |         1.82 |
+|  clk_IBUF_BUFG |                                                                   |                                       |               31 |             66 |         2.13 |
 |  clk_IBUF_BUFG |                                                                   | btn_cond_reset/rst                    |               26 |             95 |         3.65 |
-|  clk_IBUF_BUFG | game_datapath/gen_rn/edge_detector_next/E[0]                      | btn_cond_reset/rst                    |               23 |             96 |         4.17 |
+|  clk_IBUF_BUFG | game_datapath/gen_rn/edge_detector_next/E[0]                      | btn_cond_reset/rst                    |               20 |             96 |         4.80 |
 +----------------+-------------------------------------------------------------------+---------------------------------------+------------------+----------------+--------------+
 
 

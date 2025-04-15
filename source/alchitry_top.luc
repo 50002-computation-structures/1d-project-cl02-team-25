@@ -93,7 +93,9 @@ module alchitry_top (
         // to test ALU 
         
         io_led[2][0]=game_datapath.setledout[0]
-        io_led[2][7:5]=c{game_datapath.levelcounterout[1:0],b1}
+        io_led[2][5]=b0
+        io_led[2][6]=~game_datapath.levelcounterout[0]
+        io_led[2][7]=~game_datapath.levelcounterout[1]
         io_led[0]=game_datapath.activebuttonout
         io_led[1]=game_datapath.activetypeout
         case (io_dip[2][7]){

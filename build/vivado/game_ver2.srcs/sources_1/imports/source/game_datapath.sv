@@ -54,13 +54,13 @@ module game_datapath #(
     );
     
     
-    localparam _MP_SEED_658006777 = 30'h286b4b9c;
-    localparam _MP_FAST_CLOCK_DIV_658006777 = FAST_CLOCK_DIV;
+    localparam _MP_SEED_1628164832 = 30'h286b4b9c;
+    localparam _MP_FAST_CLOCK_DIV_1628164832 = FAST_CLOCK_DIV;
     logic [31:0] M_gen_rn_out;
     
     generate_rn #(
-        .SEED(_MP_SEED_658006777),
-        .FAST_CLOCK_DIV(_MP_FAST_CLOCK_DIV_658006777)
+        .SEED(_MP_SEED_1628164832),
+        .FAST_CLOCK_DIV(_MP_FAST_CLOCK_DIV_1628164832)
     ) gen_rn (
         .rst(rst),
         .clk(clk),
@@ -68,17 +68,17 @@ module game_datapath #(
     );
     
     
-    localparam _MP_SIZE_1777810126 = 1'h1;
-    localparam _MP_DIV_1777810126 = SLOW_CLOCK_DIV;
-    localparam _MP_TOP_1777810126 = 1'h0;
-    localparam _MP_UP_1777810126 = 1'h1;
+    localparam _MP_SIZE_709289558 = 1'h1;
+    localparam _MP_DIV_709289558 = SLOW_CLOCK_DIV;
+    localparam _MP_TOP_709289558 = 1'h0;
+    localparam _MP_UP_709289558 = 1'h1;
     logic [0:0] M_game_timer_clock_value;
     
     counter #(
-        .SIZE(_MP_SIZE_1777810126),
-        .DIV(_MP_DIV_1777810126),
-        .TOP(_MP_TOP_1777810126),
-        .UP(_MP_UP_1777810126)
+        .SIZE(_MP_SIZE_709289558),
+        .DIV(_MP_DIV_709289558),
+        .TOP(_MP_TOP_709289558),
+        .UP(_MP_UP_709289558)
     ) game_timer_clock (
         .rst(rst),
         .clk(clk),
@@ -86,17 +86,17 @@ module game_datapath #(
     );
     
     
-    localparam _MP_SIZE_301700829 = 1'h1;
-    localparam _MP_DIV_301700829 = INTERVAL_CLOCK_DIV;
-    localparam _MP_TOP_301700829 = 1'h0;
-    localparam _MP_UP_301700829 = 1'h1;
+    localparam _MP_SIZE_911901147 = 1'h1;
+    localparam _MP_DIV_911901147 = INTERVAL_CLOCK_DIV;
+    localparam _MP_TOP_911901147 = 1'h0;
+    localparam _MP_UP_911901147 = 1'h1;
     logic [0:0] M_game_interval_value;
     
     counter #(
-        .SIZE(_MP_SIZE_301700829),
-        .DIV(_MP_DIV_301700829),
-        .TOP(_MP_TOP_301700829),
-        .UP(_MP_UP_301700829)
+        .SIZE(_MP_SIZE_911901147),
+        .DIV(_MP_DIV_911901147),
+        .TOP(_MP_TOP_911901147),
+        .UP(_MP_UP_911901147)
     ) game_interval (
         .rst(rst),
         .clk(clk),
@@ -104,13 +104,13 @@ module game_datapath #(
     );
     
     
-    localparam _MP_RISE_2097674434 = 1'h1;
-    localparam _MP_FALL_2097674434 = 1'h0;
+    localparam _MP_RISE_645199077 = 1'h1;
+    localparam _MP_FALL_645199077 = 1'h0;
     logic M_edge_detector_game_timer_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_2097674434),
-        .FALL(_MP_FALL_2097674434)
+        .RISE(_MP_RISE_645199077),
+        .FALL(_MP_FALL_645199077)
     ) edge_detector_game_timer (
         .in(M_game_timer_clock_value),
         .clk(clk),
@@ -118,13 +118,13 @@ module game_datapath #(
     );
     
     
-    localparam _MP_RISE_1724719333 = 1'h1;
-    localparam _MP_FALL_1724719333 = 1'h0;
+    localparam _MP_RISE_723017121 = 1'h1;
+    localparam _MP_FALL_723017121 = 1'h0;
     logic M_edge_detector_game_interval_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_1724719333),
-        .FALL(_MP_FALL_1724719333)
+        .RISE(_MP_RISE_723017121),
+        .FALL(_MP_FALL_723017121)
     ) edge_detector_game_interval (
         .in(M_game_interval_value),
         .clk(clk),
@@ -275,13 +275,13 @@ module game_datapath #(
         
         case (M_game_cu_alu_out_sel)
             3'h1: begin
-                M_game_regfiles_data = 16'hffff;
+                M_game_regfiles_data = 32'hffffffff;
             end
             3'h2: begin
-                M_game_regfiles_data = 16'h1f1f;
+                M_game_regfiles_data = 32'h35;
             end
             3'h3: begin
-                M_game_regfiles_data = 1'h0;
+                M_game_regfiles_data = 32'h19;
             end
             3'h4: begin
                 M_game_regfiles_data = M_gen_rn_out;

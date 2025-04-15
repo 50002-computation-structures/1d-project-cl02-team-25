@@ -99,9 +99,9 @@ module game_datapath#(
         game_alu.alufn=game_cu.alufn
         
         case(game_cu.alu_out_sel){
-            b001:game_regfiles.data=hFFFF
-            b010:game_regfiles.data=h1F1F
-            b011:game_regfiles.data=0
+            b001:game_regfiles.data=hFFFFFFFF //win
+            b010:game_regfiles.data=h00000035 //death
+            b011:game_regfiles.data=h00000019 //timeout
             b100:game_regfiles.data=gen_rn.out //i need random numbers lmao
             default:game_regfiles.data=game_alu.out
         }

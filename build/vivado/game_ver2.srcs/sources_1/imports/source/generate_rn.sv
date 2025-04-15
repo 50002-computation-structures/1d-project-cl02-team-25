@@ -13,17 +13,17 @@ module generate_rn #(
         output reg [31:0] out
     );
     localparam GENERATE_NUMBER_CLOCK_SPEED = FAST_CLOCK_DIV + 1'h1;
-    localparam _MP_SIZE_2026870351 = 1'h1;
-    localparam _MP_DIV_2026870351 = FAST_CLOCK_DIV;
-    localparam _MP_TOP_2026870351 = 1'h0;
-    localparam _MP_UP_2026870351 = 1'h1;
+    localparam _MP_SIZE_1066858964 = 1'h1;
+    localparam _MP_DIV_1066858964 = FAST_CLOCK_DIV;
+    localparam _MP_TOP_1066858964 = 1'h0;
+    localparam _MP_UP_1066858964 = 1'h1;
     logic [0:0] M_seed_clock_value;
     
     counter #(
-        .SIZE(_MP_SIZE_2026870351),
-        .DIV(_MP_DIV_2026870351),
-        .TOP(_MP_TOP_2026870351),
-        .UP(_MP_UP_2026870351)
+        .SIZE(_MP_SIZE_1066858964),
+        .DIV(_MP_DIV_1066858964),
+        .TOP(_MP_TOP_1066858964),
+        .UP(_MP_UP_1066858964)
     ) seed_clock (
         .clk(clk),
         .rst(rst),
@@ -31,17 +31,17 @@ module generate_rn #(
     );
     
     
-    localparam _MP_SIZE_1533349970 = 1'h1;
-    localparam _MP_DIV_1533349970 = GENERATE_NUMBER_CLOCK_SPEED;
-    localparam _MP_TOP_1533349970 = 1'h0;
-    localparam _MP_UP_1533349970 = 1'h1;
+    localparam _MP_SIZE_1441932793 = 1'h1;
+    localparam _MP_DIV_1441932793 = GENERATE_NUMBER_CLOCK_SPEED;
+    localparam _MP_TOP_1441932793 = 1'h0;
+    localparam _MP_UP_1441932793 = 1'h1;
     logic [0:0] M_generate_next_number_clock_value;
     
     counter #(
-        .SIZE(_MP_SIZE_1533349970),
-        .DIV(_MP_DIV_1533349970),
-        .TOP(_MP_TOP_1533349970),
-        .UP(_MP_UP_1533349970)
+        .SIZE(_MP_SIZE_1441932793),
+        .DIV(_MP_DIV_1441932793),
+        .TOP(_MP_TOP_1441932793),
+        .UP(_MP_UP_1441932793)
     ) generate_next_number_clock (
         .clk(clk),
         .rst(rst),
@@ -49,13 +49,13 @@ module generate_rn #(
     );
     
     
-    localparam _MP_SEED_1783203523 = 33'h19430f418;
+    localparam _MP_SEED_1259873812 = 33'h19430f418;
     logic M_random_number_next;
     logic [31:0] M_random_number_seed;
     logic [31:0] M_random_number_num;
     
     pn_gen #(
-        .SEED(_MP_SEED_1783203523)
+        .SEED(_MP_SEED_1259873812)
     ) random_number (
         .clk(clk),
         .rst(rst),
@@ -65,13 +65,13 @@ module generate_rn #(
     );
     
     
-    localparam _MP_RISE_1772569669 = 1'h1;
-    localparam _MP_FALL_1772569669 = 1'h1;
+    localparam _MP_RISE_1307233449 = 1'h1;
+    localparam _MP_FALL_1307233449 = 1'h1;
     logic M_edge_detector_next_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_1772569669),
-        .FALL(_MP_FALL_1772569669)
+        .RISE(_MP_RISE_1307233449),
+        .FALL(_MP_FALL_1307233449)
     ) edge_detector_next (
         .in(M_generate_next_number_clock_value),
         .clk(clk),
@@ -79,13 +79,13 @@ module generate_rn #(
     );
     
     
-    localparam _MP_RISE_430410279 = 1'h1;
-    localparam _MP_FALL_430410279 = 1'h1;
+    localparam _MP_RISE_1467676833 = 1'h1;
+    localparam _MP_FALL_1467676833 = 1'h1;
     logic M_edge_detector_seed_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_430410279),
-        .FALL(_MP_FALL_430410279)
+        .RISE(_MP_RISE_1467676833),
+        .FALL(_MP_FALL_1467676833)
     ) edge_detector_seed (
         .in(M_seed_clock_value),
         .clk(clk),

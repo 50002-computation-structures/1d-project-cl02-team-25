@@ -22,12 +22,12 @@ module alchitry_top (
     localparam SLOW_CLOCK_DIV = 5'h1a;
     localparam FAST_CLOCK_DIV = 5'h14;
     localparam INTERVAL_CLOCK_DIV = 5'h18;
-    localparam _MP_STAGES_1628355590 = 3'h4;
+    localparam _MP_STAGES_1975177396 = 3'h4;
     logic M_reset_cond_in;
     logic M_reset_cond_out;
     
     reset_conditioner #(
-        .STAGES(_MP_STAGES_1628355590)
+        .STAGES(_MP_STAGES_1975177396)
     ) reset_cond (
         .clk(clk),
         .in(M_reset_cond_in),
@@ -35,14 +35,14 @@ module alchitry_top (
     );
     
     
-    localparam _MP_RISE_1876555233 = 1'h1;
-    localparam _MP_FALL_1876555233 = 1'h0;
+    localparam _MP_RISE_1932367199 = 1'h1;
+    localparam _MP_FALL_1932367199 = 1'h0;
     logic M_edge_det_b1_in;
     logic M_edge_det_b1_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_1876555233),
-        .FALL(_MP_FALL_1876555233)
+        .RISE(_MP_RISE_1932367199),
+        .FALL(_MP_FALL_1932367199)
     ) edge_det_b1 (
         .clk(clk),
         .in(M_edge_det_b1_in),
@@ -50,14 +50,14 @@ module alchitry_top (
     );
     
     
-    localparam _MP_RISE_1694592172 = 1'h1;
-    localparam _MP_FALL_1694592172 = 1'h0;
+    localparam _MP_RISE_715586352 = 1'h1;
+    localparam _MP_FALL_715586352 = 1'h0;
     logic M_edge_det_b2_in;
     logic M_edge_det_b2_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_1694592172),
-        .FALL(_MP_FALL_1694592172)
+        .RISE(_MP_RISE_715586352),
+        .FALL(_MP_FALL_715586352)
     ) edge_det_b2 (
         .clk(clk),
         .in(M_edge_det_b2_in),
@@ -65,14 +65,14 @@ module alchitry_top (
     );
     
     
-    localparam _MP_RISE_161367752 = 1'h1;
-    localparam _MP_FALL_161367752 = 1'h0;
+    localparam _MP_RISE_1535071023 = 1'h1;
+    localparam _MP_FALL_1535071023 = 1'h0;
     logic M_edge_det_b3_in;
     logic M_edge_det_b3_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_161367752),
-        .FALL(_MP_FALL_161367752)
+        .RISE(_MP_RISE_1535071023),
+        .FALL(_MP_FALL_1535071023)
     ) edge_det_b3 (
         .clk(clk),
         .in(M_edge_det_b3_in),
@@ -80,14 +80,14 @@ module alchitry_top (
     );
     
     
-    localparam _MP_RISE_1612212947 = 1'h1;
-    localparam _MP_FALL_1612212947 = 1'h0;
+    localparam _MP_RISE_896831963 = 1'h1;
+    localparam _MP_FALL_896831963 = 1'h0;
     logic M_edge_det_b4_in;
     logic M_edge_det_b4_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_1612212947),
-        .FALL(_MP_FALL_1612212947)
+        .RISE(_MP_RISE_896831963),
+        .FALL(_MP_FALL_896831963)
     ) edge_det_b4 (
         .clk(clk),
         .in(M_edge_det_b4_in),
@@ -95,14 +95,14 @@ module alchitry_top (
     );
     
     
-    localparam _MP_RISE_1772870644 = 1'h1;
-    localparam _MP_FALL_1772870644 = 1'h0;
+    localparam _MP_RISE_1102312789 = 1'h1;
+    localparam _MP_FALL_1102312789 = 1'h0;
     logic M_edge_det_b5_in;
     logic M_edge_det_b5_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_1772870644),
-        .FALL(_MP_FALL_1772870644)
+        .RISE(_MP_RISE_1102312789),
+        .FALL(_MP_FALL_1102312789)
     ) edge_det_b5 (
         .clk(clk),
         .in(M_edge_det_b5_in),
@@ -110,14 +110,14 @@ module alchitry_top (
     );
     
     
-    localparam _MP_RISE_157422202 = 1'h1;
-    localparam _MP_FALL_157422202 = 1'h0;
+    localparam _MP_RISE_1662254119 = 1'h1;
+    localparam _MP_FALL_1662254119 = 1'h0;
     logic M_edge_det_b6_in;
     logic M_edge_det_b6_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_157422202),
-        .FALL(_MP_FALL_157422202)
+        .RISE(_MP_RISE_1662254119),
+        .FALL(_MP_FALL_1662254119)
     ) edge_det_b6 (
         .clk(clk),
         .in(M_edge_det_b6_in),
@@ -125,14 +125,14 @@ module alchitry_top (
     );
     
     
-    localparam _MP_RISE_1936314738 = 1'h1;
-    localparam _MP_FALL_1936314738 = 1'h0;
+    localparam _MP_RISE_1233601630 = 1'h1;
+    localparam _MP_FALL_1233601630 = 1'h0;
     logic M_edge_det_start_in;
     logic M_edge_det_start_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_1936314738),
-        .FALL(_MP_FALL_1936314738)
+        .RISE(_MP_RISE_1233601630),
+        .FALL(_MP_FALL_1233601630)
     ) edge_det_start (
         .clk(clk),
         .in(M_edge_det_start_in),
@@ -140,14 +140,14 @@ module alchitry_top (
     );
     
     
-    localparam _MP_RISE_706045351 = 1'h1;
-    localparam _MP_FALL_706045351 = 1'h0;
+    localparam _MP_RISE_387617131 = 1'h1;
+    localparam _MP_FALL_387617131 = 1'h0;
     logic M_edge_det_reset_in;
     logic M_edge_det_reset_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_706045351),
-        .FALL(_MP_FALL_706045351)
+        .RISE(_MP_RISE_387617131),
+        .FALL(_MP_FALL_387617131)
     ) edge_det_reset (
         .clk(clk),
         .in(M_edge_det_reset_in),
@@ -155,16 +155,16 @@ module alchitry_top (
     );
     
     
-    localparam _MP_CLK_FREQ_890011672 = 27'h5f5e100;
-    localparam _MP_MIN_DELAY_890011672 = 5'h14;
-    localparam _MP_NUM_SYNC_890011672 = 2'h2;
+    localparam _MP_CLK_FREQ_2062150110 = 27'h5f5e100;
+    localparam _MP_MIN_DELAY_2062150110 = 5'h14;
+    localparam _MP_NUM_SYNC_2062150110 = 2'h2;
     logic M_btn_cond_b1_in;
     logic M_btn_cond_b1_out;
     
     button_conditioner #(
-        .CLK_FREQ(_MP_CLK_FREQ_890011672),
-        .MIN_DELAY(_MP_MIN_DELAY_890011672),
-        .NUM_SYNC(_MP_NUM_SYNC_890011672)
+        .CLK_FREQ(_MP_CLK_FREQ_2062150110),
+        .MIN_DELAY(_MP_MIN_DELAY_2062150110),
+        .NUM_SYNC(_MP_NUM_SYNC_2062150110)
     ) btn_cond_b1 (
         .clk(clk),
         .in(M_btn_cond_b1_in),
@@ -172,16 +172,16 @@ module alchitry_top (
     );
     
     
-    localparam _MP_CLK_FREQ_870234526 = 27'h5f5e100;
-    localparam _MP_MIN_DELAY_870234526 = 5'h14;
-    localparam _MP_NUM_SYNC_870234526 = 2'h2;
+    localparam _MP_CLK_FREQ_929992950 = 27'h5f5e100;
+    localparam _MP_MIN_DELAY_929992950 = 5'h14;
+    localparam _MP_NUM_SYNC_929992950 = 2'h2;
     logic M_btn_cond_b2_in;
     logic M_btn_cond_b2_out;
     
     button_conditioner #(
-        .CLK_FREQ(_MP_CLK_FREQ_870234526),
-        .MIN_DELAY(_MP_MIN_DELAY_870234526),
-        .NUM_SYNC(_MP_NUM_SYNC_870234526)
+        .CLK_FREQ(_MP_CLK_FREQ_929992950),
+        .MIN_DELAY(_MP_MIN_DELAY_929992950),
+        .NUM_SYNC(_MP_NUM_SYNC_929992950)
     ) btn_cond_b2 (
         .clk(clk),
         .in(M_btn_cond_b2_in),
@@ -189,16 +189,16 @@ module alchitry_top (
     );
     
     
-    localparam _MP_CLK_FREQ_1853631550 = 27'h5f5e100;
-    localparam _MP_MIN_DELAY_1853631550 = 5'h14;
-    localparam _MP_NUM_SYNC_1853631550 = 2'h2;
+    localparam _MP_CLK_FREQ_1168327984 = 27'h5f5e100;
+    localparam _MP_MIN_DELAY_1168327984 = 5'h14;
+    localparam _MP_NUM_SYNC_1168327984 = 2'h2;
     logic M_btn_cond_b3_in;
     logic M_btn_cond_b3_out;
     
     button_conditioner #(
-        .CLK_FREQ(_MP_CLK_FREQ_1853631550),
-        .MIN_DELAY(_MP_MIN_DELAY_1853631550),
-        .NUM_SYNC(_MP_NUM_SYNC_1853631550)
+        .CLK_FREQ(_MP_CLK_FREQ_1168327984),
+        .MIN_DELAY(_MP_MIN_DELAY_1168327984),
+        .NUM_SYNC(_MP_NUM_SYNC_1168327984)
     ) btn_cond_b3 (
         .clk(clk),
         .in(M_btn_cond_b3_in),
@@ -206,16 +206,16 @@ module alchitry_top (
     );
     
     
-    localparam _MP_CLK_FREQ_718626727 = 27'h5f5e100;
-    localparam _MP_MIN_DELAY_718626727 = 5'h14;
-    localparam _MP_NUM_SYNC_718626727 = 2'h2;
+    localparam _MP_CLK_FREQ_832953188 = 27'h5f5e100;
+    localparam _MP_MIN_DELAY_832953188 = 5'h14;
+    localparam _MP_NUM_SYNC_832953188 = 2'h2;
     logic M_btn_cond_b4_in;
     logic M_btn_cond_b4_out;
     
     button_conditioner #(
-        .CLK_FREQ(_MP_CLK_FREQ_718626727),
-        .MIN_DELAY(_MP_MIN_DELAY_718626727),
-        .NUM_SYNC(_MP_NUM_SYNC_718626727)
+        .CLK_FREQ(_MP_CLK_FREQ_832953188),
+        .MIN_DELAY(_MP_MIN_DELAY_832953188),
+        .NUM_SYNC(_MP_NUM_SYNC_832953188)
     ) btn_cond_b4 (
         .clk(clk),
         .in(M_btn_cond_b4_in),
@@ -223,16 +223,16 @@ module alchitry_top (
     );
     
     
-    localparam _MP_CLK_FREQ_1434567014 = 27'h5f5e100;
-    localparam _MP_MIN_DELAY_1434567014 = 5'h14;
-    localparam _MP_NUM_SYNC_1434567014 = 2'h2;
+    localparam _MP_CLK_FREQ_1702986727 = 27'h5f5e100;
+    localparam _MP_MIN_DELAY_1702986727 = 5'h14;
+    localparam _MP_NUM_SYNC_1702986727 = 2'h2;
     logic M_btn_cond_b5_in;
     logic M_btn_cond_b5_out;
     
     button_conditioner #(
-        .CLK_FREQ(_MP_CLK_FREQ_1434567014),
-        .MIN_DELAY(_MP_MIN_DELAY_1434567014),
-        .NUM_SYNC(_MP_NUM_SYNC_1434567014)
+        .CLK_FREQ(_MP_CLK_FREQ_1702986727),
+        .MIN_DELAY(_MP_MIN_DELAY_1702986727),
+        .NUM_SYNC(_MP_NUM_SYNC_1702986727)
     ) btn_cond_b5 (
         .clk(clk),
         .in(M_btn_cond_b5_in),
@@ -240,16 +240,16 @@ module alchitry_top (
     );
     
     
-    localparam _MP_CLK_FREQ_324374529 = 27'h5f5e100;
-    localparam _MP_MIN_DELAY_324374529 = 5'h14;
-    localparam _MP_NUM_SYNC_324374529 = 2'h2;
+    localparam _MP_CLK_FREQ_640370305 = 27'h5f5e100;
+    localparam _MP_MIN_DELAY_640370305 = 5'h14;
+    localparam _MP_NUM_SYNC_640370305 = 2'h2;
     logic M_btn_cond_b6_in;
     logic M_btn_cond_b6_out;
     
     button_conditioner #(
-        .CLK_FREQ(_MP_CLK_FREQ_324374529),
-        .MIN_DELAY(_MP_MIN_DELAY_324374529),
-        .NUM_SYNC(_MP_NUM_SYNC_324374529)
+        .CLK_FREQ(_MP_CLK_FREQ_640370305),
+        .MIN_DELAY(_MP_MIN_DELAY_640370305),
+        .NUM_SYNC(_MP_NUM_SYNC_640370305)
     ) btn_cond_b6 (
         .clk(clk),
         .in(M_btn_cond_b6_in),
@@ -257,16 +257,16 @@ module alchitry_top (
     );
     
     
-    localparam _MP_CLK_FREQ_474432393 = 27'h5f5e100;
-    localparam _MP_MIN_DELAY_474432393 = 5'h14;
-    localparam _MP_NUM_SYNC_474432393 = 2'h2;
+    localparam _MP_CLK_FREQ_2038304177 = 27'h5f5e100;
+    localparam _MP_MIN_DELAY_2038304177 = 5'h14;
+    localparam _MP_NUM_SYNC_2038304177 = 2'h2;
     logic M_btn_cond_start_in;
     logic M_btn_cond_start_out;
     
     button_conditioner #(
-        .CLK_FREQ(_MP_CLK_FREQ_474432393),
-        .MIN_DELAY(_MP_MIN_DELAY_474432393),
-        .NUM_SYNC(_MP_NUM_SYNC_474432393)
+        .CLK_FREQ(_MP_CLK_FREQ_2038304177),
+        .MIN_DELAY(_MP_MIN_DELAY_2038304177),
+        .NUM_SYNC(_MP_NUM_SYNC_2038304177)
     ) btn_cond_start (
         .clk(clk),
         .in(M_btn_cond_start_in),
@@ -274,16 +274,16 @@ module alchitry_top (
     );
     
     
-    localparam _MP_CLK_FREQ_485433281 = 27'h5f5e100;
-    localparam _MP_MIN_DELAY_485433281 = 5'h14;
-    localparam _MP_NUM_SYNC_485433281 = 2'h2;
+    localparam _MP_CLK_FREQ_1721734913 = 27'h5f5e100;
+    localparam _MP_MIN_DELAY_1721734913 = 5'h14;
+    localparam _MP_NUM_SYNC_1721734913 = 2'h2;
     logic M_btn_cond_reset_in;
     logic M_btn_cond_reset_out;
     
     button_conditioner #(
-        .CLK_FREQ(_MP_CLK_FREQ_485433281),
-        .MIN_DELAY(_MP_MIN_DELAY_485433281),
-        .NUM_SYNC(_MP_NUM_SYNC_485433281)
+        .CLK_FREQ(_MP_CLK_FREQ_1721734913),
+        .MIN_DELAY(_MP_MIN_DELAY_1721734913),
+        .NUM_SYNC(_MP_NUM_SYNC_1721734913)
     ) btn_cond_reset (
         .clk(clk),
         .in(M_btn_cond_reset_in),
@@ -291,15 +291,15 @@ module alchitry_top (
     );
     
     
-    localparam _MP_DIGITS_1195272139 = 3'h4;
-    localparam _MP_DIV_1195272139 = 5'h10;
+    localparam _MP_DIGITS_258522766 = 3'h4;
+    localparam _MP_DIV_258522766 = 5'h10;
     logic [3:0][3:0] M_seg_values;
     logic [6:0] M_seg_seg;
     logic [3:0] M_seg_sel;
     
     multi_seven_seg #(
-        .DIGITS(_MP_DIGITS_1195272139),
-        .DIV(_MP_DIV_1195272139)
+        .DIGITS(_MP_DIGITS_258522766),
+        .DIV(_MP_DIV_258522766)
     ) seg (
         .clk(clk),
         .rst(rst),
@@ -309,9 +309,9 @@ module alchitry_top (
     );
     
     
-    localparam _MP_SLOW_CLOCK_DIV_979132478 = 5'h1a;
-    localparam _MP_INTERVAL_CLOCK_DIV_979132478 = 5'h18;
-    localparam _MP_FAST_CLOCK_DIV_979132478 = 5'h14;
+    localparam _MP_SLOW_CLOCK_DIV_1621934373 = 5'h1a;
+    localparam _MP_INTERVAL_CLOCK_DIV_1621934373 = 5'h18;
+    localparam _MP_FAST_CLOCK_DIV_1621934373 = 5'h14;
     logic M_game_datapath_button1;
     logic M_game_datapath_button2;
     logic M_game_datapath_button3;
@@ -335,9 +335,9 @@ module alchitry_top (
     logic [3:0] M_game_datapath_debug_general;
     
     game_datapath #(
-        .SLOW_CLOCK_DIV(_MP_SLOW_CLOCK_DIV_979132478),
-        .INTERVAL_CLOCK_DIV(_MP_INTERVAL_CLOCK_DIV_979132478),
-        .FAST_CLOCK_DIV(_MP_FAST_CLOCK_DIV_979132478)
+        .SLOW_CLOCK_DIV(_MP_SLOW_CLOCK_DIV_1621934373),
+        .INTERVAL_CLOCK_DIV(_MP_INTERVAL_CLOCK_DIV_1621934373),
+        .FAST_CLOCK_DIV(_MP_FAST_CLOCK_DIV_1621934373)
     ) game_datapath (
         .clk(clk),
         .rst(rst),
@@ -365,14 +365,14 @@ module alchitry_top (
     );
     
     
-    localparam _MP_DIGITS_1118162341 = 3'h4;
-    localparam _MP_LEADING_ZEROS_1118162341 = 1'h1;
+    localparam _MP_DIGITS_2004837023 = 3'h4;
+    localparam _MP_LEADING_ZEROS_2004837023 = 1'h1;
     logic [13:0] M_decimal_renderer_value;
     logic [3:0][3:0] M_decimal_renderer_digits;
     
     bin_to_dec #(
-        .DIGITS(_MP_DIGITS_1118162341),
-        .LEADING_ZEROS(_MP_LEADING_ZEROS_1118162341)
+        .DIGITS(_MP_DIGITS_2004837023),
+        .LEADING_ZEROS(_MP_LEADING_ZEROS_2004837023)
     ) decimal_renderer (
         .value(M_decimal_renderer_value),
         .digits(M_decimal_renderer_digits)
@@ -415,7 +415,9 @@ module alchitry_top (
         M_decimal_renderer_value = M_game_datapath_cooltimerout;
         M_seg_values = M_decimal_renderer_digits;
         io_led[2'h2][1'h0] = M_game_datapath_setledout[1'h0];
-        io_led[2'h2][3'h7:3'h5] = {M_game_datapath_levelcounterout[1'h1:1'h0], 1'h1};
+        io_led[2'h2][3'h5] = 1'h0;
+        io_led[2'h2][3'h6] = ~M_game_datapath_levelcounterout[1'h0];
+        io_led[2'h2][3'h7] = ~M_game_datapath_levelcounterout[1'h1];
         io_led[1'h0] = M_game_datapath_activebuttonout;
         io_led[1'h1] = M_game_datapath_activetypeout;
         

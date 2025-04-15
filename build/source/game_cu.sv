@@ -79,7 +79,10 @@ module game_cu (
     localparam E_GameStates_BRANCH_SCORE_MTEQ20 = 6'h31;
     localparam E_GameStates_SET_LVL_3 = 6'h32;
     localparam E_GameStates_RESET_AWAKE_0 = 6'h33;
-    localparam E_GameStates_END = 6'h34;
+    localparam E_GameStates_WIN = 6'h34;
+    localparam E_GameStates_LOSE = 6'h35;
+    localparam E_GameStates_TIMEOUT = 6'h36;
+    localparam E_GameStates_END = 6'h37;
     logic [5:0] D_game_fsm_d, D_game_fsm_q = 6'h0;
     logic [5:0] D_delay_fsm_d, D_delay_fsm_q = 1'h0;
     logic advance;
@@ -148,7 +151,7 @@ module game_cu (
                 6'h5: begin
                     regfile_ra2 = 4'h9;
                     if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'h34;
+                        D_game_fsm_d = 6'h36;
                     end else begin
                         D_game_fsm_d = 6'h6;
                     end
@@ -496,7 +499,7 @@ module game_cu (
                 6'h26: begin
                     regfile_ra2 = 4'h9;
                     if (regfile_rd2[1'h0]) begin
-                        D_game_fsm_d = 6'h34;
+                        D_game_fsm_d = 6'h35;
                     end else begin
                         D_game_fsm_d = 6'h27;
                     end
@@ -638,8 +641,31 @@ module game_cu (
                     end
                 end
                 6'h34: begin
-                    alu_out_sel = 2'h1;
-                    D_game_fsm_d = 6'h34;
+                    alu_out_sel = 3'h1;
+                    regfile_wa = 3'h6;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h37;
+                    end
+                end
+                6'h35: begin
+                    alu_out_sel = 3'h2;
+                    regfile_wa = 3'h6;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h37;
+                    end
+                end
+                6'h36: begin
+                    alu_out_sel = 3'h3;
+                    regfile_wa = 3'h6;
+                    if (advance) begin
+                        regfile_we = 1'h1;
+                        D_game_fsm_d = 6'h37;
+                    end
+                end
+                6'h37: begin
+                    D_game_fsm_d = 6'h37;
                 end
                 6'h3: begin
                     if (decrease_timer) begin
